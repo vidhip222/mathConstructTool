@@ -1,0 +1,29 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathptmx} % Use Times Font
+\usepackage{calc} % To reset the counter in the document after title page
+\usepackage{enumitem} % Includes lists
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\setlength{\parindent}{0pt}
+
+\begin{document} 
+
+% table of contents 
+\tableofcontents 
+
+\section{All Problems}
+
+% Run `uv run python3 src/scripts/export_to_latex.py` to populate
+\input{revised_problems.tex}
+
+\end{document}       

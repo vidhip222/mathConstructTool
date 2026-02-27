@@ -1,0 +1,20 @@
+test_run: False
+output_dir: "example-run"
+models:
+  - "openai:gpt-4o"
+solver:
+  #system_prompt: "You are a math expert." 
+  parse_feedback: True
+  check_feedback: False
+  max_feedback_rounds: 2
+  error_string: "The solution parser encountered the following error:\n{error}\nPlease format your reply accurately."
+  formatting_prefix: "Format your reply as follows:"
+inference:
+  temperature: 1.0 
+  top_p: 0.9 
+  max_tokens: 4000
+  concurrent_requests: 2 
+  timeout: 500
+problems:
+  - "tot.*"
+n_variations: 2

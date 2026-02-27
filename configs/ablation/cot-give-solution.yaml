@@ -1,0 +1,35 @@
+test_run: False
+output_dir: "cot-give-solution"
+models:
+  # - "google:gemini-2.0-flash-thinking-exp"
+  # - "openai:gpt-4o"
+  - "openai:gpt-4o-mini"
+  # - "openai:o1"
+  # - "openai:o1-mini"
+  # - "google:gemini-2.0-flash-exp"
+  # - "google:gemini-exp-1206"
+  # - "together:Qwen/QwQ-32B-Preview"
+  # - "together:meta-llama/Llama-3.3-70B-Instruct-Turbo"
+  # - "anthropic:claude-3-5-sonnet-latest"
+  # - "anthropic:claude-3-5-haiku-latest"
+  # - "deepseek:deepseek-reasoner"
+  # - "deepseek:deepseek-chat"
+  # - "together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo-128K"
+  # - "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo"
+  # - "together:Qwen/Qwen2.5-72B-Instruct-Turbo"
+solver:
+  system_prompt: "You are tasked with solving a mathematical problem. Luckily for you, the user has decided to give you the solution. All you need to do is put it in the appropriate format. You do not have to provide a solution. Simply format the solution given to you in the correct format." 
+  parse_feedback: False
+  check_feedback: False
+  max_feedback_rounds: 0
+  formatting_prefix: "Format your reply as follows:"
+  give_solution: True
+inference:
+  temperature: 1.0 
+  top_p: 0.9 
+  max_tokens: 16000
+  concurrent_requests: 30 
+  timeout: 500
+problems:
+  - "jbmo-shortlist.*"
+n_variations: 4

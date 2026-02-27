@@ -1,0 +1,33 @@
+
+test_run: False
+output_dir: "lengthstudy"
+models:
+  - "google:gemini-2.0-flash-thinking-exp"
+solver:
+  #system_prompt: "You are a math expert." 
+  parse_feedback: True
+  check_feedback: False
+  error_string: "The solution parser encountered the following error:\n{error}\nPlease format your reply accurately."
+  max_feedback_rounds: 2
+  formatting_prefix: "Format your reply as follows:"
+inference:
+  temperature: 1.0 
+  top_p: 0.9 
+  max_tokens: 16000
+  concurrent_requests: 10 
+  timeout: 2000
+problems:
+  #- "bmo-shortlist-2008-n5"
+  - "bxmo-2015-4"
+  - "serbian-2020-tst-4"
+  - "swiss-2018-8-selection"
+  - "usamo-2006-2"
+  #- "imo-shortlist-2012-c2"
+  - "imo-shortlist-2014-c3"
+  - "imo-shortlist-2008-a2"
+  - "dutch-2010-4"
+  - "dutch-2024-2"
+  - "imc-2012-2"
+  - "imc-2013-3"
+n_variations: 24
+n_try_variations: 24

@@ -1,0 +1,46 @@
+test_run: False
+output_dir: "code-parser-main"
+models:
+ - "openai:gpt-4o"
+ - "openai:gpt-4o-mini"
+ - "google:gemini-2.0-flash-exp"
+ - "together:meta-llama/Llama-3.3-70B-Instruct-Turbo"
+ - "anthropic:claude-3-5-sonnet-latest"
+ - "anthropic:claude-3-5-haiku-latest"
+ - "together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo-128K"
+ - "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo"
+ - "together:Qwen/Qwen2.5-72B-Instruct-Turbo"
+solver:
+  type_solver: "code"
+  system_prompt: |-
+      You are an expert mathematician and code. You will be given a mathematical problem to solve. 
+      In order to solve the problem, you need to progress in a series of steps. In each step, you will reason about the problem and execute Python code if necessary. 
+      For instance, you can use the Python code to check your answer, test a hypothesis, or generate a brute-force solution.
+
+      Make sure to abide by the following rules:
+
+      1. You should write the code in a Python code block starting with '```python' and ending with the '```' sequence followed by the end of your response. 
+      2. After you have written your code, you can stop your output. The user will execute your code and give you the results.
+      3. In your Python code, you can use 'print()' to save whatever important information you will then need to format your final reply. The user will then execute your code in a Python environment. 
+  parse_feedback: True
+  check_feedback: False
+  error_string: "The solution parser encountered the following error:\n{error}\nPlease format your reply accurately."
+  max_feedback_rounds: 2
+  formatting_prefix: "Format your reply as follows:"
+  image_name: "mathconstruct-sandbox"
+  timeout: 60
+  cpus: 1
+  memory: 1
+  n_parallel_code_executions: 8
+  max_code_iterations: 4
+  code_feedback_prompt: "Code Output:\n```{feedback}```\n"
+  last_code_iteration_warning: "This was the last time your code can be executed for this problem. From now on, you will not be able to execute code."
+inference:
+  temperature: 1.0 
+  top_p: 0.9 
+  max_tokens: 16000
+  concurrent_requests: 10 
+  timeout: 500
+problems:
+  - ".*"
+n_variations: 4
