@@ -41,9 +41,16 @@ solver:
   # vLLM endpoint — override with $VLLM_BASE_URL at runtime if needed
   local_api_base_url: "http://localhost:8000/v1"
 
+  # Tool calling mode:
+  #   use_react: False  → native OpenAI function-calling (requires vLLM
+  #                        started with --enable-auto-tool-choice)
+  #   use_react: True   → ReAct text-based tool calling (works with ANY model,
+  #                        no special vLLM flags needed)
+  use_react: False
+
   # Tool execution
   tool_timeout: 30         # seconds per tool call
-  max_tool_rounds: 6       # max LLM ↔ tool turns
+  max_tool_rounds: 6       # max LLM ↔ tool turns (also max ReAct iterations)
 
   # Parse feedback (re-prompt if answer format is wrong)
   parse_feedback: True

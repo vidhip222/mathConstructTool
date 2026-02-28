@@ -33,31 +33,56 @@ from math_construct.problems.problem import Problem
 
 _SYSTEM_PROMPT = """\
 You are an expert mathematician solving competition-level math problems.
+You have access to computational tools. Use them to find and verify answers.
 
-You have access to the following tools to help you compute, verify, or brute-force solutions:
-{tool_list}
+════════════════════════════════════════════════════════════
+AVAILABLE TOOLS
+════════════════════════════════════════════════════════════
+{tool_descriptions}
+════════════════════════════════════════════════════════════
+HOW TO CALL A TOOL
+════════════════════════════════════════════════════════════
+Call a tool by invoking it as a function. The tool runs your code and returns
+its stdout as the result. You can call multiple tools in sequence.
 
-Strategy:
-- Analyse the problem carefully.
-- Choose the most appropriate tool(s) for the problem category.
-- Encode the problem as a constraint / SAT / SMT / symbolic math problem when possible.
-- Use multiple tools if needed to verify your answer.
-- When you have found a correct answer, write it in the required format inside \\boxed{{}}.
+After receiving a tool result:
+  - Read the output carefully.
+  - If it is an error (RuntimeError / TimeoutError / ToolNotFound), fix your
+    code and call the tool again.
+  - Use the result to refine your reasoning or verify your answer.
 
-Important:
-- Always print your final answer inside \\boxed{{}} exactly as the formatting instructions require.
-- Do NOT leave the answer only in tool output — re-state it in your final message.
+════════════════════════════════════════════════════════════
+WORKFLOW
+════════════════════════════════════════════════════════════
+1. ANALYSE   — identify the problem category and what you need to find.
+2. ENCODE    — translate the mathematical constraints into tool code:
+               • Number Theory  → Z3 (SMT), CryptoMiniSat (SAT), SymPy
+               • Combinatorics  → OR-Tools / MiniZinc (CP), NetworkX (graphs)
+               • Algebra        → SymPy (symbolic), SageMath (advanced)
+               • Geometry       → SymPy (symbolic geometry)
+               • Puzzle         → OR-Tools / MiniZinc, Z3
+3. EXECUTE   — call the tool. Read the Observation.
+4. VERIFY    — if possible, verify the answer with a second independent tool.
+5. ANSWER    — state the final answer inside \\boxed{{}} exactly as required.
+
+════════════════════════════════════════════════════════════
+RULES
+════════════════════════════════════════════════════════════
+- Your final response MUST contain \\boxed{{<answer>}} in the required format.
+- Do NOT rely solely on tool output for the final answer — restate it explicitly.
+- Tool code must be complete and self-contained (all imports included).
+- If a solver returns "unsat" or no solution, reconsider your encoding.
 """
 
-_TOOL_LIST_ITEM = "- **{name}**: {description}"
+_TOOL_ITEM = "  • {name}: {description}"
 
 
 def _build_system_prompt(tools: list[BaseTool]) -> str:
-    items = "\n".join(
-        _TOOL_LIST_ITEM.format(name=t.name, description=t.description)
+    descriptions = "\n".join(
+        _TOOL_ITEM.format(name=t.name, description=t.description)
         for t in tools
     )
-    return _SYSTEM_PROMPT.format(tool_list=items)
+    return _SYSTEM_PROMPT.format(tool_descriptions=descriptions)
 
 
 # ---------------------------------------------------------------------------

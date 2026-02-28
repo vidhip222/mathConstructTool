@@ -18,10 +18,13 @@ _LEAN_PROJECT_DIR = os.environ.get("LEAN_PROJECT_DIR", "")
 class LeanTool(BaseTool):
     name = "run_lean"
     description = (
-        "Check a Lean 4 proof or computation. "
-        "Write a Lean 4 snippet that type-checks if and only if the mathematical "
-        "statement holds. Use #eval to print computed values. "
-        "Useful to formally verify that a constructed solution satisfies all constraints."
+        "Check a Lean 4 proof or evaluate a computation. "
+        "Best for: formally verifying that a constructed solution satisfies all constraints, "
+        "checking decidable propositions (primality, divisibility, inequalities) with 'by decide', "
+        "and computing values with #eval (Nat arithmetic, list operations, Fin types). "
+        "If the code type-checks without errors, the mathematical statement is formally verified. "
+        "Use #eval <expr> to print computed values. "
+        "Note: Mathlib is available only if LEAN_PROJECT_DIR is set to a Mathlib project."
     )
 
     @property
@@ -37,9 +40,18 @@ class LeanTool(BaseTool):
                         "code": {
                             "type": "string",
                             "description": (
-                                "Lean 4 code to check. "
-                                "Example: '#eval Nat.Prime 97' "
-                                "or a theorem with 'by decide' for decidable propositions."
+                                "Lean 4 code to type-check and/or evaluate. "
+                                "Use #eval <expr> to print values (Nat, List, Bool, etc.). "
+                                "Use 'theorem t : <prop> := by decide' for decidable propositions "
+                                "(works for concrete numeric statements). "
+                                "No semicolons between top-level commands. "
+                                "Example — verify 97 is prime and compute 2^10:\n"
+                                "  #eval Nat.Prime 97\n"
+                                "  #eval 2^10\n"
+                                "Example — check a list is sorted:\n"
+                                "  #eval [1,3,5,7,9].Sorted (· ≤ ·)\n"
+                                "Example — verify 3^4 + 4^4 + 5^4 = 6^4 + 2^4:\n"
+                                "  theorem h : 3^4 + 4^4 + 5^4 = 6^4 + 2^4 := by decide"
                             ),
                         }
                     },
@@ -47,6 +59,27 @@ class LeanTool(BaseTool):
                 },
             },
         }
+
+    def react_prompt_block(self) -> str:
+        return """\
+### Tool: run_lean
+Best for: formally verifying that a candidate answer satisfies all problem constraints,
+          checking concrete arithmetic propositions (primality, divisibility) via 'by decide',
+          computing values with #eval.
+Action label: run_lean
+Parameter:
+  code (string) — Lean 4 code. Use #eval to print values; 'theorem t : P := by decide'
+                  to formally verify decidable propositions. No semicolons between commands.
+Output: stdout from #eval statements, or "proof checked successfully", or LeanError.
+
+Example:
+```lean
+-- Verify that 3, 4, 5 is a Pythagorean triple
+theorem pythagorean : 3^2 + 4^2 = 5^2 := by decide
+#eval 3^2 + 4^2   -- prints 25
+#eval Nat.Prime 97  -- prints true
+```
+"""
 
     def run(self, code: str) -> str:
         with tempfile.NamedTemporaryFile(

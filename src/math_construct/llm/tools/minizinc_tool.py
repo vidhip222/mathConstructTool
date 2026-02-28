@@ -14,10 +14,13 @@ from .base_tool import BaseTool
 class MiniZincTool(BaseTool):
     name = "run_minizinc"
     description = (
-        "Execute a MiniZinc constraint model and return the solution. "
-        "MiniZinc is a high-level constraint programming language. "
-        "Ideal for combinatorics, puzzles, and discrete optimization. "
-        "Write the full .mzn model as a string. Results are printed to stdout."
+        "Execute a MiniZinc constraint programming model (.mzn syntax) and return the solution. "
+        "MiniZinc is a high-level declarative language for constraint programming. "
+        "Best for: combinatorics puzzles, tiling/covering problems, graph problems, "
+        "scheduling, discrete optimisation, and any problem expressible as "
+        "'find an assignment of variables from finite domains satisfying constraints'. "
+        "Supports solve satisfy (find one solution), solve minimize/maximize (optimise). "
+        "Write the full model as a string in MiniZinc syntax."
     )
 
     @property
@@ -33,15 +36,25 @@ class MiniZincTool(BaseTool):
                         "model": {
                             "type": "string",
                             "description": (
-                                "A complete MiniZinc model (.mzn syntax). "
-                                "Example: 'var 1..10: x; var 1..10: y; "
-                                "constraint x + y = 15; solve satisfy; "
-                                "output [show(x), \" \", show(y)];'"
+                                "Complete MiniZinc model (.mzn syntax). "
+                                "Declare variables as 'var <domain>: <name>;'. "
+                                "Add constraints with 'constraint <expr>;'. "
+                                "End with 'solve satisfy;' or 'solve minimize <expr>;'. "
+                                "Use 'output [show(<var>), ...];' to control output. "
+                                "Example — magic square of order 3:\n"
+                                "  array[1..3,1..3] of var 1..9: sq;\n"
+                                "  constraint alldifferent([sq[i,j] | i,j in 1..3]);\n"
+                                "  constraint forall(i in 1..3)("
+                                "sum(j in 1..3)(sq[i,j]) = 15);\n"
+                                "  constraint forall(j in 1..3)("
+                                "sum(i in 1..3)(sq[i,j]) = 15);\n"
+                                "  solve satisfy;\n"
+                                "  output [show(sq)];"
                             ),
                         },
                         "solver": {
                             "type": "string",
-                            "description": "MiniZinc solver to use (default: 'gecode'). Options: gecode, coin-bc, chuffed.",
+                            "description": "MiniZinc solver backend (default: 'gecode'). Options: gecode, chuffed, coin-bc.",
                             "default": "gecode",
                         },
                     },
@@ -49,6 +62,28 @@ class MiniZincTool(BaseTool):
                 },
             },
         }
+
+    def react_prompt_block(self) -> str:
+        return """\
+### Tool: run_minizinc
+Best for: combinatorics puzzles, tiling, covering, graph problems, scheduling,
+          any "find an assignment satisfying constraints" problem with finite integer domains.
+Action label: run_minizinc
+Parameters:
+  model  (string) — complete MiniZinc model in .mzn syntax.
+  solver (string, optional) — backend solver: gecode (default), chuffed, coin-bc.
+Output: solution values as printed by your output statement, or UNSATISFIABLE.
+
+Example:
+```
+var 1..9: a; var 1..9: b; var 1..9: c;
+constraint a != b /\\ b != c /\\ a != c;
+constraint a + b + c = 15;
+constraint a * b * c = 40;
+solve satisfy;
+output ["a=", show(a), " b=", show(b), " c=", show(c)];
+```
+"""
 
     def run(self, model: str, solver: str = "gecode") -> str:
         with tempfile.NamedTemporaryFile(

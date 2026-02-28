@@ -57,6 +57,22 @@ class BaseTool(ABC):
         """Execute the tool with the given arguments and return a result string."""
         ...
 
+    @abstractmethod
+    def react_prompt_block(self) -> str:
+        """
+        Return a plain-text block describing this tool for the ReAct system prompt.
+
+        Must include:
+          - Tool name (as the Action label the model must use)
+          - What kinds of math problems it is best for
+          - What parameters it expects and what they mean
+          - A realistic, math-competition-style code example
+          - What the output / Observation will look like
+
+        This is what the LLM reads to understand HOW to call the tool.
+        """
+        ...
+
     # ------------------------------------------------------------------
     # Shared helper: run a Python code string in a subprocess
     # ------------------------------------------------------------------

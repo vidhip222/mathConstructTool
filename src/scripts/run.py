@@ -5,7 +5,7 @@ import re
 import sys 
 from datetime import datetime
 from math_construct.problems import get_problem_class, get_all_problem_classes
-from math_construct.llm import DummyLLM, APIQuery, ToolAPIQuery, CoTSolver, CodeSolver, ToolSolver
+from math_construct.llm import DummyLLM, APIQuery, ToolAPIQuery, CoTSolver, CodeSolver, ToolSolver, ReActToolSolver
 from config.meta_config import get_pydantic_models_from_path
 from loguru import logger
 from tqdm import tqdm
@@ -198,34 +198,50 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
             timeout=cfg.inference.timeout
         )
         if cfg.solver.type_solver == "tool":
-            # Build the kwargs dict that ToolAPIQuery/APIQuery share
-            base_querier_kwargs = dict(
-                model=model_name,
-                api=api,
-                temperature=cfg.inference.temperature,
-                top_p=cfg.inference.top_p,
-                max_tokens=cfg.inference.max_tokens,
-                concurrent_requests=cfg.inference.concurrent_requests,
-                timeout=cfg.inference.timeout,
-            )
-            # Override base URL if a local endpoint is configured
+            # Override base URL if a local endpoint is configured (e.g. vLLM)
             if cfg.solver.local_api_base_url:
                 import os as _os
                 _os.environ.setdefault("OPENAI_API_KEY", "dummy-local")
-                base_querier_kwargs["base_url"] = cfg.solver.local_api_base_url
+                querier.base_url = cfg.solver.local_api_base_url
 
-            solver = ToolSolver(
-                base_querier_kwargs=base_querier_kwargs,
-                tool_timeout=cfg.solver.tool_timeout,
-                max_tool_rounds=cfg.solver.max_tool_rounds,
-                system_prompt=cfg.solver.system_prompt,
-                parse_feedback=cfg.solver.parse_feedback,
-                check_feedback=cfg.solver.check_feedback,
-                max_feedback_rounds=cfg.solver.max_feedback_rounds,
-                formatting_prefix=cfg.solver.formatting_prefix,
-                error_string=cfg.solver.error_string,
-                give_solution=cfg.solver.give_solution,
-            )
+            if cfg.solver.use_react:
+                # ── ReAct mode: text-based tool calling, works with ANY model ──
+                solver = ReActToolSolver(
+                    querier=querier,
+                    tool_timeout=cfg.solver.tool_timeout,
+                    max_react_iterations=cfg.solver.max_tool_rounds,
+                    parse_feedback=cfg.solver.parse_feedback,
+                    check_feedback=cfg.solver.check_feedback,
+                    max_feedback_rounds=cfg.solver.max_feedback_rounds,
+                    formatting_prefix=cfg.solver.formatting_prefix,
+                    error_string=cfg.solver.error_string,
+                    give_solution=cfg.solver.give_solution,
+                )
+            else:
+                # ── Native tool-calling mode: requires model + API support ──
+                base_querier_kwargs = dict(
+                    model=model_name,
+                    api=api,
+                    temperature=cfg.inference.temperature,
+                    top_p=cfg.inference.top_p,
+                    max_tokens=cfg.inference.max_tokens,
+                    concurrent_requests=cfg.inference.concurrent_requests,
+                    timeout=cfg.inference.timeout,
+                )
+                if cfg.solver.local_api_base_url:
+                    base_querier_kwargs["base_url"] = cfg.solver.local_api_base_url
+
+                solver = ToolSolver(
+                    base_querier_kwargs=base_querier_kwargs,
+                    tool_timeout=cfg.solver.tool_timeout,
+                    max_tool_rounds=cfg.solver.max_tool_rounds,
+                    parse_feedback=cfg.solver.parse_feedback,
+                    check_feedback=cfg.solver.check_feedback,
+                    max_feedback_rounds=cfg.solver.max_feedback_rounds,
+                    formatting_prefix=cfg.solver.formatting_prefix,
+                    error_string=cfg.solver.error_string,
+                    give_solution=cfg.solver.give_solution,
+                )
         elif cfg.solver.type_solver == "code":
             solver = CodeSolver(
                 querier=querier,

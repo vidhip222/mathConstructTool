@@ -15,8 +15,12 @@ class SageTool(BaseTool):
     name = "run_sage"
     description = (
         "Execute SageMath code for advanced mathematical computation. "
-        "SageMath covers algebra, number theory, geometry, combinatorics, and more. "
-        "It integrates SymPy, GAP, PARI/GP, and other math systems. "
+        "SageMath integrates SymPy, GAP, PARI/GP, Singular, and many other systems. "
+        "Best for: algebraic number theory (number fields, ideal class groups), "
+        "elliptic curves, modular forms, polynomial arithmetic over arbitrary rings, "
+        "advanced combinatorics (matroids, posets, polytopes), "
+        "symbolic and numeric computation beyond SymPy's scope. "
+        "SageMath syntax is Python with extra mathematical globals pre-loaded. "
         "Write complete SageMath code; use print() to output results."
     )
 
@@ -33,9 +37,18 @@ class SageTool(BaseTool):
                         "code": {
                             "type": "string",
                             "description": (
-                                "SageMath code to execute. "
-                                "Example: 'p = next_prime(100); print(p)' "
-                                "or 'G = SymmetricGroup(5); print(G.order())'"
+                                "Complete SageMath code (Python superset with math globals). "
+                                "Useful features: number_field(), EllipticCurve(), "
+                                "PolynomialRing(), GF(p), Matrix(), Permutations(), "
+                                "next_prime(), euler_phi(), continued_fraction(), "
+                                "Graph(), Polyhedron(). "
+                                "Use print() for output. "
+                                "Example — find the class number of Q(sqrt(-23)):\n"
+                                "  K = QuadraticField(-23)\n"
+                                "  print(K.class_number())\n"
+                                "Example — construct the Fano plane incidence matrix:\n"
+                                "  D = designs.ProjectiveSpaceBoundedBlock(2, 2)\n"
+                                "  print(D.incidence_matrix())"
                             ),
                         }
                     },
@@ -43,6 +56,29 @@ class SageTool(BaseTool):
                 },
             },
         }
+
+    def react_prompt_block(self) -> str:
+        return """\
+### Tool: run_sage
+Best for: algebraic number theory (number fields, class groups), elliptic curves,
+          modular forms, polynomial arithmetic over arbitrary rings, advanced combinatorics
+          (matroids, polytopes), and anything beyond SymPy's scope.
+Action label: run_sage
+Parameter:
+  code (string) — SageMath code (Python superset with math globals). Use print() for output.
+Output: stdout from your code, or RuntimeError.
+
+Example:
+```python
+# Decompose 2025 into sum of four squares
+from sage.arith.all import sum_of_squares
+print(sum_of_squares(4, 2025, algorithm='pari'))
+# Compute the order of element (1 2 3)(4 5) in S5
+G = SymmetricGroup(5)
+g = G([(1,2,3),(4,5)])
+print(g.order())
+```
+"""
 
     def run(self, code: str) -> str:
         with tempfile.NamedTemporaryFile(
