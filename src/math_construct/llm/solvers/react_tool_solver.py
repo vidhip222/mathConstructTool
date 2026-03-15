@@ -1,5 +1,5 @@
 """
-ReActToolSolver — tool-calling solver that works for ANY model.
+ReActToolSolver — tool-calling solver that works for any model.
 
 Uses the ReAct (Reason + Act) prompting strategy:
   - Tools are described in plain text inside the system prompt.
@@ -67,7 +67,7 @@ Observation: <output returned by the tool>
 You may call as many tools as you need.
 When you have a verified final answer, write:
 
-Final Answer: \\boxed{<your answer in the required format>}
+Final Answer: \\boxed{{<your answer in the required format>}}
 
 ════════════════════════════════════════════════════════════
 AVAILABLE TOOLS

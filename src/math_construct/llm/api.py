@@ -149,6 +149,10 @@ class APIQuery:
             self.api_key = os.getenv("OPENROUTER_API_KEY")
             self.base_url = "https://openrouter.ai/api/v1"
             self.api = "openai"
+        elif self.api == "huggingface":
+            self.api_key = os.getenv("HF_TOKEN")
+            self.base_url = "https://router.huggingface.co/v1"
+            self.api = "openai"
         else:
             raise ValueError(f"API {self.api} not supported.")
         assert self.api_key is not None, f"API key not found."
