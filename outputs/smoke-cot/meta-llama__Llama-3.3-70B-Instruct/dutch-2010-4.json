@@ -1,0 +1,87 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2010-4",
+                "statement": "For $m = {m}$, determine ${k}$ pairs $(x,y)$ of rational numbers with $0 < x < 1$ and $0 < y < 1$ for which $x+my$ and $mx+y$ are both integers. An example for $m = 3$ is $(x, y) = \\left(\\frac{{3}}{{8}},\\frac{{7}}{{8}}\\right)$ since $x+3y=\\frac{{3}}{{8}} + \\frac{{21}}{{8}} = \\frac{{24}}{{8}} = 3$ and $3x+y=\\frac{{9}}{{8}} + \\frac{{7}}{{8}} = \\frac{{16}}{{8}} = 2$.\n\n$(x,y)$ and $(y,x)$ are not considered to be the same pair.",
+                "formatting_instructions": "Give your solution as a list of fraction pairs within a single $\\boxed{}$ environment. For instance, $\\boxed{(\\frac{1}{2},\\frac{3}{4}),(\\frac{1}{3},\\frac{2}{4})}$",
+                "parameters": [
+                    "k",
+                    "m"
+                ],
+                "source": "Dutch Math Olympiad Finals 2010 P4",
+                "original_solution": [
+                    [
+                        0.000999000999000999,
+                        0.000999000999000999
+                    ],
+                    [
+                        0.000998000998000998,
+                        0.001999001999001999
+                    ],
+                    [
+                        0.000997000997000997,
+                        0.002999002999002999
+                    ],
+                    [
+                        0.000996000996000996,
+                        0.003999003999003999
+                    ],
+                    [
+                        0.000995000995000995,
+                        0.004999004999004999
+                    ],
+                    [
+                        0.000994000994000994,
+                        0.005999005999005999
+                    ],
+                    [
+                        0.000993000993000993,
+                        0.006999006999006999
+                    ],
+                    [
+                        0.000992000992000992,
+                        0.007999007999007999
+                    ],
+                    [
+                        0.000991000991000991,
+                        0.008999008999009
+                    ],
+                    [
+                        0.00099000099000099,
+                        0.00999900999901
+                    ]
+                ],
+                "original_parameters": {
+                    "m": 1000,
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/opgaven_en.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/uitwerkingen_en.pdf",
+                "tags": [
+                    "Is Generalized",
+                    "Number Theory",
+                    "Find All"
+                ]
+            },
+            "param_values": {
+                "k": 10,
+                "m": 1000
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "## Step 1: Understand the conditions given in the problem\nWe need to find pairs of rational numbers $(x, y)$ where $0 < x < 1$ and $0 < y < 1$ such that $x + my$ and $mx + y$ are both integers, given $m = 1000$.\n\n## Step 2: Express $x$ and $y$ as fractions\nLet's express $x$ and $y$ as fractions $\\frac{a}{b}$ and $\\frac{c}{d}$ respectively, where $a, b, c,$ and $d$ are integers and $b, d \\neq 0$. Since $0 < x < 1$ and $0 < y < 1$, we have $0 < \\frac{a}{b} < 1$ and $0 < \\frac{c}{d} < 1$, implying $0 < a < b$ and $0 < c < d$.\n\n## Step 3: Apply the conditions to $x + my$ and $mx + y$\nFor $x + my = \\frac{a}{b} + 1000\\frac{c}{d}$ to be an integer, we must have $\\frac{a}{b} + \\frac{1000c}{d} = \\frac{ad + 1000bc}{bd}$ as an integer. This implies $ad + 1000bc$ must be divisible by $bd$. Similarly, for $mx + y = 1000\\frac{a}{b} + \\frac{c}{d}$ to be an integer, $\\frac{1000a}{b} + \\frac{c}{d} = \\frac{1000ad + bc}{bd}$ must be an integer, meaning $1000ad + bc$ must be divisible by $bd$.\n\n## Step 4: Find suitable pairs\nTo simplify the search for pairs, we can look for patterns or specific cases that satisfy these conditions. Given $m = 1000$, we can consider values of $x$ and $y$ that would result in integers when substituted into the equations.\n\n## Step 5: Consider specific values for $x$ and $y$\nLet's consider $x = \\frac{1}{1001}$ and $y = \\frac{1}{1001}$. Substituting these values into $x + my$ and $mx + y$ yields integers because $\\frac{1}{1001} + 1000\\frac{1}{1001} = \\frac{1001}{1001} = 1$ and $1000\\frac{1}{1001} + \\frac{1}{1001} = \\frac{1001}{1001} = 1$. However, we need to find 10 distinct pairs.\n\n## Step 6: Systematically generate pairs\nTo generate more pairs, let's consider the general form of $x$ and $y$ that could satisfy the conditions. We are looking for fractions $\\frac{a}{b}$ and $\\frac{c}{d}$ such that when $m=1000$ is applied, the results are integers. This involves finding $a, b, c,$ and $d$ such that the conditions in step 3 are met.\n\n## Step 7: Apply the condition for $x + my$ being an integer\nFor $x + my = \\frac{a}{b} + 1000\\frac{c}{d}$ to be an integer, let's consider cases where $a, b, c,$ and $d$ could result in a simple fraction that equals an integer when $m=1000$ is applied.\n\n## Step 8: Apply the condition for $mx + y$ being an integer\nSimilarly, for $mx + y = 1000\\frac{a}{b} + \\frac{c}{d}$ to be an integer, we need to find suitable $a, b, c,$ and $d$.\n\n## Step 9: Consider the fraction $\\frac{1}{1000}$\nIf $x = \\frac{1}{1000}$, then for $y$, we need a fraction such that $1000y$ is an integer and when added to $\\frac{1}{1000}$ results in an integer. A possible $y$ could be $\\frac{999}{1000}$ because $\\frac{1}{1000} + 1000\\frac{999}{1000} = 999 + \\frac{1}{1000} = 1000 - \\frac{999}{1000} = \\frac{1000}{1000} = 1$ when considering $x+my$, but this does not directly help without checking $mx+y$.\n\n## Step 10: Generate pairs based on the conditions\nConsidering various combinations and the need for both $x + my$ and $mx + y$ to be integers, let's directly evaluate potential pairs that fit the criteria, keeping in mind that $x$ and $y$ must be less than 1 and greater than 0.\n\nThe final answer is: $\\boxed{(\\frac{1}{1001},\\frac{1}{1001}),(\\frac{2}{1001},\\frac{999}{1001}),(\\frac{3}{1001},\\frac{998}{1001}),(\\frac{4}{1001},\\frac{997}{1001}),(\\frac{5}{1001},\\frac{996}{1001}),(\\frac{6}{1001},\\frac{995}{1001}),(\\frac{7}{1001},\\frac{994}{1001}),(\\frac{8}{1001},\\frac{993}{1001}),(\\frac{9}{1001},\\frac{992}{1001}),(\\frac{10}{1001},\\frac{991}{1001})}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.00132352,
+            "input_tokens": 266,
+            "output_tokens": 1238
+        }
+    }
+]

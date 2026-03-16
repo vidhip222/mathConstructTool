@@ -46,48 +46,50 @@ from math_construct.problems.problem import Problem
 
 _SYSTEM_PROMPT = """\
 You are an expert mathematician solving competition-level math problems.
-You have access to computational tools to help you find and verify answers.
+You have access to specialised solver tools to help you find and verify answers.
+Choose the most appropriate tool for the problem (see AVAILABLE TOOLS below).
 
 ════════════════════════════════════════════════════════════
-HOW TO USE TOOLS  (follow this format EXACTLY)
+HOW TO USE THE TOOLS  (follow this format EXACTLY)
 ════════════════════════════════════════════════════════════
 
-To call a tool, write:
+Step 1 — Write a Thought and an Action block:
 
-Thought: <explain your reasoning — what you want to compute and why>
+Thought: <explain what you want to compute and why, and which tool is most appropriate>
 Action: <tool_name>
+```python
+<your complete, self-contained code here — include all imports>
 ```
-<code or model for the tool>
-```
 
-After you write an Action block, you will receive:
+  • <tool_name> must be one of the action labels listed in AVAILABLE TOOLS below.
+  • All tools accept Python code except where noted.
 
-Observation: <output returned by the tool>
+Step 2 — STOP IMMEDIATELY after the closing ```.
+          Do NOT write "Observation:" yourself.
+          Do NOT guess what the output will be.
+          The system will run your code and inject the result as:
 
-You may call as many tools as you need.
-When you have a verified final answer, write:
+Observation: <actual tool output>
 
-Final Answer: \\boxed{{<your answer in the required format>}}
+Step 3 — Read the Observation, then either call another tool or write:
+
+Final Answer: \\boxed{{<your answer in the exact required format>}}
 
 ════════════════════════════════════════════════════════════
 AVAILABLE TOOLS
 ════════════════════════════════════════════════════════════
 {tool_blocks}
 ════════════════════════════════════════════════════════════
-STRATEGY
+RULES
 ════════════════════════════════════════════════════════════
-1. Read the problem carefully. Identify the mathematical category.
-2. Choose the most suitable tool (see "Best for" in each tool description).
-3. Encode the problem constraints precisely — wrong encoding = wrong answer.
-4. Run the tool and read the Observation.
-5. If the Observation is an error, fix the code and try again.
-6. Verify your answer with a second tool call if possible.
-7. Write the Final Answer in the exact format specified in the problem.
-
-IMPORTANT:
-- Your Final Answer MUST be inside \\boxed{{}} exactly as the formatting instructions require.
-- Do NOT put the answer only in tool output — state it explicitly in your Final Answer line.
-- Tool code must be complete and self-contained (all imports included).
+- Use the BEST tool for the problem type (e.g. run_z3 for constraint satisfaction,
+  run_ortools for combinatorics/scheduling, run_sympy for symbolic algebra,
+  run_networkx for graph problems, run_python for everything else).
+- NEVER write "Observation:" — only the system can do that.
+- NEVER guess or simulate tool output — always run the tool.
+- Your Final Answer MUST use \\boxed{{}} exactly as the formatting instructions require.
+- Code must be complete and self-contained (include all imports).
+- If the Observation shows an error, fix the code and try again.
 """
 
 _FORCE_FINAL_PROMPT = (
@@ -152,7 +154,9 @@ class ReActToolSolver(CoTSolver):
     # ReAct loop for a single problem
     # ------------------------------------------------------------------
 
-    def _run_react_loop(self, problem: Problem, messages: list[dict]) -> list[dict]:
+    def _run_react_loop(
+        self, problem: Problem, messages: list[dict], problem_idx: int
+    ) -> list[dict]:
         """
         Run the Thought→Action→Observation loop for one problem.
         Returns the final message list (suitable for parse_and_check).
@@ -160,58 +164,72 @@ class ReActToolSolver(CoTSolver):
         tools = get_tools_for_problem(problem, timeout=self.tool_timeout)
         tool_map: dict[str, BaseTool] = {t.name: t for t in tools}
 
-        for iteration in range(self.max_react_iterations + 1):
-            # Force final answer on last iteration
-            if iteration == self.max_react_iterations:
-                messages.append({"role": "user", "content": _FORCE_FINAL_PROMPT})
+        # Add stop sequence so the model cannot write "Observation:" itself.
+        old_stop = self.querier.kwargs.get("stop")
+        self.querier.kwargs["stop"] = ["Observation:"]
 
-            # Call the LLM
-            responses, detailed_costs, cost = self.querier.run_queries([messages])
-            response_text: str = responses[0] or ""
+        try:
+            for iteration in range(self.max_react_iterations + 1):
+                # Force final answer on last iteration
+                if iteration == self.max_react_iterations:
+                    messages.append({"role": "user", "content": _FORCE_FINAL_PROMPT})
 
-            self.cost += cost["cost"]
-            # We track cost in the caller (solve_initial_round), so no detailed_cost here
+                # Call the LLM
+                responses, detailed_costs, cost = self.querier.run_queries([messages])
+                response_text: str = responses[0] or ""
 
-            messages.append({"role": "assistant", "content": response_text})
+                # Track cost globally and per-problem
+                self.cost += cost["cost"]
+                self.detailed_cost[problem_idx]["cost"]         += detailed_costs[0]["cost"]
+                self.detailed_cost[problem_idx]["input_tokens"] += detailed_costs[0]["input_tokens"]
+                self.detailed_cost[problem_idx]["output_tokens"]+= detailed_costs[0]["output_tokens"]
 
-            # Check if LLM gave a final answer (contains \boxed{})
-            if self._has_final_answer(response_text):
-                logger.debug(f"ReAct loop finished after {iteration + 1} iteration(s).")
-                break
+                messages.append({"role": "assistant", "content": response_text})
 
-            # Parse tool call from the response
-            tool_name, tool_input = self._parse_action(response_text)
+                # Check if LLM gave a final answer (contains \boxed{})
+                if self._has_final_answer(response_text):
+                    logger.debug(f"ReAct loop finished after {iteration + 1} iteration(s).")
+                    break
 
-            if tool_name is None:
-                # No action found and no final answer — nudge the model
-                logger.debug("No Action found in response. Nudging model.")
+                # Parse tool call from the response
+                tool_name, tool_input = self._parse_action(response_text)
+
+                if tool_name is None:
+                    # No action found and no final answer — nudge the model
+                    logger.debug("No Action found in response. Nudging model.")
+                    messages.append({
+                        "role": "user",
+                        "content": (
+                            "Please continue. Either call a tool using the Action format, "
+                            "or write your Final Answer: \\boxed{<answer>}."
+                        ),
+                    })
+                    continue
+
+                # Execute the tool
+                tool = tool_map.get(tool_name)
+                if tool is None:
+                    observation = (
+                        f"ToolNotFound: '{tool_name}' is not available. "
+                        f"Available tools: {list(tool_map.keys())}"
+                    )
+                    logger.warning(observation)
+                else:
+                    logger.debug(f"Executing tool '{tool_name}'")
+                    observation = self._execute_tool(tool, tool_name, tool_input)
+                    logger.debug(f"Observation ({tool_name}): {observation[:300]}")
+
+                # Inject the observation as a user message
                 messages.append({
                     "role": "user",
-                    "content": (
-                        "Please continue. Either call a tool using the Action format, "
-                        "or write your Final Answer: \\boxed{<answer>}."
-                    ),
+                    "content": f"Observation: {observation}",
                 })
-                continue
-
-            # Execute the tool
-            tool = tool_map.get(tool_name)
-            if tool is None:
-                observation = (
-                    f"ToolNotFound: '{tool_name}' is not available. "
-                    f"Available tools: {list(tool_map.keys())}"
-                )
-                logger.warning(observation)
+        finally:
+            # Restore original stop setting
+            if old_stop is None:
+                self.querier.kwargs.pop("stop", None)
             else:
-                logger.debug(f"Executing tool '{tool_name}'")
-                observation = self._execute_tool(tool, tool_name, tool_input)
-                logger.debug(f"Observation ({tool_name}): {observation[:300]}")
-
-            # Inject the observation as a user message
-            messages.append({
-                "role": "user",
-                "content": f"Observation: {observation}",
-            })
+                self.querier.kwargs["stop"] = old_stop
 
         return messages
 
@@ -224,7 +242,7 @@ class ReActToolSolver(CoTSolver):
         queries = self.build_queries(problems)
 
         for i, (problem, messages) in enumerate(zip(problems, queries)):
-            queries[i] = self._run_react_loop(problem, messages)
+            queries[i] = self._run_react_loop(problem, messages, problem_idx=i)
 
         logger.info("ReActToolSolver: initial round done.")
         return queries

@@ -169,9 +169,9 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
         problem_instances_model = []
         for problem_class, problem_inst in problem_instances:
             add = True
-            if os.path.exists(f"outputs/{cfg.output_dir}/{model_name.replace("/", "__")}/{problem_class.config.name}.json"):
+            if os.path.exists(f"outputs/{cfg.output_dir}/{model_name.replace("/", "__").replace(":", "_")}/{problem_class.config.name}.json"):
                 # load the json and check if we have enough instances
-                json_input = json.load(open(f"outputs/{cfg.output_dir}/{model_name.replace("/", "__")}/{problem_class.config.name}.json", "r"))
+                json_input = json.load(open(f"outputs/{cfg.output_dir}/{model_name.replace("/", "__").replace(":", "_")}/{problem_class.config.name}.json", "r"))
                 # load the problems from json
                 problems_from_json = [(problem_class.from_json(entry["problem"]), entry) for entry in json_input]
                 for problem in problems_from_json:
@@ -188,6 +188,10 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
                     problem_dumps[problem_class] = []
                 problem_dumps[problem_class].append(None)
 
+        # Apply local vLLM base URL for all solver types
+        if cfg.solver.local_api_base_url:
+            os.environ.setdefault("OPENAI_API_KEY", "dummy-local")
+
         querier = APIQuery(
             model=model_name,
             api=api,
@@ -197,12 +201,10 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
             concurrent_requests=cfg.inference.concurrent_requests,
             timeout=cfg.inference.timeout
         )
+        if cfg.solver.local_api_base_url:
+            querier.base_url = cfg.solver.local_api_base_url
+
         if cfg.solver.type_solver == "tool":
-            # Override base URL if a local endpoint is configured (e.g. vLLM)
-            if cfg.solver.local_api_base_url:
-                import os as _os
-                _os.environ.setdefault("OPENAI_API_KEY", "dummy-local")
-                querier.base_url = cfg.solver.local_api_base_url
 
             if cfg.solver.use_react:
                 # ── ReAct mode: text-based tool calling, works with ANY model ──
@@ -276,7 +278,7 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
         # Process problems in batches
         batch_size = cfg.solver.batch_size if hasattr(cfg.solver, 'batch_size') else 10
 
-        model_dir = os.path.join(run_dir, model_name.replace("/", "__"))
+        model_dir = os.path.join(run_dir, model_name.replace("/", "__").replace(":", "_").replace(":", "_"))
         os.makedirs(model_dir, exist_ok=True)
 
         for batch_start in range(0, len(problem_instances_model), batch_size):

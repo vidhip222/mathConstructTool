@@ -107,7 +107,9 @@ class ToolAPIQuery(APIQuery):
                 break
 
             # Append assistant message with tool_calls to the conversation
-            messages.append(msg.model_dump(exclude_unset=False))
+            # exclude_none=True avoids extra None fields (e.g. refusal, function_call)
+            # that vLLM and other OpenAI-compat endpoints reject.
+            messages.append(msg.model_dump(exclude_none=True))
 
             # Execute each requested tool call
             for tc in msg.tool_calls:
