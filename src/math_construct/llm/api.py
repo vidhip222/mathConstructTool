@@ -1,5 +1,6 @@
 from .llm_costs import llm_costs
 from loguru import logger
+import json
 import re
 import os
 from tqdm import tqdm
@@ -149,9 +150,13 @@ class APIQuery:
             self.api_key = os.getenv("OPENROUTER_API_KEY")
             self.base_url = "https://openrouter.ai/api/v1"
             self.api = "openai"
-        elif self.api == "huggingface":
-            self.api_key = os.getenv("HF_TOKEN")
-            self.base_url = "https://router.huggingface.co/v1"
+        elif self.api == "groq":
+            self.api_key = os.getenv("GROQ_API_KEY")
+            self.base_url = "https://api.groq.com/openai/v1"
+            self.api = "openai"
+        elif self.api == "ollama":
+            self.api_key = "ollama"          # Ollama doesn't need a real key
+            self.base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
             self.api = "openai"
         else:
             raise ValueError(f"API {self.api} not supported.")
@@ -174,6 +179,181 @@ class APIQuery:
     def get_cost(self, response):
         cost = response["input_tokens"] * self.read_cost + response["output_tokens"] * self.write_cost
         return cost / (10 ** 6)
+
+    # ------------------------------------------------------------------
+    # Tool-aware query methods
+    # ------------------------------------------------------------------
+
+    def _convert_messages_to_anthropic(self, messages: list) -> tuple:
+        """Convert OpenAI-format messages (possibly with tool calls/results) to Anthropic format."""
+        system = anthropic.NOT_GIVEN
+        out: list[dict] = []
+        i = 0
+        if messages and messages[0].get("role") == "system":
+            system = messages[0]["content"]
+            i = 1
+        while i < len(messages):
+            msg = messages[i]
+            role = msg.get("role", "")
+            if role == "user":
+                # Could be a plain text message or already a list of content blocks
+                content = msg.get("content", "")
+                if isinstance(content, list):
+                    out.append({"role": "user", "content": content})
+                else:
+                    out.append({"role": "user", "content": content})
+            elif role == "assistant":
+                content_blocks = []
+                text = msg.get("content", "") or ""
+                if text:
+                    content_blocks.append({"type": "text", "text": text})
+                for tc in msg.get("tool_calls", []):
+                    fn = tc.get("function", {})
+                    raw_args = fn.get("arguments", {})
+                    if isinstance(raw_args, str):
+                        try:
+                            raw_args = json.loads(raw_args)
+                        except Exception:
+                            raw_args = {}
+                    content_blocks.append({
+                        "type": "tool_use",
+                        "id": tc.get("id", "call_0"),
+                        "name": fn.get("name", ""),
+                        "input": raw_args,
+                    })
+                out.append({"role": "assistant", "content": content_blocks or text})
+            elif role == "tool":
+                # Collect all consecutive tool results into one user message
+                tool_results = []
+                while i < len(messages) and messages[i].get("role") == "tool":
+                    t = messages[i]
+                    tool_results.append({
+                        "type": "tool_result",
+                        "tool_use_id": t.get("tool_call_id", ""),
+                        "content": t.get("content", ""),
+                    })
+                    i += 1
+                out.append({"role": "user", "content": tool_results})
+                continue
+            i += 1
+        return system, out
+
+    def _openai_query_with_tools(self, messages: list, tools) -> dict:
+        client = OpenAI(
+            api_key=self.api_key,
+            base_url=self.base_url,
+            timeout=self.timeout,
+            max_retries=0,
+        )
+        kwargs = {k: v for k, v in self.kwargs.items()}
+        create_kwargs = dict(
+            model=self.model,
+            messages=messages,
+            temperature=self.temperature,
+            **kwargs,
+        )
+        if tools:
+            create_kwargs["tools"] = tools
+            create_kwargs["tool_choice"] = "auto"
+
+        response = client.chat.completions.create(**create_kwargs)
+        msg = response.choices[0].message
+        content = msg.content or ""
+        tool_calls = []
+        if msg.tool_calls:
+            for tc in msg.tool_calls:
+                tool_calls.append({
+                    "id": tc.id,
+                    "type": "function",
+                    "function": {
+                        "name": tc.function.name,
+                        "arguments": tc.function.arguments,
+                    },
+                })
+        return {
+            "output": content,
+            "tool_calls": tool_calls,
+            "input_tokens": response.usage.prompt_tokens,
+            "output_tokens": response.usage.completion_tokens,
+        }
+
+    def _anthropic_query_with_tools(self, messages: list, tools) -> dict:
+        client = anthropic.Anthropic(
+            api_key=self.api_key,
+            max_retries=0,
+            timeout=self.timeout,
+        )
+        anthropic_tools = anthropic.NOT_GIVEN
+        if tools:
+            anthropic_tools = [
+                {
+                    "name": t["function"]["name"],
+                    "description": t["function"].get("description", ""),
+                    "input_schema": t["function"]["parameters"],
+                }
+                for t in tools
+            ]
+        system, converted = self._convert_messages_to_anthropic(messages)
+        result = client.messages.create(
+            model=self.model,
+            messages=converted,
+            system=system,
+            tools=anthropic_tools,
+            temperature=self.temperature,
+            **self.kwargs,
+        )
+        content_text = ""
+        tool_calls = []
+        for block in result.content:
+            if block.type == "text":
+                content_text += block.text
+            elif block.type == "tool_use":
+                tool_calls.append({
+                    "id": block.id,
+                    "type": "function",
+                    "function": {
+                        "name": block.name,
+                        "arguments": json.dumps(block.input) if isinstance(block.input, dict) else str(block.input),
+                    },
+                })
+        return {
+            "output": content_text,
+            "tool_calls": tool_calls,
+            "input_tokens": result.usage.input_tokens,
+            "output_tokens": result.usage.output_tokens,
+        }
+
+    def run_query_with_tools(self, messages: list, tools) -> dict:
+        """
+        Single-round query with optional tool support.
+        Returns {"output": str, "tool_calls": list, "input_tokens": int, "output_tokens": int}.
+        Falls back to regular run_query if the API doesn't support tools.
+        """
+        if self.api == "openai":
+            return self._openai_query_with_tools(messages, tools)
+        elif self.api == "anthropic":
+            return self._anthropic_query_with_tools(messages, tools)
+        else:
+            # Other APIs (together, deepseek, etc.) use the OpenAI-compatible endpoint
+            return self._openai_query_with_tools(messages, tools)
+
+    def run_query_with_tools_with_retry(self, messages: list, tools) -> dict:
+        """run_query_with_tools with exponential-backoff retry."""
+        i = 0
+        while i < self.max_retries:
+            try:
+                output = self.run_query_with_tools(messages, tools)
+                time.sleep(self.sleep_after_request)
+                return output
+            except Exception as e:
+                logger.error(f"Tool query error: {e}")
+                time.sleep(self.sleep_on_error)
+                if "rate limit" not in str(e).lower() and "429" not in str(e):
+                    i += 1
+                continue
+        if self.throw_error_on_failure:
+            raise ValueError("Max retries reached for tool query.")
+        return {"output": "", "tool_calls": [], "input_tokens": 0, "output_tokens": 0}
 
     def run_queries(self, queries):
         logger.info(f"Running {len(queries)} queries with {self.concurrent_requests} requests.")

@@ -1,0 +1,35 @@
+# Tool-solver config — quick test run
+# Usage:
+#   cd mathconstruct-main
+#   python src/scripts/run.py configs/tool-solver.yaml
+#
+# Set test_run: true to evaluate one variation per problem and print results
+# immediately without saving, just like math-constraint-main's --verbose mode.
+
+test_run: true
+output_dir: "tool-solver-run"
+
+models:
+  - "openai:gpt-4o"          # swap for "anthropic:claude-opus-4-5" etc.
+
+solver:
+  type_solver: "tool"
+  parse_feedback: true
+  check_feedback: false
+  max_feedback_rounds: 1
+  max_tool_rounds: 5
+  tool_verbose: true          # prints [tool-call] / [tool-result] to stdout
+  formatting_prefix: "Format your reply as follows:"
+  error_string: "The solution parser encountered the following error:\n{error}\nPlease format your reply accurately."
+
+inference:
+  temperature: 1.0
+  top_p: 0.9
+  max_tokens: 8000
+  concurrent_requests: 2
+  timeout: 500
+
+problems:
+  - "tot.*"   # run on a small subset; change to ".*" for the full benchmark
+
+n_variations: 1

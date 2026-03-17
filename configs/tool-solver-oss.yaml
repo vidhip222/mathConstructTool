@@ -1,0 +1,38 @@
+# Tool-solver config — Qwen 35B, Llama 8B, Llama 70B via Together.ai
+# Requires: TOGETHER_API_KEY env var
+#
+# Quick test (prints results immediately, no files saved):
+#   python src/scripts/run.py configs/tool-solver-oss.yaml
+#
+# Full benchmark run (saves to outputs/tool-solver-oss/):
+#   Change test_run to false and n_variations to 4
+
+test_run: true
+output_dir: "tool-solver-oss"
+
+models:
+  - "together:Qwen/QwQ-32B-Preview"                                 # Qwen ~35B (32.5B params)
+  - "together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo-128K"    # Llama 8B
+  - "together:meta-llama/Llama-3.3-70B-Instruct-Turbo"             # Llama 70B
+
+solver:
+  type_solver: "tool"
+  parse_feedback: true
+  check_feedback: false
+  max_feedback_rounds: 1
+  max_tool_rounds: 5
+  tool_verbose: true          # prints [tool-call] / [tool-result] to stdout
+  formatting_prefix: "Format your reply as follows:"
+  error_string: "The solution parser encountered the following error:\n{error}\nPlease format your reply accurately."
+
+inference:
+  temperature: 1.0
+  top_p: 0.9
+  max_tokens: 8000
+  concurrent_requests: 3      # one thread per model during test
+  timeout: 500
+
+problems:
+  - "tot.*"   # small subset for testing; change to ".*" for full benchmark
+
+n_variations: 1

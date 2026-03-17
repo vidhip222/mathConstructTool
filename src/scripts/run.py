@@ -2,10 +2,15 @@ import argparse
 import json
 import os
 import re
-import sys 
+import sys
 from datetime import datetime
+
+# Ensure src/ is on the path when invoked directly (without uv run)
+_src = os.path.join(os.path.dirname(__file__), "..", "..")
+if _src not in sys.path:
+    sys.path.insert(0, os.path.abspath(_src))
 from math_construct.problems import get_problem_class, get_all_problem_classes
-from math_construct.llm import DummyLLM, APIQuery, ToolAPIQuery, CoTSolver, CodeSolver, ToolSolver, ReActToolSolver
+from math_construct.llm import DummyLLM, APIQuery, CoTSolver, CodeSolver, ToolSolver
 from config.meta_config import get_pydantic_models_from_path
 from loguru import logger
 from tqdm import tqdm
@@ -169,9 +174,10 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
         problem_instances_model = []
         for problem_class, problem_inst in problem_instances:
             add = True
-            if os.path.exists(f"outputs/{cfg.output_dir}/{model_name.replace("/", "__").replace(":", "_")}/{problem_class.config.name}.json"):
+            _safe_model = model_name.replace("/", "__").replace(":", "__")
+            if os.path.exists(f"outputs/{cfg.output_dir}/{_safe_model}/{problem_class.config.name}.json"):
                 # load the json and check if we have enough instances
-                json_input = json.load(open(f"outputs/{cfg.output_dir}/{model_name.replace("/", "__").replace(":", "_")}/{problem_class.config.name}.json", "r"))
+                json_input = json.load(open(f"outputs/{cfg.output_dir}/{_safe_model}/{problem_class.config.name}.json", "r"))
                 # load the problems from json
                 problems_from_json = [(problem_class.from_json(entry["problem"]), entry) for entry in json_input]
                 for problem in problems_from_json:
@@ -188,10 +194,6 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
                     problem_dumps[problem_class] = []
                 problem_dumps[problem_class].append(None)
 
-        # Apply local vLLM base URL for all solver types
-        if cfg.solver.local_api_base_url:
-            os.environ.setdefault("OPENAI_API_KEY", "dummy-local")
-
         querier = APIQuery(
             model=model_name,
             api=api,
@@ -201,50 +203,7 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
             concurrent_requests=cfg.inference.concurrent_requests,
             timeout=cfg.inference.timeout
         )
-        if cfg.solver.local_api_base_url:
-            querier.base_url = cfg.solver.local_api_base_url
-
-        if cfg.solver.type_solver == "tool":
-
-            if cfg.solver.use_react:
-                # ── ReAct mode: text-based tool calling, works with ANY model ──
-                solver = ReActToolSolver(
-                    querier=querier,
-                    tool_timeout=cfg.solver.tool_timeout,
-                    max_react_iterations=cfg.solver.max_tool_rounds,
-                    parse_feedback=cfg.solver.parse_feedback,
-                    check_feedback=cfg.solver.check_feedback,
-                    max_feedback_rounds=cfg.solver.max_feedback_rounds,
-                    formatting_prefix=cfg.solver.formatting_prefix,
-                    error_string=cfg.solver.error_string,
-                    give_solution=cfg.solver.give_solution,
-                )
-            else:
-                # ── Native tool-calling mode: requires model + API support ──
-                base_querier_kwargs = dict(
-                    model=model_name,
-                    api=api,
-                    temperature=cfg.inference.temperature,
-                    top_p=cfg.inference.top_p,
-                    max_tokens=cfg.inference.max_tokens,
-                    concurrent_requests=cfg.inference.concurrent_requests,
-                    timeout=cfg.inference.timeout,
-                )
-                if cfg.solver.local_api_base_url:
-                    base_querier_kwargs["base_url"] = cfg.solver.local_api_base_url
-
-                solver = ToolSolver(
-                    base_querier_kwargs=base_querier_kwargs,
-                    tool_timeout=cfg.solver.tool_timeout,
-                    max_tool_rounds=cfg.solver.max_tool_rounds,
-                    parse_feedback=cfg.solver.parse_feedback,
-                    check_feedback=cfg.solver.check_feedback,
-                    max_feedback_rounds=cfg.solver.max_feedback_rounds,
-                    formatting_prefix=cfg.solver.formatting_prefix,
-                    error_string=cfg.solver.error_string,
-                    give_solution=cfg.solver.give_solution,
-                )
-        elif cfg.solver.type_solver == "code":
+        if cfg.solver.type_solver == "code":
             solver = CodeSolver(
                 querier=querier,
                 system_prompt=cfg.solver.system_prompt,
@@ -263,6 +222,19 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
                 stop_at_timeout=cfg.solver.stop_at_timeout,
                 give_solution=cfg.solver.give_solution,
             )
+        elif cfg.solver.type_solver == "tool":
+            solver = ToolSolver(
+                querier=querier,
+                system_prompt=cfg.solver.system_prompt,
+                parse_feedback=cfg.solver.parse_feedback,
+                check_feedback=cfg.solver.check_feedback,
+                max_feedback_rounds=cfg.solver.max_feedback_rounds,
+                formatting_prefix=cfg.solver.formatting_prefix,
+                error_string=cfg.solver.error_string,
+                give_solution=cfg.solver.give_solution,
+                max_tool_rounds=cfg.solver.max_tool_rounds,
+                verbose=cfg.solver.tool_verbose,
+            )
         else:
             solver = CoTSolver(
                 querier=querier,
@@ -278,7 +250,7 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
         # Process problems in batches
         batch_size = cfg.solver.batch_size if hasattr(cfg.solver, 'batch_size') else 10
 
-        model_dir = os.path.join(run_dir, model_name.replace("/", "__").replace(":", "_").replace(":", "_"))
+        model_dir = os.path.join(run_dir, model_name.replace("/", "__").replace(":", "__"))
         os.makedirs(model_dir, exist_ok=True)
 
         for batch_start in range(0, len(problem_instances_model), batch_size):

@@ -28,15 +28,9 @@ class SolverConfig(PBMwODP, extra="forbid"):  # type: ignore
     give_solution: bool = Field(False, description="Give solution to the model")
     batch_size: int = Field(10, description="Batch size for processing")
 
-    # tool-calling specific
-    tool_timeout: int = Field(30, description="Timeout in seconds for each tool execution")
-    max_tool_rounds: int = Field(6, description="Max LLM<->tool turns per problem before forcing final answer")
-    local_api_base_url: str = Field(None, description="Base URL for local LLM endpoint (e.g. vLLM: http://localhost:8000/v1)")
-    use_react: bool = Field(False, description=(
-        "If True, use ReActToolSolver (text-based tool calling — works with ANY model). "
-        "If False (default), use ToolSolver with native OpenAI function-calling API "
-        "(requires model + API to support tool_calls)."
-    ))
+    # tool solver specific
+    max_tool_rounds: int = Field(5, description="Max tool-use rounds per problem (ToolSolver)")
+    tool_verbose: bool = Field(False, description="Print tool calls/results to stdout (ToolSolver)")
 
     # code specific
     image_name: str = Field("mathconstruct-sandbox", description="Docker image name")

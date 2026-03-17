@@ -35,9 +35,10 @@ def get_problem_name(file_path: str) -> str:
         Input: '.../imo_shortlist/problem_2001_c6.py'
         Output: 'imo-shortlist-2001-c6'
     """
-    file_path = file_path.replace('\\', '/')  # normalize Windows paths
-    file_name = file_path.split('/')[-1].replace('.py', '')
-    category = file_path.split('/')[-2]
+    import os as _os
+    parts = _os.path.normpath(file_path).replace('\\', '/').split('/')
+    file_name = parts[-1].replace('.py', '')
+    category = parts[-2] if len(parts) >= 2 else 'unknown'
     category = category.replace('_', '-')
     name = file_name.replace('_', '-')
     name = name.replace('problem-', '')
