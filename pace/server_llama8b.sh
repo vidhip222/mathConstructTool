@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=vllm-llama8b
-#SBATCH --partition=gpu-v100
+#SBATCH --partition=gpu-a100-40
 #SBATCH --account=YOUR_PACE_ACCOUNT       # <-- replace with your PACE account
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=32G
-#SBATCH --gres=gpu:v100:2
+#SBATCH --gres=gpu:A100:1
 #SBATCH --time=4:00:00
 #SBATCH --output=logs/vllm_llama8b_%j.out
 #SBATCH --error=logs/vllm_llama8b_%j.err
@@ -29,7 +29,7 @@ echo "Starting vLLM for Llama 3.1 8B on $(hostname):8000"
 
 python -m vllm.entrypoints.openai.api_server \
     --model meta-llama/Llama-3.1-8B-Instruct \
-    --tensor-parallel-size 2 \
+    --tensor-parallel-size 1 \
     --dtype half \
     --port 8000 \
     --host 0.0.0.0 \
