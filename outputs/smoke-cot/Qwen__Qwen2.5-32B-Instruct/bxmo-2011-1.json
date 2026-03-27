@@ -1,0 +1,66 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "bxmo-2011-1",
+                "statement": "An ordered pair of integers $(m, n)$ with $1 < m < n$ is said to be a Benelux couple if the following two conditions hold: $m$ has the same prime divisors as $n$, and $m + {k}$ has the same prime divisors as $n + {k_squared}$.\n\nFind {l} Benelux couples $(m, n)$ with $m \\leqslant {max_val}$ such that for any two pairs $(m_1, n_1), (m_2, n_2)$ with $n_1 > n_2$ in your list, $\\frac{{n_1}}{{n_2}} \\geqslant 4$.",
+                "formatting_instructions": "Output the answer as a comma separated list of lists inside of \\boxed{...}. The first integer in a list should be equal to $m$, the second to $n$. For instance, \\boxed{(2,5),(3,6)}.",
+                "parameters": [
+                    "k_squared",
+                    "l",
+                    "max_val",
+                    "k"
+                ],
+                "source": "BxMO 2011 P1",
+                "original_solution": [
+                    [
+                        2,
+                        8
+                    ],
+                    [
+                        6,
+                        48
+                    ],
+                    [
+                        14,
+                        224
+                    ]
+                ],
+                "original_parameters": {
+                    "k_squared": 1,
+                    "l": 3,
+                    "max_val": 14,
+                    "k": 1
+                },
+                "timeout": 60,
+                "problem_url": "http://bxmo.org/problems/bxmo-problems-2011-zz.pdf",
+                "solution_url": "http://bxmo.org/problems/bxmo-problems-2011-zz.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Find Infinitely Many",
+                    "Is Original",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "k_squared": 1,
+                "l": 3,
+                "max_val": 14,
+                "k": 1
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": ""
+            }
+        ],
+        "cost": {
+            "cost": 0.0,
+            "input_tokens": 0,
+            "output_tokens": 0
+        }
+    }
+]

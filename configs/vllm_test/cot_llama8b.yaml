@@ -1,0 +1,32 @@
+# CoT baseline — Llama 3.1 8B via local vLLM
+# vllm serve meta-llama/Llama-3.1-8B-Instruct --port 8000 --tensor-parallel-size 1
+
+test_run: false
+output_dir: "vllm-cot-llama8b"
+
+models:
+  - "openai:meta-llama/Llama-3.1-8B-Instruct"
+
+inference:
+  temperature: 0.7
+  top_p: 0.9
+  max_tokens: 4096
+  concurrent_requests: 1
+  timeout: 300
+
+solver:
+  type_solver: "CoT"
+  local_api_base_url: "http://localhost:8000/v1"
+  parse_feedback: true
+  check_feedback: false
+  max_feedback_rounds: 2
+  error_string: "The solution parser encountered the following error:\n{error}\nPlease format your reply accurately."
+  formatting_prefix: "Format your reply as follows:"
+  batch_size: 3
+
+problems:
+  - "bxmo-2011-1"
+  - "dutch-2010-4"
+  - "imo-shortlist-2018-c1"
+
+n_variations: 1

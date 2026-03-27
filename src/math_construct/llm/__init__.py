@@ -1,3 +1,4 @@
 from .api import APIQuery
 from .dummy import DummyLLM
-from .solvers import Solver, CoTSolver, CodeSolver, ToolSolver
+from .tool_api import ToolAPIQuery
+from .solvers import Solver, CoTSolver, CodeSolver, ToolSolver, ReActToolSolver

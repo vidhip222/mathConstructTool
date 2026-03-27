@@ -1,0 +1,42 @@
+# ============================================================
+# MathConstruct — HuggingFace Inference API, all 3 models, CoT
+# ============================================================
+# No GPU job needed — inference is remote via HuggingFace router.
+#
+# Requires: HF_TOKEN environment variable (your HuggingFace token)
+#
+# Run:
+#   export HF_TOKEN=hf_xxxxxxxxxxxx
+#   uv run python src/scripts/run.py configs/pace_hf_cot.yaml
+# ============================================================
+
+test_run: False
+output_dir: "hf-cot-run"
+
+# All three models — run.py processes them sequentially
+models:
+  - "huggingface:meta-llama/Llama-3.1-8B-Instruct"
+  - "huggingface:Qwen/Qwen2.5-32B-Instruct"
+  - "huggingface:meta-llama/Llama-3.3-70B-Instruct"
+
+inference:
+  temperature: 0.7
+  top_p: 0.9
+  max_tokens: 4096
+  concurrent_requests: 1   # keep low to avoid HF rate limits
+  timeout: 300
+
+solver:
+  type_solver: "CoT"
+  # local_api_base_url intentionally omitted — HF router URL is used automatically
+  parse_feedback: True
+  check_feedback: False
+  max_feedback_rounds: 2
+  error_string: "The solution parser encountered the following error:\n{error}\nPlease format your reply accurately."
+  formatting_prefix: "Format your reply as follows:"
+  batch_size: 5
+
+problems:
+  - ".*"
+
+n_variations: 2
