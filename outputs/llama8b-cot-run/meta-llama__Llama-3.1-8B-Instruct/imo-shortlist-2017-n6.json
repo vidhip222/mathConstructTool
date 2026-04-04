@@ -1,0 +1,186 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2017-n6",
+                "statement": "Find ${n}$ different triples of positive rational numbers $(x, y, z)$ such that both $x + y + z$ and $\\frac{{1}}{{x}} + \\frac{{1}}{{y}} + \\frac{{1}}{{z}}$ are integers.\nAdditionally, for each $i = 1, 2, \\ldots, n$, in the $i$-th triple of your solution at least one of $x, y, z$ should have numerator or denominator with at least $i$ digits.\nNote that one can show that there are infinitely many such triples.\n",
+                "formatting_instructions": "Output a comma-separated list of different triples $(x, y, z)$, inside of \\boxed, for example \\boxed{(\\frac{1}{2},\\frac{1}{3},\\frac{1}{6}), (\\frac{1}{3},\\frac{1}{4},\\frac{1}{12})}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "IMO 2017 Shortlist N6",
+                "original_solution": [
+                    [
+                        0.16666666666666666,
+                        0.3333333333333333,
+                        0.5
+                    ],
+                    [
+                        0.1,
+                        0.3,
+                        0.6
+                    ],
+                    [
+                        0.007936507936507936,
+                        0.2777777777777778,
+                        0.7142857142857143
+                    ],
+                    [
+                        0.00045248868778280545,
+                        0.27647058823529413,
+                        0.7230769230769231
+                    ],
+                    [
+                        6.609385327164574e-05,
+                        0.27640449438202247,
+                        0.7235294117647059
+                    ],
+                    [
+                        9.644596614746589e-06,
+                        0.27639484978540774,
+                        0.7235955056179775
+                    ],
+                    [
+                        5.374896331687003e-07,
+                        0.2763932940643407,
+                        0.7236061684460261
+                    ],
+                    [
+                        7.841878863987787e-08,
+                        0.2763932156455521,
+                        0.7236067059356592
+                    ],
+                    [
+                        4.3701302818869504e-09,
+                        0.2763932029965284,
+                        0.7236067926333413
+                    ],
+                    [
+                        6.375934224995408e-10,
+                        0.276393202358935,
+                        0.7236067970034716
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://www.imo-official.org/problems/IMO2017SL.pdf#page=84",
+                "solution_url": "https://www.imo-official.org/problems/IMO2017SL.pdf#page=84",
+                "tags": [
+                    "Number Theory",
+                    "Is Simplified",
+                    "Find Infinitely Many"
+                ]
+            },
+            "param_values": {
+                "n": 10
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "\\boxed{(\\frac{1}{2},\\frac{1}{3},\\frac{1}{6}), (\\frac{1}{2},\\frac{1}{4},\\frac{1}{8}), (\\frac{1}{2},\\frac{1}{5},\\frac{1}{10}), (\\frac{1}{2},\\frac{1}{6},\\frac{1}{12}), (\\frac{1}{3},\\frac{1}{4},\\frac{1}{12}), (\\frac{1}{3},\\frac{1}{6},\\frac{1}{9}), (\\frac{1}{4},\\frac{1}{4},\\frac{1}{4}), (\\frac{1}{3},\\frac{1}{9},\\frac{1}{27}), (\\frac{1}{5},\\frac{1}{5},\\frac{1}{25}), (\\frac{1}{7},\\frac{1}{28},\\frac{1}{56})}."
+            }
+        ],
+        "cost": {
+            "cost": 0.000446,
+            "input_tokens": 231,
+            "output_tokens": 215
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2017-n6",
+                "statement": "Find ${n}$ different triples of positive rational numbers $(x, y, z)$ such that both $x + y + z$ and $\\frac{{1}}{{x}} + \\frac{{1}}{{y}} + \\frac{{1}}{{z}}$ are integers.\nAdditionally, for each $i = 1, 2, \\ldots, n$, in the $i$-th triple of your solution at least one of $x, y, z$ should have numerator or denominator with at least $i$ digits.\nNote that one can show that there are infinitely many such triples.\n",
+                "formatting_instructions": "Output a comma-separated list of different triples $(x, y, z)$, inside of \\boxed, for example \\boxed{(\\frac{1}{2},\\frac{1}{3},\\frac{1}{6}), (\\frac{1}{3},\\frac{1}{4},\\frac{1}{12})}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "IMO 2017 Shortlist N6",
+                "original_solution": [
+                    [
+                        0.16666666666666666,
+                        0.3333333333333333,
+                        0.5
+                    ],
+                    [
+                        0.1,
+                        0.3,
+                        0.6
+                    ],
+                    [
+                        0.007936507936507936,
+                        0.2777777777777778,
+                        0.7142857142857143
+                    ],
+                    [
+                        0.00045248868778280545,
+                        0.27647058823529413,
+                        0.7230769230769231
+                    ],
+                    [
+                        6.609385327164574e-05,
+                        0.27640449438202247,
+                        0.7235294117647059
+                    ],
+                    [
+                        9.644596614746589e-06,
+                        0.27639484978540774,
+                        0.7235955056179775
+                    ],
+                    [
+                        5.374896331687003e-07,
+                        0.2763932940643407,
+                        0.7236061684460261
+                    ],
+                    [
+                        7.841878863987787e-08,
+                        0.2763932156455521,
+                        0.7236067059356592
+                    ],
+                    [
+                        4.3701302818869504e-09,
+                        0.2763932029965284,
+                        0.7236067926333413
+                    ],
+                    [
+                        6.375934224995408e-10,
+                        0.276393202358935,
+                        0.7236067970034716
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://www.imo-official.org/problems/IMO2017SL.pdf#page=84",
+                "solution_url": "https://www.imo-official.org/problems/IMO2017SL.pdf#page=84",
+                "tags": [
+                    "Number Theory",
+                    "Is Simplified",
+                    "Find Infinitely Many"
+                ]
+            },
+            "param_values": {
+                "n": 17
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "\\boxed{(\\frac{1}{2},\\frac{1}{3},\\frac{1}{6}), (\\frac{1}{3},\\frac{1}{4},\\frac{1}{12}), (\\frac{1}{4},\\frac{1}{5},\\frac{1}{20}), (\\frac{1}{5},\\frac{1}{6},\\frac{1}{30}), (\\frac{1}{6},\\frac{1}{7},\\frac{1}{42}), (\\frac{1}{7},\\frac{1}{8},\\frac{1}{56}), (\\frac{1}{8},\\frac{1}{9},\\frac{1}{72}), (\\frac{1}{9},\\frac{1}{10},\\frac{1}{90}), (\\frac{1}{10},\\frac{1}{11},\\frac{1}{110}), (\\frac{1}{11},\\frac{1}{12},\\frac{1}{132}), (\\frac{1}{12},\\frac{1}{13},\\frac{1}{156}), (\\frac{1}{13},\\frac{1}{14},\\frac{1}{182}), (\\frac{1}{14},\\frac{1}{15},\\frac{1}{210}), (\\frac{1}{15},\\frac{1}{16},\\frac{1}{240}), (\\frac{1}{16},\\frac{1}{17},\\frac{1}{272}), (\\frac{1}{17},\\frac{1}{18},\\frac{1}{306})}."
+            }
+        ],
+        "cost": {
+            "cost": 0.000572,
+            "input_tokens": 231,
+            "output_tokens": 341
+        }
+    }
+]

@@ -1,0 +1,142 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "usamts-1998-1-4",
+                "statement": "Arrange seven distinct points in the plane so that among any three of these seven points, the distance between two of the points is exactly {d}.\nWrite the coordinates of all 7 points.",
+                "formatting_instructions": "Output the answer as a comma separated list of 7 coordinates inside of $\\boxed{...}$. For example $\\boxed{(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7)}$.",
+                "parameters": [
+                    "d"
+                ],
+                "source": "USAMTS 98/99 Round 4",
+                "original_solution": [
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        1,
+                        0
+                    ],
+                    [
+                        0.5,
+                        0.8660254037844386
+                    ],
+                    [
+                        1.5,
+                        0.8660254037844386
+                    ],
+                    [
+                        0.771286,
+                        1.550844
+                    ],
+                    [
+                        -0.062046,
+                        0.998073
+                    ],
+                    [
+                        0.833333,
+                        0.55277
+                    ]
+                ],
+                "original_parameters": {
+                    "d": 1
+                },
+                "timeout": 60,
+                "problem_url": "https://files.usamts.org/Problems_10_1.pdf",
+                "solution_url": "https://files.usamts.org/Solutions_10_1.pdf",
+                "tags": [
+                    "Geometry",
+                    "Find Any",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "d": 1
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To arrange seven distinct points in the plane such that among any three of these seven points, the distance between two of the points is exactly 1, we can place the points on the vertices of a regular heptagon. \n\nThe heptagon has a radius of 1 unit. We can place the first point at (0, 0), and then the remaining points will be at equal intervals around the circle.\n\nHere are the coordinates of all 7 points:\n\n$\\boxed{(0, 0), (1, 0), (0.5, 0.866), (-0.5, 0.866), (-1, 0), (-0.5, -0.866), (0.5, -0.866)}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000303,
+            "input_tokens": 146,
+            "output_tokens": 157
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "usamts-1998-1-4",
+                "statement": "Arrange seven distinct points in the plane so that among any three of these seven points, the distance between two of the points is exactly {d}.\nWrite the coordinates of all 7 points.",
+                "formatting_instructions": "Output the answer as a comma separated list of 7 coordinates inside of $\\boxed{...}$. For example $\\boxed{(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7)}$.",
+                "parameters": [
+                    "d"
+                ],
+                "source": "USAMTS 98/99 Round 4",
+                "original_solution": [
+                    [
+                        0,
+                        0
+                    ],
+                    [
+                        1,
+                        0
+                    ],
+                    [
+                        0.5,
+                        0.8660254037844386
+                    ],
+                    [
+                        1.5,
+                        0.8660254037844386
+                    ],
+                    [
+                        0.771286,
+                        1.550844
+                    ],
+                    [
+                        -0.062046,
+                        0.998073
+                    ],
+                    [
+                        0.833333,
+                        0.55277
+                    ]
+                ],
+                "original_parameters": {
+                    "d": 1
+                },
+                "timeout": 60,
+                "problem_url": "https://files.usamts.org/Problems_10_1.pdf",
+                "solution_url": "https://files.usamts.org/Solutions_10_1.pdf",
+                "tags": [
+                    "Geometry",
+                    "Find Any",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "d": 8
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To arrange seven distinct points in the plane so that among any three of these seven points, the distance between two of the points is exactly 8, we can place them on a circle with radius 4.\n\nImagine a circle centered at the origin (0,0) with a radius of 4. The seven points can be placed on the circle at the following coordinates:\n\n$\\boxed{(4, 0), (-4, 0), (0, 4), (0, -4), (2\\sqrt{3}, 4), (2\\sqrt{3}, -4), (-2\\sqrt{3}, 0)}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000279,
+            "input_tokens": 146,
+            "output_tokens": 133
+        }
+    }
+]

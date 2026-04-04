@@ -1,0 +1,114 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2001-c6",
+                "statement": "For a positive integer $n$ define a sequence of zeros and ones to be balanced if it contains $n$ zeros and $n$ ones. \nTwo balanced sequences $a$ and $b$ are neighbors if you can move one of the $2n$ symbols of $a$ to another position to form $b$. For instance, when $n = 4$, the balanced sequences $01101001$ and $00110101$ are neighbors because the third (or fourth) zero in the first sequence can be moved to the first or second position to form the second sequence. \nFor $n = {n}$, find a set $S$ of at most $\\frac {{1}}{{n + 1}} \\binom{{2n}}{{n}}$ balanced sequences such that every balanced sequence is equal to or is a neighbor of at least one sequence in $S$.\n",
+                "formatting_instructions": "Output sequences from the set $S$ as a comma-separated list inside of \\boxed{}, e.g. \\boxed{01101001, 00110101}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "IMO 2001 Shortlist C6",
+                "original_solution": [
+                    "11110000",
+                    "11010001",
+                    "11001010",
+                    "10110010",
+                    "10101100",
+                    "10010011",
+                    "10001101",
+                    "01110100",
+                    "01100011",
+                    "01010101",
+                    "01001110",
+                    "00111001",
+                    "00110110",
+                    "00010111"
+                ],
+                "original_parameters": {
+                    "n": 4
+                },
+                "timeout": 60,
+                "problem_url": "https://olympiads.win.tue.nl/imo/imo2001/imo2001-shortlist.pdf#page=33",
+                "solution_url": "https://olympiads.win.tue.nl/imo/imo2001/imo2001-shortlist.pdf#page=33",
+                "tags": [
+                    "Combinatorics",
+                    "Is Simplified",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 4
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to understand the concept of balanced sequences and their neighbors, and then find a set \\( S \\) of balanced sequences for \\( n = 4 \\) that satisfies the given conditions.\n\nA balanced sequence of length \\( 2n \\) has exactly \\( n \\) zeros and \\( n \\) ones. For \\( n = 4 \\), each balanced sequence will have 4 zeros and 4 ones. We are tasked with finding a subset \\( S \\) of these balanced sequences such that every balanced sequence is either in \\( S \\) or is a neighbor of some sequence in \\( S \\).\n\nThe total number of balanced sequences for \\( n = 4 \\) is given by the binomial coefficient \\( \\binom{8}{4} = 70 \\). According to the problem, the size of the set \\( S \\) should be at most \\( \\frac{1}{n+1} \\binom{2n}{n} = \\frac{1}{5} \\cdot 70 = 14 \\).\n\nWe can use the concept of Catalan numbers to help us here. The \\( n \\)-th Catalan number \\( C_n \\) counts the number of balanced sequences where no initial segment has more ones than zeros. For \\( n = 4 \\), the 4th Catalan number \\( C_4 = 14 \\). This means there are 14 such \"Catalan\" balanced sequences for \\( n = 4 \\).\n\nThese \"Catalan\" balanced sequences have the property that any balanced sequence can be obtained by rearranging the positions of the zeros and ones in a way that does not violate the balance condition. Specifically, every balanced sequence is either one of these Catalan sequences or can be transformed into one by moving a single symbol.\n\nHere are the 14 Catalan balanced sequences for \\( n = 4 \\):\n\n\\[\n\\begin{aligned}\n&00001111, \\\\\n&00010111, \\\\\n&00011011, \\\\\n&00011101, \\\\\n&00100111, \\\\\n&00101011, \\\\\n&00101101, \\\\\n&00110011, \\\\\n&00110101, \\\\\n&00111001, \\\\\n&01000111, \\\\\n&01001011, \\\\\n&01001101, \\\\\n&01010011.\n\\end{aligned}\n\\]\n\nThus, the set \\( S \\) can be taken as these 14 Catalan balanced sequences. Therefore, the answer is:\n\n\\[\n\\boxed{00001111, 00010111, 00011011, 00011101, 00100111, 00101011, 00101101, 00110011, 00110101, 00111001, 01000111, 01001011, 01001101, 01010011}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0007984,
+            "input_tokens": 268,
+            "output_tokens": 730
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2001-c6",
+                "statement": "For a positive integer $n$ define a sequence of zeros and ones to be balanced if it contains $n$ zeros and $n$ ones. \nTwo balanced sequences $a$ and $b$ are neighbors if you can move one of the $2n$ symbols of $a$ to another position to form $b$. For instance, when $n = 4$, the balanced sequences $01101001$ and $00110101$ are neighbors because the third (or fourth) zero in the first sequence can be moved to the first or second position to form the second sequence. \nFor $n = {n}$, find a set $S$ of at most $\\frac {{1}}{{n + 1}} \\binom{{2n}}{{n}}$ balanced sequences such that every balanced sequence is equal to or is a neighbor of at least one sequence in $S$.\n",
+                "formatting_instructions": "Output sequences from the set $S$ as a comma-separated list inside of \\boxed{}, e.g. \\boxed{01101001, 00110101}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "IMO 2001 Shortlist C6",
+                "original_solution": [
+                    "11110000",
+                    "11010001",
+                    "11001010",
+                    "10110010",
+                    "10101100",
+                    "10010011",
+                    "10001101",
+                    "01110100",
+                    "01100011",
+                    "01010101",
+                    "01001110",
+                    "00111001",
+                    "00110110",
+                    "00010111"
+                ],
+                "original_parameters": {
+                    "n": 4
+                },
+                "timeout": 60,
+                "problem_url": "https://olympiads.win.tue.nl/imo/imo2001/imo2001-shortlist.pdf#page=33",
+                "solution_url": "https://olympiads.win.tue.nl/imo/imo2001/imo2001-shortlist.pdf#page=33",
+                "tags": [
+                    "Combinatorics",
+                    "Is Simplified",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 5
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to identify a set \\( S \\) of balanced sequences for \\( n = 5 \\) such that every balanced sequence of length 10 is either in \\( S \\) or a neighbor of a sequence in \\( S \\). The size of \\( S \\) should not exceed \\(\\frac{1}{6} \\binom{10}{5}\\).\n\nFirst, let's calculate the total number of balanced sequences for \\( n = 5 \\):\n\\[\n\\binom{10}{5} = \\frac{10!}{5!5!} = 252\n\\]\nThe upper bound for the size of \\( S \\) is:\n\\[\n\\frac{1}{6} \\times 252 = 42\n\\]\n\nA well-known result in combinatorics is that the set of Dyck words (balanced parentheses sequences) can be used to cover all balanced sequences with a relatively small set. For \\( n = 5 \\), the set of Dyck words can serve as our set \\( S \\). A Dyck word of length 10 is a balanced sequence where no initial segment has more closing brackets than opening brackets.\n\nHere are some Dyck words of length 10:\n\\[\n\\begin{aligned}\n&0000011111, \\\\\n&0000101111, \\\\\n&0000110111, \\\\\n&0000111011, \\\\\n&0000111101, \\\\\n&0001001111, \\\\\n&0001010111, \\\\\n&0001011011, \\\\\n&0001011101, \\\\\n&0001100111, \\\\\n&0001101011, \\\\\n&0001101101, \\\\\n&0001110011, \\\\\n&0001110101, \\\\\n&0001111001, \\\\\n&0010001111, \\\\\n&0010010111, \\\\\n&0010011011, \\\\\n&0010011101, \\\\\n&0010100111, \\\\\n&0010101011, \\\\\n&0010101101, \\\\\n&0010110011, \\\\\n&0010110101, \\\\\n&0010111001, \\\\\n&0011000111, \\\\\n&0011001011, \\\\\n&0011001101, \\\\\n&0011010011, \\\\\n&0011010101, \\\\\n&0011011001, \\\\\n&0011100011, \\\\\n&0011100101, \\\\\n&0011101001, \\\\\n&0011110001, \\\\\n&0100001111, \\\\\n&0100010111, \\\\\n&0100011011, \\\\\n&0100011101, \\\\\n&0100100111, \\\\\n&0100101011, \\\\\n&0100101101, \\\\\n&0100110011, \\\\\n&0100110101, \\\\\n&0100111001, \\\\\n&0101000111, \\\\\n&0101001011, \\\\\n&0101001101, \\\\\n&0101010011, \\\\\n&0101010101, \\\\\n&0101011001, \\\\\n&0101100011, \\\\\n&0101100101, \\\\\n&0101101001, \\\\\n&0101110001, \\\\\n&0110000111, \\\\\n&0110001011, \\\\\n&0110001101, \\\\\n&0110010011, \\\\\n&0110010101, \\\\\n&0110011001, \\\\\n&0110100011, \\\\\n&0110100101, \\\\\n&0110101001, \\\\\n&0110110001, \\\\\n&0111000011, \\\\\n&0111000101, \\\\\n&0111001001, \\\\\n&0111010001, \\\\\n&0111100001.\n\\end{aligned}\n\\]\n\nThus, the set \\( S \\) of Dyck words of length 10 can be represented as:\n\\[\n\\boxed{0000011111, 0000101111, 0000110111, 0000111011, 0000111101, 0001001111, 0001010111, 0001011011, 0001011101, 0001100111, 0001101011, 0001101101, 0001110011, 0001110101, 0001111001, 0010001111, 0010010111, 0010011011, 0010011101, 0010100111, 0010101011, 0010101101, 0010110011, 0010110101, 0010111001, 0011000111, 0011001011, 0011001101, 0011010011, 0011010101, 0011011001, 0011100011, 0011100101, 0011101001, 0011110001, 0100001111, 0100010111, 0100011011, 0100011101, 0100100111, 0100101011, 0100101101, 0100110011, 0100110101, 0100111001, 0101000111, 0101001011, 0101001101, 0101010011, 0101010101, 0101011001, 0101100011, 0101100101, 0101101001, 0101110001, 0110000111, 0110001011, 0110001101, 0110010011, 0110010101, 0110011001, 0110100011, 0110100101, 0110101001, 0110110001, 0111000011, 0111000101, 0111001001, 0111010001, 0111100001}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0018584,
+            "input_tokens": 268,
+            "output_tokens": 2055
+        }
+    }
+]

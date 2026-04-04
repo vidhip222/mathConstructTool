@@ -1,0 +1,186 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2017-n6",
+                "statement": "Find ${n}$ different triples of positive rational numbers $(x, y, z)$ such that both $x + y + z$ and $\\frac{{1}}{{x}} + \\frac{{1}}{{y}} + \\frac{{1}}{{z}}$ are integers.\nAdditionally, for each $i = 1, 2, \\ldots, n$, in the $i$-th triple of your solution at least one of $x, y, z$ should have numerator or denominator with at least $i$ digits.\nNote that one can show that there are infinitely many such triples.\n",
+                "formatting_instructions": "Output a comma-separated list of different triples $(x, y, z)$, inside of \\boxed, for example \\boxed{(\\frac{1}{2},\\frac{1}{3},\\frac{1}{6}), (\\frac{1}{3},\\frac{1}{4},\\frac{1}{12})}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "IMO 2017 Shortlist N6",
+                "original_solution": [
+                    [
+                        0.16666666666666666,
+                        0.3333333333333333,
+                        0.5
+                    ],
+                    [
+                        0.1,
+                        0.3,
+                        0.6
+                    ],
+                    [
+                        0.007936507936507936,
+                        0.2777777777777778,
+                        0.7142857142857143
+                    ],
+                    [
+                        0.00045248868778280545,
+                        0.27647058823529413,
+                        0.7230769230769231
+                    ],
+                    [
+                        6.609385327164574e-05,
+                        0.27640449438202247,
+                        0.7235294117647059
+                    ],
+                    [
+                        9.644596614746589e-06,
+                        0.27639484978540774,
+                        0.7235955056179775
+                    ],
+                    [
+                        5.374896331687003e-07,
+                        0.2763932940643407,
+                        0.7236061684460261
+                    ],
+                    [
+                        7.841878863987787e-08,
+                        0.2763932156455521,
+                        0.7236067059356592
+                    ],
+                    [
+                        4.3701302818869504e-09,
+                        0.2763932029965284,
+                        0.7236067926333413
+                    ],
+                    [
+                        6.375934224995408e-10,
+                        0.276393202358935,
+                        0.7236067970034716
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://www.imo-official.org/problems/IMO2017SL.pdf#page=84",
+                "solution_url": "https://www.imo-official.org/problems/IMO2017SL.pdf#page=84",
+                "tags": [
+                    "Number Theory",
+                    "Is Simplified",
+                    "Find Infinitely Many"
+                ]
+            },
+            "param_values": {
+                "n": 10
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find 10 different triples of positive rational numbers \\((x, y, z)\\) such that both \\(x + y + z\\) and \\(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\) are integers, we can utilize the fact that if \\(x, y, z\\) are rational numbers, then they can be expressed as fractions \\(\\frac{a}{b}\\), where \\(a\\) and \\(b\\) are integers.\n\nGiven that both \\(x + y + z\\) and \\(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\) must be integers, let us consider some specific forms of \\(x, y, z\\).\n\n### Step-by-Step Solution:\n\n#### 1. Simplest Case: Equal Fractions\n\nConsider the simplest case where \\(x = y = z\\). Then,\n\\[ x + y + z = 3x \\]\nand\n\\[ \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = \\frac{3}{x}. \\]\n\nFor both to be integers, \\(x\\) must be of the form \\(\\frac{1}{k}\\) where \\(k\\) is an integer. Let's choose \\(x = y = z = \\frac{1}{k}\\).\n\n#### Example Triples:\n\n1. For \\(k = 1\\):\n   \\[\n   (x, y, z) = \\left(1, 1, 1\\right).\n   \\]\n\n2. For \\(k = 2\\):\n   \\[\n   (x, y, z) = \\left(\\frac{1}{2}, \\frac{1}{2}, \\frac{1}{2}\\right).\n   \\]\n\n3. For \\(k = 3\\):\n   \\[\n   (x, y, z) = \\left(\\frac{1}{3}, \\frac{1}{3}, \\frac{1}{3}\\right).\n   \\]\n\n4. For \\(k = 4\\):\n   \\[\n   (x, y, z) = \\left(\\frac{1}{4}, \\frac{1}{4}, \\frac{1}{4}\\right).\n   \\]\n\n5. For \\(k = 5\\):\n   \\[\n   (x, y, z) = \\left(\\frac{1}{5}, \\frac{1}{5}, \\frac{1}{5}\\right).\n   \\]\n\n#### 2. Mixed Cases:\n\nNow, consider mixed cases where \\(x, y, z\\) are not all equal but still satisfy the conditions.\n\n6. For \\(x = \\frac{1}{2}, y = \\frac{1}{3}, z = \\frac{1}{6}\\):\n   \\[\n   x + y + z = \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{6} = 1,\n   \\]\n   \\[\n   \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = 2 + 3 + 6 = 11.\n   \\]\n\n7. For \\(x = \\frac{1}{3}, y = \\frac{1}{4}, z = \\frac{1}{12}\\):\n   \\[\n   x + y + z = \\frac{1}{3} + \\frac{1}{4} + \\frac{1}{12} = 1,\n   \\]\n   \\[\n   \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = 3 + 4 + 12 = 19.\n   \\]\n\n8. For \\(x = \\frac{1}{4}, y = \\frac{1}{5}, z = \\frac{1}{20}\\):\n   \\[\n   x + y + z = \\frac{1}{4} + \\frac{1}{5} + \\frac{1}{20} = 1,\n   \\]\n   \\[\n   \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = 4 + 5 + 20 = 29.\n   \\]\n\n9. For \\(x = \\frac{1}{5}, y = \\frac{1}{6}, z = \\frac{1}{30}\\):\n   \\[\n   x + y + z = \\frac{1}{5} + \\frac{1}{6} + \\frac{1}{30} = 1,\n   \\]\n   \\[\n   \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = 5 + 6 + 30 = 41.\n   \\]\n\n10. For \\(x = \\frac{1}{6}, y = \\frac{1}{7}, z = \\frac{1}{42}\\):\n    \\[\n    x + y + z = \\frac{1}{6} + \\frac{1}{7} + \\frac{1}{42} = 1,\n    \\]\n    \\[\n    \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = 6 + 7 + 42 = 55.\n    \\]\n\nThus, the 10 different triples are:\n\\[\n\\boxed{\\left(1, 1, 1\\right), \\left(\\frac{1}{2}, \\frac{1}{2}, \\frac{1}{2}\\right), \\left(\\frac{1}{3}, \\frac{1}{3}, \\frac{1}{3}\\right), \\left(\\frac{1}{4}, \\frac{1}{4}, \\frac{1}{4}\\right), \\left(\\frac{1}{5}, \\frac{1}{5}, \\frac{1}{5}\\right), \\left(\\frac{1}{2}, \\frac{1}{3}, \\frac{1}{6}\\right), \\left(\\frac{1}{3}, \\frac{1}{4}, \\frac{1}{12}\\right), \\left(\\frac{1}{4}, \\frac{1}{5}, \\frac{1}{20}\\right), \\left(\\frac{1}{5}, \\frac{1}{6}, \\frac{1}{30}\\right), \\left(\\frac{1}{6}, \\frac{1}{7}, \\frac{1}{42}\\right)}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0013135999999999998,
+            "input_tokens": 227,
+            "output_tokens": 1415
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2017-n6",
+                "statement": "Find ${n}$ different triples of positive rational numbers $(x, y, z)$ such that both $x + y + z$ and $\\frac{{1}}{{x}} + \\frac{{1}}{{y}} + \\frac{{1}}{{z}}$ are integers.\nAdditionally, for each $i = 1, 2, \\ldots, n$, in the $i$-th triple of your solution at least one of $x, y, z$ should have numerator or denominator with at least $i$ digits.\nNote that one can show that there are infinitely many such triples.\n",
+                "formatting_instructions": "Output a comma-separated list of different triples $(x, y, z)$, inside of \\boxed, for example \\boxed{(\\frac{1}{2},\\frac{1}{3},\\frac{1}{6}), (\\frac{1}{3},\\frac{1}{4},\\frac{1}{12})}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "IMO 2017 Shortlist N6",
+                "original_solution": [
+                    [
+                        0.16666666666666666,
+                        0.3333333333333333,
+                        0.5
+                    ],
+                    [
+                        0.1,
+                        0.3,
+                        0.6
+                    ],
+                    [
+                        0.007936507936507936,
+                        0.2777777777777778,
+                        0.7142857142857143
+                    ],
+                    [
+                        0.00045248868778280545,
+                        0.27647058823529413,
+                        0.7230769230769231
+                    ],
+                    [
+                        6.609385327164574e-05,
+                        0.27640449438202247,
+                        0.7235294117647059
+                    ],
+                    [
+                        9.644596614746589e-06,
+                        0.27639484978540774,
+                        0.7235955056179775
+                    ],
+                    [
+                        5.374896331687003e-07,
+                        0.2763932940643407,
+                        0.7236061684460261
+                    ],
+                    [
+                        7.841878863987787e-08,
+                        0.2763932156455521,
+                        0.7236067059356592
+                    ],
+                    [
+                        4.3701302818869504e-09,
+                        0.2763932029965284,
+                        0.7236067926333413
+                    ],
+                    [
+                        6.375934224995408e-10,
+                        0.276393202358935,
+                        0.7236067970034716
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://www.imo-official.org/problems/IMO2017SL.pdf#page=84",
+                "solution_url": "https://www.imo-official.org/problems/IMO2017SL.pdf#page=84",
+                "tags": [
+                    "Number Theory",
+                    "Is Simplified",
+                    "Find Infinitely Many"
+                ]
+            },
+            "param_values": {
+                "n": 17
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find \\(17\\) different triples of positive rational numbers \\((x, y, z)\\) such that both \\(x + y + z\\) and \\(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\) are integers, we need to construct such triples carefully. Let's start with some simple examples and then move to more complex ones to ensure that the numerators or denominators grow in complexity.\n\nFirst, consider the simplest case where \\(x, y,\\) and \\(z\\) are all equal. If \\(x = y = z\\), then we need \\(3x\\) and \\(\\frac{3}{x}\\) to be integers. This implies \\(x = 1\\) (since \\(x\\) must be a rational number whose reciprocal is also an integer). However, this only gives us one trivial solution, so let's look for other cases.\n\nNext, consider the case where two of the variables are equal and the third is different. Suppose \\(x = y\\) and \\(z\\) is different. Then we have:\n\\[ x + x + z = 2x + z \\]\nand\n\\[ \\frac{1}{x} + \\frac{1}{x} + \\frac{1}{z} = \\frac{2}{x} + \\frac{1}{z}. \\]\nFor these to be integers, let's choose \\(x = \\frac{1}{2}\\) and \\(z = 1\\). Then:\n\\[ x + y + z = \\frac{1}{2} + \\frac{1}{2} + 1 = 2, \\]\nand\n\\[ \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = 2 + 2 + 1 = 5. \\]\nThis works, so one solution is \\(\\left( \\frac{1}{2}, \\frac{1}{2}, 1 \\right)\\).\n\nNow, let's try another set of values. Suppose \\(x = \\frac{1}{3}\\), \\(y = \\frac{1}{3}\\), and \\(z = \\frac{1}{2}\\). Then:\n\\[ x + y + z = \\frac{1}{3} + \\frac{1}{3} + \\frac{1}{2} = \\frac{2}{3} + \\frac{1}{2} = \\frac{4}{6} + \\frac{3}{6} = \\frac{7}{6}, \\]\nwhich is not an integer. So, let's try \\(z = \\frac{1}{6}\\):\n\\[ x + y + z = \\frac{1}{3} + \\frac{1}{3} + \\frac{1}{6} = \\frac{2}{3} + \\frac{1}{6} = \\frac{4}{6} + \\frac{1}{6} = 1, \\]\nand\n\\[ \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = 3 + 3 + 6 = 12. \\]\nThis works, so another solution is \\(\\left( \\frac{1}{3}, \\frac{1}{3}, \\frac{1}{6} \\right)\\).\n\nWe can continue this process to generate more solutions. Here are 17 different triples:\n\n\\[\n\\boxed{\n\\left( \\frac{1}{2}, \\frac{1}{2}, 1 \\right),\n\\left( \\frac{1}{3}, \\frac{1}{3}, \\frac{1}{6} \\right),\n\\left( \\frac{1}{4}, \\frac{1}{4}, \\frac{1}{2} \\right),\n\\left( \\frac{1}{5}, \\frac{1}{5}, \\frac{1}{10} \\right),\n\\left( \\frac{1}{6}, \\frac{1}{6}, \\frac{1}{3} \\right),\n\\left( \\frac{1}{7}, \\frac{1}{7}, \\frac{1}{14} \\right),\n\\left( \\frac{1}{8}, \\frac{1}{8}, \\frac{1}{4} \\right),\n\\left( \\frac{1}{9}, \\frac{1}{9}, \\frac{1}{18} \\right),\n\\left( \\frac{1}{10}, \\frac{1}{10}, \\frac{1}{5} \\right),\n\\left( \\frac{1}{11}, \\frac{1}{11}, \\frac{1}{22} \\right),\n\\left( \\frac{1}{12}, \\frac{1}{12}, \\frac{1}{6} \\right),\n\\left( \\frac{1}{13}, \\frac{1}{13}, \\frac{1}{26} \\right),\n\\left( \\frac{1}{14}, \\frac{1}{14}, \\frac{1}{7} \\right),\n\\left( \\frac{1}{15}, \\frac{1}{15}, \\frac{1}{30} \\right),\n\\left( \\frac{1}{16}, \\frac{1}{16}, \\frac{1}{8} \\right),\n\\left( \\frac{1}{17}, \\frac{1}{17}, \\frac{1}{34} \\right),\n\\left( \\frac{1}{18}, \\frac{1}{18}, \\frac{1}{9} \\right)\n}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.001148,
+            "input_tokens": 227,
+            "output_tokens": 1208
+        }
+    }
+]

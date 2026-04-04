@@ -1,0 +1,48 @@
+{
+    "ts": "2026-04-02-15-27-44",
+    "cfg": {
+        "test_run": false,
+        "output_dir": "qwen32b-cot-run",
+        "input_dir_revisions": null,
+        "models": [
+            "openai:Qwen/Qwen2.5-32B-Instruct"
+        ],
+        "inference": {
+            "temperature": 0.7,
+            "top_p": 0.9,
+            "max_tokens": 4096,
+            "concurrent_requests": 1,
+            "timeout": 300
+        },
+        "solver": {
+            "type_solver": "CoT",
+            "system_prompt": null,
+            "parse_feedback": true,
+            "check_feedback": false,
+            "max_feedback_rounds": 2,
+            "formatting_prefix": "Format your reply as follows:",
+            "error_string": "The solution parser encountered the following error:\n{error}\nPlease format your reply accurately.",
+            "give_solution": false,
+            "batch_size": 5,
+            "tool_timeout": 30,
+            "max_tool_rounds": 6,
+            "local_api_base_url": "http://atl1-1-01-006-24-0.pace.gatech.edu:8000/v1",
+            "use_react": false,
+            "image_name": "mathconstruct-sandbox",
+            "timeout": 10.0,
+            "cpus": 1,
+            "memory": 1,
+            "n_parallel_code_executions": 2,
+            "max_code_iterations": 2,
+            "code_feedback_prompt": "Code Output:\n```{feedback}```\n",
+            "stop_at_timeout": false,
+            "last_code_iteration_warning": "This was the last time your code can be executed. From now on, you will not be able to execute code."
+        },
+        "problems": [
+            ".*"
+        ],
+        "n_variations": 2,
+        "tags": [],
+        "n_try_variations": null
+    }
+}

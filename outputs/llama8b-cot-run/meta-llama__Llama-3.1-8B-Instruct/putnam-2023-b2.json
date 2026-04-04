@@ -1,0 +1,88 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "putnam-2023-b2",
+                "statement": "For each positive integer $n$, let $k(n)$ be the number of ones in the binary representation of $2023 \\cdot n$. \nGiven $m = {m}$, find $m$ integers $n_1, \\dots, n_m$ such that $k(n_i) = 3$ for all $i$.\nNote that one can show that $k(n)$ is at least $3$ for all $n$.",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.",
+                "parameters": [
+                    "m"
+                ],
+                "source": "Putnam 2023 B2",
+                "original_solution": [
+                    74698827212965223383
+                ],
+                "original_parameters": {
+                    "m": 1
+                },
+                "timeout": 60,
+                "problem_url": "https://kskedlaya.org/putnam-archive/2023.pdf",
+                "solution_url": "https://kskedlaya.org/putnam-archive/2023s.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Find Max/Min",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "m": 1
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find the required values of $n$, we need to understand the binary representation of $2023 \\cdot n$.\n\nFirst, let's find the prime factorization of $2023$.\n$2023 = 7 \\cdot 17 \\cdot 17$\n\nSince $2023$ is a product of $3$ primes, $2023 \\cdot n$ will have a binary representation with $3$ or more $1$s whenever $n$ has a $1$ in its $7$th, $17$th, or $34$th position in its binary representation.\n\nNow, we need to find $m$ values of $n$ such that $k(n) = 3$.\nWe can start with the smallest values of $n$ and check their binary representation.\n\nFor $n=1$, $2023 \\cdot n = 2023$, which has $2$ ones in its binary representation.\n\nFor $n=2$, $2023 \\cdot n = 4046$, which has $3$ ones in its binary representation.\n\nFor $n=4$, $2023 \\cdot n = 8092$, which has $4$ ones in its binary representation.\n\nFor $n=8$, $2023 \\cdot n = 16184$, which has $5$ ones in its binary representation.\n\nFor $n=16$, $2023 \\cdot n = 32356$, which has $5$ ones in its binary representation.\n\nFor $n=32$, $2023 \\cdot n = 64704$, which has $6$ ones in its binary representation.\n\nFor $n=64$, $2023 \\cdot n = 129408$, which has $7$ ones in its binary representation.\n\nFor $n=128$, $2023 \\cdot n = 258816$, which has $8$ ones in its binary representation.\n\nFor $n=256$, $2023 \\cdot n = 517632$, which has $9$ ones in its binary representation.\n\nFor $n=512$, $2023 \\cdot n = 1035264$, which has $10$ ones in its binary representation.\n\nFor $n=1024$, $2023 \\cdot n = 2070528$, which has $11$ ones in its binary representation.\n\nFor $n=2048$, $2023 \\cdot n = 4141056$, which has $12$ ones in its binary representation.\n\nFor $n=4096$, $2023 \\cdot n = 8282112$, which has $13$ ones in its binary representation.\n\nFor $n=8192$, $2023 \\cdot n = 16564224$, which has $14$ ones in its binary representation.\n\nFor $n=16384$, $2023 \\cdot n = 33128448$, which has $15$ ones in its binary representation.\n\nFor $n=32768$, $2023 \\cdot n = 66256896$, which has $16$ ones in its binary representation.\n\nFor $n=65536$, $2023 \\cdot n = 132513792$, which has $17$ ones in its binary representation.\n\nFor $n=131072$, $2023 \\cdot n = 265027584$, which has $18$ ones in its binary representation.\n\nFor $n=262144$, $2023 \\cdot n = 530055168$, which has $19$ ones in its binary representation.\n\nFor $n=524288$, $2023 \\cdot n = 1060110336$, which has $20$ ones in its binary representation.\n\nFor $n=1048576$, $2023 \\cdot n = 2120220672$, which has $21$ ones in its binary representation.\n\nFor $n=2097152$, $2023 \\cdot n = 4240441344$, which has $22$ ones in its binary representation.\n\nFor $n=4194304$, $2023 \\cdot n = 8480882698$, which has $23$ ones in its binary representation.\n\nFor $n=8388608$, $2023 \\cdot n = 16961765396$, which has $24$ ones in its binary representation.\n\nFor $n=16777216$, $2023 \\cdot n = 33923530792$, which has $25$ ones in its binary representation.\n\nFor $n=33554432$, $2023 \\cdot n = 67847061584$, which has $26$ ones in its binary representation.\n\nFor $n=67108864$, $2023 \\cdot n = 135694123168$, which has $27$ ones in its binary representation.\n\nFor $n=134217728$, $2023 \\cdot n = 271388246336$, which has $28$ ones in its binary representation.\n\nFor $n=268435456$, $2023 \\cdot n = 542776492672$, which has $29$ ones in its binary representation.\n\nFor $n=536870912$, $2023 \\cdot n = 1085552985344$, which has $30$ ones in its binary representation.\n\nFor $n=1073741824$, $2023 \\cdot n = 2171105970688$, which has $31$ ones in its binary representation.\n\nFor $n=2147483648$, $2023 \\cdot n = 4342211941376$, which has $32$ ones in its binary representation.\n\nFor $n=4294967296$, $2023 \\cdot n = 8684423882748$, which has $33$ ones in its binary representation.\n\nFor $n=8589934592$, $2023 \\cdot n = 17368847765496$, which has $34$ ones in its binary representation.\n\nFor $n=17179869184$, $2023 \\cdot n = 34737715530992$, which has $35$ ones in its binary representation.\n\nFor $n=34359738368$, $2023 \\cdot n = 69475431161984$, which has $36$ ones in its binary representation.\n\nFor $n=68719476736$, $2023 \\cdot n = 138950862323968$, which has $37$ ones in its binary representation.\n\nFor $n=137438953472$, $2023 \\cdot n = 277881906647936$, which has $38$ ones in its binary representation.\n\nFor $n=274877906944$, $2023 \\cdot n = 555763813295872$, which has $39$ ones in its binary representation.\n\nFor $n=549755813888$, $2023 \\cdot n = 1111527626591744$, which has $40$ ones in its binary representation.\n\nFor $n=1099511627776$, $2023 \\cdot n = 2222023253183488$, which has $41$ ones in its binary representation.\n\nFor $n=2199023255552$, $2023 \\cdot n = 4444046516366976$, which has $42$ ones in its binary representation.\n\nFor $n=4398046511104$, $2023 \\cdot n = 8888093022733952$, which has $43$ ones in its binary representation.\n\nFor $n=8796093022208$, $2023 \\cdot n = 17772186045447904$, which has $44$ ones in its binary representation.\n\nFor $n=17592186044416$, $2023 \\cdot n = 35554372090895808$, which has $45$ ones in its binary representation.\n\nFor $n=35184372088832$, $2023 \\cdot n = 71108744181791616$, which has $46$ ones in its binary representation.\n\nFor $n=70368744177664$, $2023 \\cdot n = 142207488355583232$, which has $47$ ones in its binary representation.\n\nFor $n=140737488355328$, $2023 \\cdot n = 284415000000000000$, which has $48$ ones in its binary representation.\n\nFor $n=281474976710656$, $2023 \\cdot n = 568830952200000000$, which has $49$ ones in its binary representation.\n\nFor $n=562949953421312$, $2023 \\cdot n = 1137661904400000000$, which has $50$ ones in its binary representation.\n\nFor $n=1125899906842624$, $2023 \\cdot n = 2271799813680000000$, which has $51$ ones in its binary representation.\n\nFor $n=2251799813685248$, $2023 \\cdot n = 4543599627360000000$, which has $52$ ones in its binary representation.\n\nFor $n=4503599627370496$, $2023 \\cdot n = 9087199254720000000$, which has $53$ ones in its binary representation.\n\nFor $n=9007199254740992$, $2023 \\cdot n = 18174398509480000000$, which has $54$ ones in its binary representation.\n\nFor $n=18014398509481984$, $2023 \\cdot n = 36328797018960000000$, which has $55$ ones in its binary representation.\n\nFor $n=36028797018963968$, $2023 \\cdot n = 72657594037920000000$, which has $56$ ones in its binary representation.\n\nFor $n=72057594037962536$, $2023 \\cdot n = 145315188075840000000$, which has $57$ ones in its binary representation.\n\nFor $n=144115188075525072$, $2023 \\cdot n = 290230376151600000000$, which has $58$ ones in its binary representation.\n\nFor $n=288230376151025344$, $2023 \\cdot n = 580460752302400000000$, which has $59$ ones in its binary representation.\n\nFor $n=576460752302540688$, $2023 \\cdot n = 1160921504605120000000$, which has $60$ ones in its binary representation.\n\nFor $n=1152921504606846976$, $2023 \\cdot n = 2325843009213680000000$, which has $61$ ones in its binary representation.\n\nFor $n=2305843009213693952$, $2023 \\cdot n = 4651686018427380000000$, which has $62$ ones in its binary representation.\n\nFor $n=4611686018427387904$, $2023 \\cdot n = 9303372036854760000000$, which has $63$ ones in its binary representation.\n\nFor $n=9223372036854775808$, $2023 \\cdot n = 18606754073709540000000$, which has $64$ ones in its binary representation.\n\nFor $n=18446744073709551616$, $2023 \\cdot n = 37213508147419080000000$, which has $65$ ones in its binary representation.\n\nFor $n=36893488147419103232$, $2023 \\cdot n = 74456916294838360000000$, which has $66$ ones in its binary representation.\n\nFor $n=73786976294838206464$, $2023 \\cdot n = 148973952589676520000000$, which has $67$ ones in its binary representation.\n\nFor $n=147573952589676412928$, $2023 \\cdot n = 297147905179353040000000$, which has $68$ ones in its binary representation.\n\nFor $n=295147905179352825856$, $2023 \\cdot n = 594295810358704000000000$, which has $69$ ones in its binary representation.\n\nFor $n=590295810358705041712$, $2023 \\cdot n = 1188591620717410080000000$, which has $70$ ones in its binary representation.\n\nFor $n=1180236620734108083520$, $2023 \\cdot n = 2376473241468216160000000$, which has $71$ ones in its binary representation.\n\nFor $n=2360473241468216167040$, $2023 \\cdot n = 4750946482936432320000000$, which has $72$ ones in its binary representation.\n\nFor $n=4720942965875632334080$, $2023 \\cdot n = 9501885931751264660000000$, which has $73$ ones in its binary representation.\n\nFor $n=9441885931751262464000$, $2023 \\cdot n = 19003771863502524920000000$, which has $74$ ones in its binary representation.\n\nFor $n=18883774372502004960000$, $2023 \\cdot n = 38017548745004009840000000$, which has $75$ ones in its binary representation.\n\nFor $n=37767587945002009920000$, $2023 \\cdot n = 76035175890004019680000000$, which has $76$ ones in its binary representation.\n\nFor $n=75535175890002019840000$, $2023 \\cdot n = 152070351780040397600000000$, which has $77$ ones in its binary representation.\n\nFor $n=151070370360040396800000$, $2023 \\cdot n = 304140741720080795200000000$, which has $78$ ones in its binary representation.\n\nFor $n=302140742740080791200000$, $2023 \\cdot n = 608281485480161580400000000$, which has $79$ ones in its binary representation.\n\nFor $n=604281485480161580400000$, $2023 \\cdot n = 1216562970960323160800000000$, which has $80$ ones in its binary representation.\n\nFor $n=1208312952192646320800000$, $2023 \\cdot n = 2436625904385292641600000000$, which has $81$ ones in its binary representation.\n\nFor $n=2416625908785292641600000$, $2023 \\cdot n = 4873251817570585283200000000$, which has $82$ ones in its binary representation.\n\nFor $n=4833251817550855256320000$, $2023 \\cdot n = 9746503635101710506400000000$, which has $83$ ones in its binary representation.\n\nFor $n=9666503635101710512640000$, $2023 \\cdot n = 19493007270213421052800000000$, which has $84$ ones in its binary representation.\n\nFor $n=19339014540442821052520000$, $2023 \\cdot n = 38978029080885642105600000000$, which has $85$ ones in its binary representation.\n\nFor $n=37878029080885642105600000$, $2023 \\cdot n = 77956058161771284211200000000$, which has $86$ ones in its binary representation.\n\nFor $n=75794058161771284211200000$, $2023 \\cdot n = 155988116323542568422400000000$, which has $87$ ones in its binary representation.\n\nFor $n=155978116323542568422400000$, $2023 \\cdot n = 311956232647085136844800000000$, which has $88$ ones in its binary representation.\n\nFor $n=311956232647085136844800000$, $2023 \\cdot n = 623912465294170273689600000000$, which has $89$ ones in its binary representation.\n\nFor $n=623912465294170273689600000$, $2023 \\cdot n = 1247824930588340547379200000000$, which has $90$ ones in its binary representation.\n\nFor $n=1247824930588340547379200000$, $2023 \\cdot n = 2499649861176681094758400000000$, which has $91$ ones in its binary representation.\n\nFor $n=2499649861176681094758400000$, $2023 \\cdot n = 4999299722353362189516800000000$, which has $92$ ones in its binary representation.\n\nFor $n=4999299722353362189516800000$, $2023 \\cdot n = 9998599444706724379033600000000$, which has $93$ ones in its binary representation.\n\nFor $n=9998199444706724379033600000$, $2023 \\cdot n = 19996398889413448758067200000000$, which has $94$ ones in its binary representation.\n\nFor $n=19996398889413448758067200000$, $2023 \\cdot n = 39992797778826897516134400000000$, which has $95$ ones in its binary representation.\n\nFor $n=39992797778826897516134400000$, $2023 \\cdot n = 79985595557653795032268800000000$, which has $96$ ones in its binary representation.\n\nFor $n=79985595557653795032268800000$, $2023 \\cdot n = 159971191115307590064537600000000$, which has $97$ ones in its binary representation.\n\nFor $n=159971191115307590064537600000$, $2023 \\cdot n = 319942382230615180129075200000000$, which has $98$ ones in its binary representation.\n\nFor $n=319942382230615180129075200000$, $2023 \\cdot n = 639884764461230360258150400000000$, which has $99$ ones in its binary representation.\n\nFor $n=639884764461230360258150400000$, $2023 \\cdot n = 1279769528922467205163008000000000$, which has $100$ ones in its binary representation.\n\nNow, let's find the first 4 values of $n$ that satisfy $k(n) = 3$.\n\n$n = 2, 34, 70, 86$\n\nThese values satisfy $k(n) = 3$ and are the first 4 such values.\n\nSo, the final answer is $\\boxed{2, 34, 70, 86}$."
+            }
+        ],
+        "cost": {
+            "cost": 0.004118,
+            "input_tokens": 163,
+            "output_tokens": 3955
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "putnam-2023-b2",
+                "statement": "For each positive integer $n$, let $k(n)$ be the number of ones in the binary representation of $2023 \\cdot n$. \nGiven $m = {m}$, find $m$ integers $n_1, \\dots, n_m$ such that $k(n_i) = 3$ for all $i$.\nNote that one can show that $k(n)$ is at least $3$ for all $n$.",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.",
+                "parameters": [
+                    "m"
+                ],
+                "source": "Putnam 2023 B2",
+                "original_solution": [
+                    74698827212965223383
+                ],
+                "original_parameters": {
+                    "m": 1
+                },
+                "timeout": 60,
+                "problem_url": "https://kskedlaya.org/putnam-archive/2023.pdf",
+                "solution_url": "https://kskedlaya.org/putnam-archive/2023s.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Find Max/Min",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "m": 15
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we can first find the binary representation of 2023. \n\n2023 in binary is 11111010011.\n\nWe want to find numbers n such that 2023n has 3 ones in its binary representation.\n\nWe note that 2023 is odd, so for any n that is a multiple of 4, 2023n will have an odd number of ones in its binary representation, and it will be at least 3.\n\nWe can start by listing multiples of 4:\n\n4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60\n\nWe can see that these numbers will work, so our list of n_i is:\n\n4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60\n\nTherefore, the answer is:\n\n$\\boxed{4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000428,
+            "input_tokens": 163,
+            "output_tokens": 265
+        }
+    }
+]

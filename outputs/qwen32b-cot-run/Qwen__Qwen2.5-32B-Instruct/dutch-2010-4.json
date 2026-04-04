@@ -1,0 +1,172 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2010-4",
+                "statement": "For $m = {m}$, determine ${k}$ pairs $(x,y)$ of rational numbers with $0 < x < 1$ and $0 < y < 1$ for which $x+my$ and $mx+y$ are both integers. An example for $m = 3$ is $(x, y) = \\left(\\frac{{3}}{{8}},\\frac{{7}}{{8}}\\right)$ since $x+3y=\\frac{{3}}{{8}} + \\frac{{21}}{{8}} = \\frac{{24}}{{8}} = 3$ and $3x+y=\\frac{{9}}{{8}} + \\frac{{7}}{{8}} = \\frac{{16}}{{8}} = 2$.\n\n$(x,y)$ and $(y,x)$ are not considered to be the same pair.",
+                "formatting_instructions": "Give your solution as a list of fraction pairs within a single $\\boxed{}$ environment. For instance, $\\boxed{(\\frac{1}{2},\\frac{3}{4}),(\\frac{1}{3},\\frac{2}{4})}$",
+                "parameters": [
+                    "k",
+                    "m"
+                ],
+                "source": "Dutch Math Olympiad Finals 2010 P4",
+                "original_solution": [
+                    [
+                        0.000999000999000999,
+                        0.000999000999000999
+                    ],
+                    [
+                        0.000998000998000998,
+                        0.001999001999001999
+                    ],
+                    [
+                        0.000997000997000997,
+                        0.002999002999002999
+                    ],
+                    [
+                        0.000996000996000996,
+                        0.003999003999003999
+                    ],
+                    [
+                        0.000995000995000995,
+                        0.004999004999004999
+                    ],
+                    [
+                        0.000994000994000994,
+                        0.005999005999005999
+                    ],
+                    [
+                        0.000993000993000993,
+                        0.006999006999006999
+                    ],
+                    [
+                        0.000992000992000992,
+                        0.007999007999007999
+                    ],
+                    [
+                        0.000991000991000991,
+                        0.008999008999009
+                    ],
+                    [
+                        0.00099000099000099,
+                        0.00999900999901
+                    ]
+                ],
+                "original_parameters": {
+                    "m": 1000,
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/opgaven_en.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/uitwerkingen_en.pdf",
+                "tags": [
+                    "Is Generalized",
+                    "Number Theory",
+                    "Find All"
+                ]
+            },
+            "param_values": {
+                "k": 10,
+                "m": 1000
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find 10 pairs \\((x, y)\\) of rational numbers such that \\(0 < x < 1\\) and \\(0 < y < 1\\) and both \\(x + my\\) and \\(mx + y\\) are integers for \\(m = 1000\\), we need to solve the system of equations:\n\n\\[ x + 1000y = k \\]\n\\[ 1000x + y = l \\]\n\nwhere \\(k\\) and \\(l\\) are integers. From these equations, we can express \\(x\\) and \\(y\\) in terms of \\(k\\) and \\(l\\). First, multiply the first equation by 1000:\n\n\\[ 1000x + 1000000y = 1000k \\]\n\\[ 1000x + y = l \\]\n\nSubtract the second equation from the first:\n\n\\[ 1000000y - y = 1000k - l \\]\n\\[ 999999y = 1000k - l \\]\n\\[ y = \\frac{1000k - l}{999999} \\]\n\nNow substitute \\(y\\) back into the first equation:\n\n\\[ x + 1000 \\left( \\frac{1000k - l}{999999} \\right) = k \\]\n\\[ x + \\frac{1000000k - 1000l}{999999} = k \\]\n\\[ x = k - \\frac{1000000k - 1000l}{999999} \\]\n\\[ x = \\frac{999999k - (1000000k - 1000l)}{999999} \\]\n\\[ x = \\frac{-k + 1000l}{999999} \\]\n\\[ x = \\frac{1000l - k}{999999} \\]\n\nThus, the solutions are of the form:\n\n\\[ \\left( \\frac{1000l - k}{999999}, \\frac{1000k - l}{999999} \\right) \\]\n\nWe need \\(0 < x < 1\\) and \\(0 < y < 1\\), so:\n\n\\[ 0 < \\frac{1000l - k}{999999} < 1 \\]\n\\[ 0 < \\frac{1000k - l}{999999} < 1 \\]\n\nThis implies:\n\n\\[ 0 < 1000l - k < 999999 \\]\n\\[ 0 < 1000k - l < 999999 \\]\n\nWe can choose various integer values for \\(k\\) and \\(l\\) to satisfy these inequalities. Here are 10 valid pairs \\((k, l)\\):\n\n1. \\(k = 1, l = 1\\)\n2. \\(k = 2, l = 1\\)\n3. \\(k = 1, l = 2\\)\n4. \\(k = 2, l = 2\\)\n5. \\(k = 3, l = 1\\)\n6. \\(k = 1, l = 3\\)\n7. \\(k = 3, l = 2\\)\n8. \\(k = 2, l = 3\\)\n9. \\(k = 3, l = 3\\)\n10. \\(k = 4, l = 1\\)\n\nSubstituting these into the expressions for \\(x\\) and \\(y\\), we get:\n\n\\[ \\left( \\frac{1000 \\cdot 1 - 1}{999999}, \\frac{1000 \\cdot 1 - 1}{999999} \\right) = \\left( \\frac{999}{999999}, \\frac{999}{999999} \\right) = \\left( \\frac{1}{1001}, \\frac{1}{1001} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 1 - 2}{999999}, \\frac{1000 \\cdot 2 - 1}{999999} \\right) = \\left( \\frac{998}{999999}, \\frac{1999}{999999} \\right) = \\left( \\frac{998}{999999}, \\frac{1999}{999999} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 2 - 1}{999999}, \\frac{1000 \\cdot 1 - 2}{999999} \\right) = \\left( \\frac{1999}{999999}, \\frac{998}{999999} \\right) = \\left( \\frac{1999}{999999}, \\frac{998}{999999} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 2 - 2}{999999}, \\frac{1000 \\cdot 2 - 2}{999999} \\right) = \\left( \\frac{1998}{999999}, \\frac{1998}{999999} \\right) = \\left( \\frac{2}{1001}, \\frac{2}{1001} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 3 - 1}{999999}, \\frac{1000 \\cdot 1 - 3}{999999} \\right) = \\left( \\frac{2999}{999999}, \\frac{997}{999999} \\right) = \\left( \\frac{2999}{999999}, \\frac{997}{999999} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 1 - 3}{999999}, \\frac{1000 \\cdot 3 - 1}{999999} \\right) = \\left( \\frac{997}{999999}, \\frac{2999}{999999} \\right) = \\left( \\frac{997}{999999}, \\frac{2999}{999999} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 3 - 2}{999999}, \\frac{1000 \\cdot 2 - 3}{999999} \\right) = \\left( \\frac{2998}{999999}, \\frac{1997}{999999} \\right) = \\left( \\frac{2998}{999999}, \\frac{1997}{999999} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 2 - 3}{999999}, \\frac{1000 \\cdot 3 - 2}{999999} \\right) = \\left( \\frac{1997}{999999}, \\frac{2998}{999999} \\right) = \\left( \\frac{1997}{999999}, \\frac{2998}{999999} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 3 - 3}{999999}, \\frac{1000 \\cdot 3 - 3}{999999} \\right) = \\left( \\frac{2997}{999999}, \\frac{2997}{999999} \\right) = \\left( \\frac{3}{1001}, \\frac{3}{1001} \\right) \\]\n\\[ \\left( \\frac{1000 \\cdot 4 - 1}{999999}, \\frac{1000 \\cdot 1 - 4}{999999} \\right) = \\left( \\frac{3999}{999999}, \\frac{996}{999999} \\right) = \\left( \\frac{3999}{999999}, \\frac{996}{999999} \\right) \\]\n\nSo, the final answer is:\n\n\\[ \\boxed{\\left( \\frac{1}{1001}, \\frac{1}{1001} \\right), \\left( \\frac{998}{999999}, \\frac{1999}{999999} \\right), \\left( \\frac{1999}{999999}, \\frac{998}{999999} \\right), \\left( \\frac{2}{1001}, \\frac{2}{1001} \\right), \\left( \\frac{2999}{999999}, \\frac{997}{999999} \\right), \\left( \\frac{997}{999999}, \\frac{2999}{999999} \\right), \\left( \\frac{2998}{999999}, \\frac{1997}{999999} \\right), \\left( \\frac{1997}{999999}, \\frac{2998}{999999} \\right), \\left( \\frac{3}{1001}, \\frac{3}{1001} \\right), \\left( \\frac{3999}{999999}, \\frac{996}{999999} \\right)} \\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0021296,
+            "input_tokens": 266,
+            "output_tokens": 2396
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2010-4",
+                "statement": "For $m = {m}$, determine ${k}$ pairs $(x,y)$ of rational numbers with $0 < x < 1$ and $0 < y < 1$ for which $x+my$ and $mx+y$ are both integers. An example for $m = 3$ is $(x, y) = \\left(\\frac{{3}}{{8}},\\frac{{7}}{{8}}\\right)$ since $x+3y=\\frac{{3}}{{8}} + \\frac{{21}}{{8}} = \\frac{{24}}{{8}} = 3$ and $3x+y=\\frac{{9}}{{8}} + \\frac{{7}}{{8}} = \\frac{{16}}{{8}} = 2$.\n\n$(x,y)$ and $(y,x)$ are not considered to be the same pair.",
+                "formatting_instructions": "Give your solution as a list of fraction pairs within a single $\\boxed{}$ environment. For instance, $\\boxed{(\\frac{1}{2},\\frac{3}{4}),(\\frac{1}{3},\\frac{2}{4})}$",
+                "parameters": [
+                    "k",
+                    "m"
+                ],
+                "source": "Dutch Math Olympiad Finals 2010 P4",
+                "original_solution": [
+                    [
+                        0.000999000999000999,
+                        0.000999000999000999
+                    ],
+                    [
+                        0.000998000998000998,
+                        0.001999001999001999
+                    ],
+                    [
+                        0.000997000997000997,
+                        0.002999002999002999
+                    ],
+                    [
+                        0.000996000996000996,
+                        0.003999003999003999
+                    ],
+                    [
+                        0.000995000995000995,
+                        0.004999004999004999
+                    ],
+                    [
+                        0.000994000994000994,
+                        0.005999005999005999
+                    ],
+                    [
+                        0.000993000993000993,
+                        0.006999006999006999
+                    ],
+                    [
+                        0.000992000992000992,
+                        0.007999007999007999
+                    ],
+                    [
+                        0.000991000991000991,
+                        0.008999008999009
+                    ],
+                    [
+                        0.00099000099000099,
+                        0.00999900999901
+                    ]
+                ],
+                "original_parameters": {
+                    "m": 1000,
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/opgaven_en.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/uitwerkingen_en.pdf",
+                "tags": [
+                    "Is Generalized",
+                    "Number Theory",
+                    "Find All"
+                ]
+            },
+            "param_values": {
+                "k": 22,
+                "m": 28670
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find $22$ pairs of rational numbers $(x, y)$ such that $0 < x < 1$ and $0 < y < 1$ for which $x + my$ and $mx + y$ are both integers, we start by expressing these conditions mathematically. Let $x = \\frac{a}{d}$ and $y = \\frac{b}{d}$ where $a, b, d$ are integers and $d > 0$. Then the conditions become:\n\n\\[ x + my = \\frac{a}{d} + m \\frac{b}{d} = \\frac{a + mb}{d} \\]\n\\[ mx + y = \\frac{ma}{d} + \\frac{b}{d} = \\frac{ma + b}{d} \\]\n\nBoth expressions must be integers, so $a + mb$ and $ma + b$ must be divisible by $d$. This implies that $d$ must be a divisor of both $a + mb$ and $ma + b$. We can solve this system by finding the common divisors of $a + mb$ and $ma + b$.\n\nNotice that if we set $a = k$ and $b = -k + d$, then we get:\n\n\\[ a + mb = k + m(-k + d) = k - mk + md = d(m-1) + k(1-m) = d(m-1) - k(m-1) = (d-k)(m-1) \\]\n\\[ ma + b = mk + (-k + d) = mk - k + d = d + k(m-1) \\]\n\nFor these to be integers, $d$ must divide both $(d-k)(m-1)$ and $d + k(m-1)$. Since $d$ divides $(d-k)(m-1)$ trivially, it suffices to check the second condition. We can choose $k$ such that $d$ divides $d + k(m-1)$, i.e., $k(m-1) \\equiv 0 \\pmod{d}$. Since $d$ is a divisor of $k(m-1)$, we can choose $k$ to be any integer from $1$ to $d-1$.\n\nGiven $m = 28670$, we have $m-1 = 28669$. The number of solutions will be the number of divisors of $28669$. Since $28669$ is a prime number, its only divisors are $1$ and $28669$. Therefore, we can choose $d = 28669$ and $k$ to be any integer from $1$ to $28668$. Each choice of $k$ gives a unique pair $(x, y) = \\left( \\frac{k}{28669}, \\frac{28669-k}{28669} \\right)$.\n\nWe need exactly $22$ pairs, so we choose $k = 1, 2, \\ldots, 22$. Thus, the pairs are:\n\n\\[ \\left( \\frac{1}{28669}, \\frac{28668}{28669} \\right), \\left( \\frac{2}{28669}, \\frac{28667}{28669} \\right), \\ldots, \\left( \\frac{22}{28669}, \\frac{28647}{28669} \\right) \\]\n\nTherefore, the answer is:\n\n\\[\n\\boxed{\\left( \\frac{1}{28669}, \\frac{28668}{28669} \\right), \\left( \\frac{2}{28669}, \\frac{28667}{28669} \\right), \\left( \\frac{3}{28669}, \\frac{28666}{28669} \\right), \\left( \\frac{4}{28669}, \\frac{28665}{28669} \\right), \\left( \\frac{5}{28669}, \\frac{28664}{28669} \\right), \\left( \\frac{6}{28669}, \\frac{28663}{28669} \\right), \\left( \\frac{7}{28669}, \\frac{28662}{28669} \\right), \\left( \\frac{8}{28669}, \\frac{28661}{28669} \\right), \\left( \\frac{9}{28669}, \\frac{28660}{28669} \\right), \\left( \\frac{10}{28669}, \\frac{28659}{28669} \\right), \\left( \\frac{11}{28669}, \\frac{28658}{28669} \\right), \\left( \\frac{12}{28669}, \\frac{28657}{28669} \\right), \\left( \\frac{13}{28669}, \\frac{28656}{28669} \\right), \\left( \\frac{14}{28669}, \\frac{28655}{28669} \\right), \\left( \\frac{15}{28669}, \\frac{28654}{28669} \\right), \\left( \\frac{16}{28669}, \\frac{28653}{28669} \\right), \\left( \\frac{17}{28669}, \\frac{28652}{28669} \\right), \\left( \\frac{18}{28669}, \\frac{28651}{28669} \\right), \\left( \\frac{19}{28669}, \\frac{28650}{28669} \\right), \\left( \\frac{20}{28669}, \\frac{28649}{28669} \\right), \\left( \\frac{21}{28669}, \\frac{28648}{28669} \\right), \\left( \\frac{22}{28669}, \\frac{28647}{28669} \\right)}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0014176,
+            "input_tokens": 267,
+            "output_tokens": 1505
+        }
+    }
+]

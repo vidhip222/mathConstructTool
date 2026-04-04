@@ -1,0 +1,138 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2021-r2-z1",
+                "statement": "Show that for a positive integer $n={n}$, there exists a sequence of pairwise distinct positive integers $a_1, a_2, \\ldots, a_{{{n}}}$, such that for all $k \\in \\{{1,2,\\ldots,{n}\\}}$: $$a_k \\mid \\sum_{{i=1}}^{{n}} a_i.$$",
+                "formatting_instructions": "Output the sequence as a list of integers inside $\\boxed{...}$. For example, $\\boxed{[1,2,3,4]}$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "Swiss MO 2021 Round 2 Z1",
+                "original_solution": [
+                    1,
+                    2,
+                    3,
+                    6,
+                    12,
+                    24,
+                    48,
+                    96,
+                    192,
+                    384,
+                    768,
+                    1536,
+                    3072,
+                    6144,
+                    12288,
+                    24576,
+                    49152,
+                    98304,
+                    196608,
+                    393216,
+                    786432,
+                    1572864,
+                    3145728,
+                    6291456,
+                    12582912
+                ],
+                "original_parameters": {
+                    "n": 25
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2021/SecondRound/MasterSolution/secondRoundSolution2021.pdf",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2021/SecondRound/MasterSolution/secondRoundSolution2021.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Simplified",
+                    "Is Translated",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 25
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To show that there exists a sequence of pairwise distinct positive integers $a_1, a_2, \\ldots, a_{25}$, such that for all $k \\in \\{1,2,\\ldots,25\\}$: $$a_k \\mid \\sum_{i=1}^{n} a_i,$$ we can use the following sequence:\n\n$\\boxed{[1, 2, 4, 8, 16, 5, 10, 20, 40, 80, 3, 6, 12, 24, 48, 96, 7, 14, 28, 56, 112, 9, 18, 36, 72, 144]}$\n\nWe can verify this by checking each $a_k$ for divisibility into the sum of all $a_i$."
+            }
+        ],
+        "cost": {
+            "cost": 0.000333,
+            "input_tokens": 150,
+            "output_tokens": 183
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2021-r2-z1",
+                "statement": "Show that for a positive integer $n={n}$, there exists a sequence of pairwise distinct positive integers $a_1, a_2, \\ldots, a_{{{n}}}$, such that for all $k \\in \\{{1,2,\\ldots,{n}\\}}$: $$a_k \\mid \\sum_{{i=1}}^{{n}} a_i.$$",
+                "formatting_instructions": "Output the sequence as a list of integers inside $\\boxed{...}$. For example, $\\boxed{[1,2,3,4]}$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "Swiss MO 2021 Round 2 Z1",
+                "original_solution": [
+                    1,
+                    2,
+                    3,
+                    6,
+                    12,
+                    24,
+                    48,
+                    96,
+                    192,
+                    384,
+                    768,
+                    1536,
+                    3072,
+                    6144,
+                    12288,
+                    24576,
+                    49152,
+                    98304,
+                    196608,
+                    393216,
+                    786432,
+                    1572864,
+                    3145728,
+                    6291456,
+                    12582912
+                ],
+                "original_parameters": {
+                    "n": 25
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2021/SecondRound/MasterSolution/secondRoundSolution2021.pdf",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2021/SecondRound/MasterSolution/secondRoundSolution2021.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Simplified",
+                    "Is Translated",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 17
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find a sequence of pairwise distinct positive integers $a_1, a_2, \\ldots, a_{17}$ such that for all $k \\in \\{1,2,\\ldots,17\\}$: $$a_k \\mid \\sum_{i=1}^{n} a_i,$$ where $n=17$, we can use the following strategy: \n\nLet $a_i = i$ for $i = 1, 2, \\ldots, 17$. \n\nThen, $\\sum_{i=1}^{17} a_i = 1 + 2 + \\ldots + 17 = \\frac{17(18)}{2} = 153.$ \n\nNow, for any $k \\in \\{1, 2, \\ldots, 17\\}$, $a_k \\mid \\sum_{i=1}^{n} a_i$ because $a_k = k$ and $k \\mid 153$ for $k = 1, 2, \\ldots, 17$. \n\nTherefore, the required sequence is $\\boxed{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]}$."
+            }
+        ],
+        "cost": {
+            "cost": 0.000435,
+            "input_tokens": 150,
+            "output_tokens": 285
+        }
+    }
+]

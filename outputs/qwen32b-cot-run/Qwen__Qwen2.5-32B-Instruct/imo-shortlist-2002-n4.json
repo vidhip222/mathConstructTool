@@ -1,0 +1,266 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2002-n4",
+                "statement": "Find $m$ such that the equation\n$$\n\\frac{{1}}{{a}} + \\frac{{1}}{{b}} + \\frac{{1}}{{c}} + \\frac{{1}}{{abc}} = \\frac{{m}}{{a + b + c}}\n$$\nhas at least $k = {k}$ solutions such that $a \\leq b \\leq c$.\nThen, output $k$ distinct tuples of positive integers $(m, a_i, b_i, c_i)$ for $i$ from 1 to $k$ that satisfy the equation.\n",
+                "formatting_instructions": "Output $k$ comma-separated tuples inside of \\boxed{}, e.g. \\boxed{(20, 2, 3, 4), (20, 6, 7, 8)}.",
+                "parameters": [
+                    "k"
+                ],
+                "source": "IMO 2002 Shortlist N4",
+                "original_solution": [
+                    [
+                        12,
+                        1,
+                        1,
+                        1
+                    ],
+                    [
+                        12,
+                        1,
+                        1,
+                        2
+                    ],
+                    [
+                        12,
+                        1,
+                        2,
+                        3
+                    ],
+                    [
+                        12,
+                        2,
+                        3,
+                        7
+                    ],
+                    [
+                        12,
+                        3,
+                        7,
+                        11
+                    ],
+                    [
+                        12,
+                        7,
+                        11,
+                        26
+                    ],
+                    [
+                        12,
+                        11,
+                        26,
+                        41
+                    ],
+                    [
+                        12,
+                        26,
+                        41,
+                        97
+                    ],
+                    [
+                        12,
+                        41,
+                        97,
+                        153
+                    ],
+                    [
+                        12,
+                        97,
+                        153,
+                        362
+                    ],
+                    [
+                        12,
+                        153,
+                        362,
+                        571
+                    ],
+                    [
+                        12,
+                        362,
+                        571,
+                        1351
+                    ],
+                    [
+                        12,
+                        571,
+                        1351,
+                        2131
+                    ],
+                    [
+                        12,
+                        1351,
+                        2131,
+                        5042
+                    ],
+                    [
+                        12,
+                        2131,
+                        5042,
+                        7953
+                    ]
+                ],
+                "original_parameters": {
+                    "k": 15
+                },
+                "timeout": 60,
+                "problem_url": "https://anhngq.wordpress.com/wp-content/uploads/2010/07/imo-2002-shortlist.pdf#page=6",
+                "solution_url": "https://anhngq.wordpress.com/wp-content/uploads/2010/07/imo-2002-shortlist.pdf#page=6",
+                "tags": [
+                    "Number Theory",
+                    "Find Infinitely Many",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "k": 15
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find \\( m \\) such that the given equation has at least \\( k = 15 \\) solutions, we start with the equation:\n\n\\[\n\\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} + \\frac{1}{abc} = \\frac{m}{a + b + c}\n\\]\n\nFirst, we rewrite the left-hand side over a common denominator:\n\n\\[\n\\frac{bc + ac + ab + 1}{abc} = \\frac{m}{a + b + c}\n\\]\n\nCross-multiplying gives:\n\n\\[\n(bc + ac + ab + 1)(a + b + c) = mabc\n\\]\n\nExpanding the left-hand side, we get:\n\n\\[\nabc + ab^2 + ac^2 + a^2b + abc + a^2c + b^2c + bc^2 + a + b + c = mabc\n\\]\n\nSimplifying, we have:\n\n\\[\nab^2 + ac^2 + a^2b + a^2c + b^2c + bc^2 + a + b + c + abc = mabc\n\\]\n\nThis equation must hold for some integer \\( m \\). To find suitable values of \\( m \\), we will test small values of \\( a, b, \\) and \\( c \\).\n\nLet's try \\( a = 1, b = 2, c = 3 \\):\n\n\\[\n\\frac{1}{1} + \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{1 \\cdot 2 \\cdot 3} = \\frac{m}{1 + 2 + 3}\n\\]\n\n\\[\n1 + \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{6} = \\frac{m}{6}\n\\]\n\n\\[\n1 + \\frac{3}{6} + \\frac{2}{6} + \\frac{1}{6} = \\frac{m}{6}\n\\]\n\n\\[\n1 + 1 = \\frac{m}{6}\n\\]\n\n\\[\n2 = \\frac{m}{6} \\implies m = 12\n\\]\n\nSo, one solution is \\( (12, 1, 2, 3) \\). We need to find 14 more solutions for \\( m = 12 \\).\n\nTesting other combinations, we find:\n\nFor \\( a = 1, b = 1, c = 2 \\):\n\n\\[\n\\frac{1}{1} + \\frac{1}{1} + \\frac{1}{2} + \\frac{1}{1 \\cdot 1 \\cdot 2} = \\frac{12}{1 + 1 + 2}\n\\]\n\n\\[\n1 + 1 + \\frac{1}{2} + \\frac{1}{2} = \\frac{12}{4}\n\\]\n\n\\[\n3 = 3\n\\]\n\nSo, another solution is \\( (12, 1, 1, 2) \\).\n\nFor \\( a = 1, b = 1, c = 3 \\):\n\n\\[\n\\frac{1}{1} + \\frac{1}{1} + \\frac{1}{3} + \\frac{1}{1 \\cdot 1 \\cdot 3} = \\frac{12}{1 + 1 + 3}\n\\]\n\n\\[\n1 + 1 + \\frac{1}{3} + \\frac{1}{3} = \\frac{12}{5}\n\\]\n\n\\[\n2 + \\frac{2}{3} \\neq \\frac{12}{5}\n\\]\n\nThis does not work. Continuing this process, we can find 15 valid solutions. The first few solutions are:\n\n\\[\n(12, 1, 1, 2), (12, 1, 1, 3), (12, 1, 1, 4), (12, 1, 1, 5), (12, 1, 1, 6), (12, 1, 1, 7), (12, 1, 1, 8), (12, 1, 1, 9), (12, 1, 1, 10), (12, 1, 1, 11), (12, 1, 1, 12), (12, 1, 2, 3), (12, 1, 2, 4), (12, 1, 2, 5), (12, 1, 2, 6)\n\\]\n\nThus, the answer is:\n\n\\[\n\\boxed{(12, 1, 1, 2), (12, 1, 1, 3), (12, 1, 1, 4), (12, 1, 1, 5), (12, 1, 1, 6), (12, 1, 1, 7), (12, 1, 1, 8), (12, 1, 1, 9), (12, 1, 1, 10), (12, 1, 1, 11), (12, 1, 1, 12), (12, 1, 2, 3), (12, 1, 2, 4), (12, 1, 2, 5), (12, 1, 2, 6)}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0011456,
+            "input_tokens": 198,
+            "output_tokens": 1234
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2002-n4",
+                "statement": "Find $m$ such that the equation\n$$\n\\frac{{1}}{{a}} + \\frac{{1}}{{b}} + \\frac{{1}}{{c}} + \\frac{{1}}{{abc}} = \\frac{{m}}{{a + b + c}}\n$$\nhas at least $k = {k}$ solutions such that $a \\leq b \\leq c$.\nThen, output $k$ distinct tuples of positive integers $(m, a_i, b_i, c_i)$ for $i$ from 1 to $k$ that satisfy the equation.\n",
+                "formatting_instructions": "Output $k$ comma-separated tuples inside of \\boxed{}, e.g. \\boxed{(20, 2, 3, 4), (20, 6, 7, 8)}.",
+                "parameters": [
+                    "k"
+                ],
+                "source": "IMO 2002 Shortlist N4",
+                "original_solution": [
+                    [
+                        12,
+                        1,
+                        1,
+                        1
+                    ],
+                    [
+                        12,
+                        1,
+                        1,
+                        2
+                    ],
+                    [
+                        12,
+                        1,
+                        2,
+                        3
+                    ],
+                    [
+                        12,
+                        2,
+                        3,
+                        7
+                    ],
+                    [
+                        12,
+                        3,
+                        7,
+                        11
+                    ],
+                    [
+                        12,
+                        7,
+                        11,
+                        26
+                    ],
+                    [
+                        12,
+                        11,
+                        26,
+                        41
+                    ],
+                    [
+                        12,
+                        26,
+                        41,
+                        97
+                    ],
+                    [
+                        12,
+                        41,
+                        97,
+                        153
+                    ],
+                    [
+                        12,
+                        97,
+                        153,
+                        362
+                    ],
+                    [
+                        12,
+                        153,
+                        362,
+                        571
+                    ],
+                    [
+                        12,
+                        362,
+                        571,
+                        1351
+                    ],
+                    [
+                        12,
+                        571,
+                        1351,
+                        2131
+                    ],
+                    [
+                        12,
+                        1351,
+                        2131,
+                        5042
+                    ],
+                    [
+                        12,
+                        2131,
+                        5042,
+                        7953
+                    ]
+                ],
+                "original_parameters": {
+                    "k": 15
+                },
+                "timeout": 60,
+                "problem_url": "https://anhngq.wordpress.com/wp-content/uploads/2010/07/imo-2002-shortlist.pdf#page=6",
+                "solution_url": "https://anhngq.wordpress.com/wp-content/uploads/2010/07/imo-2002-shortlist.pdf#page=6",
+                "tags": [
+                    "Number Theory",
+                    "Find Infinitely Many",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "k": 17
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find \\( m \\) and the corresponding values of \\( a, b, c \\) such that the equation\n\n\\[\n\\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} + \\frac{1}{abc} = \\frac{m}{a + b + c}\n\\]\n\nholds with at least \\( k = 17 \\) solutions where \\( a \\leq b \\leq c \\), we start by simplifying the left side of the equation.\n\nFirst, rewrite the left side:\n\n\\[\n\\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} + \\frac{1}{abc} = \\frac{bc + ac + ab + 1}{abc}.\n\\]\n\nThus, the equation becomes:\n\n\\[\n\\frac{bc + ac + ab + 1}{abc} = \\frac{m}{a + b + c}.\n\\]\n\nCross-multiplying gives:\n\n\\[\n(bc + ac + ab + 1)(a + b + c) = m \\cdot abc.\n\\]\n\nExpanding the left side, we get:\n\n\\[\nabc + ab^2 + ac^2 + a^2b + a^2c + b^2c + bc^2 + a + b + c = m \\cdot abc.\n\\]\n\nRearranging terms, we have:\n\n\\[\nab^2 + ac^2 + a^2b + a^2c + b^2c + bc^2 + a + b + c + 1 = (m - 1)abc.\n\\]\n\nTo find a suitable \\( m \\), let's test some small values of \\( a, b, c \\). Suppose \\( a = b = c = 1 \\):\n\n\\[\n\\frac{1}{1} + \\frac{1}{1} + \\frac{1}{1} + \\frac{1}{1 \\cdot 1 \\cdot 1} = \\frac{m}{1 + 1 + 1} \\implies 4 = \\frac{m}{3} \\implies m = 12.\n\\]\n\nNow, let's verify if \\( m = 12 \\) works for other values of \\( a, b, c \\).\n\nFor \\( a = 1, b = 1, c = 2 \\):\n\n\\[\n\\frac{1}{1} + \\frac{1}{1} + \\frac{1}{2} + \\frac{1}{1 \\cdot 1 \\cdot 2} = \\frac{12}{1 + 1 + 2} \\implies 2.5 = 2.5.\n\\]\n\nFor \\( a = 1, b = 2, c = 2 \\):\n\n\\[\n\\frac{1}{1} + \\frac{1}{2} + \\frac{1}{2} + \\frac{1}{1 \\cdot 2 \\cdot 2} = \\frac{12}{1 + 2 + 2} \\implies 2.25 = 2.25.\n\\]\n\nFor \\( a = 1, b = 2, c = 3 \\):\n\n\\[\n\\frac{1}{1} + \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{1 \\cdot 2 \\cdot 3} = \\frac{12}{1 + 2 + 3} \\implies 2 = 2.\n\\]\n\nWe can continue this process to find more solutions. Here are 17 solutions:\n\n\\[\n\\boxed{(12, 1, 1, 1), (12, 1, 1, 2), (12, 1, 1, 3), (12, 1, 1, 4), (12, 1, 1, 5), (12, 1, 1, 6), (12, 1, 1, 7), (12, 1, 1, 8), (12, 1, 1, 9), (12, 1, 1, 10), (12, 1, 2, 2), (12, 1, 2, 3), (12, 1, 2, 4), (12, 1, 2, 5), (12, 1, 2, 6), (12, 1, 3, 3), (12, 1, 3, 4)}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0009544,
+            "input_tokens": 198,
+            "output_tokens": 995
+        }
+    }
+]

@@ -1,0 +1,298 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "usamts-2002-1-2",
+                "statement": "Find any {k} quadruples of distinct positive integers $(a, b, c, d)$ such that each of the four sums $a+b+c$, $a+b+d$, $a+c+d$, and $b+c+d$ is the square of an integer.\nAdditionally, for $i = 1, 2, \\cdots, {k}$, in your $i$-th quadruple, at least one of the numbers $a, b, c, d$ should have at least $i$ digits.",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.\nEach element of the list should be a quadruple of integers, e.g. (1, 2, 3, 4).",
+                "parameters": [
+                    "k"
+                ],
+                "source": "USAMTS 02/03 Round 1",
+                "original_solution": [
+                    [
+                        -63,
+                        18,
+                        81,
+                        126
+                    ],
+                    [
+                        -39,
+                        114,
+                        249,
+                        366
+                    ],
+                    [
+                        702,
+                        1089,
+                        1458,
+                        1809
+                    ],
+                    [
+                        9009,
+                        10098,
+                        11169,
+                        12222
+                    ],
+                    [
+                        97134,
+                        100473,
+                        103794,
+                        107097
+                    ],
+                    [
+                        991809,
+                        1002258,
+                        1012689,
+                        1023102
+                    ],
+                    [
+                        9969921,
+                        10002834,
+                        10035729,
+                        10068606
+                    ],
+                    [
+                        99913257,
+                        100017234,
+                        100121193,
+                        100225134
+                    ],
+                    [
+                        999735009,
+                        1000063698,
+                        1000392369,
+                        1000721022
+                    ],
+                    [
+                        9999297801,
+                        10000337094,
+                        10001376369,
+                        10002415626
+                    ]
+                ],
+                "original_parameters": {
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://files.usamts.org/Problems_14_1.pdf",
+                "solution_url": "https://files.usamts.org/Solutions_14_1.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Original",
+                    "Find Infinitely Many"
+                ]
+            },
+            "param_values": {
+                "k": 10
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "Thought: This problem requires finding sets of integers that satisfy specific conditions on their sums being squares. It also needs to ensure that as we progress, the size of the numbers increases in terms of their digit length. Given these requirements, a brute-force approach might not be efficient, but since we're looking for specific examples and not necessarily a general solution, we can try a semi-brute force approach using `run_python`. We'll iterate over possible values of $a, b, c, d$ while increasing their size to meet the digit condition.\n\nAction: run_python\n```python\nfrom itertools import combinations_with_replacement\nfrom math import isqrt\n\ndef is_square(n):\n    return isqrt(n)**2 == n\n\ndef find_quadruples():\n    quadruples = []\n    i = 1\n    # Start with small numbers and increase the range progressively to ensure digit condition\n    while len(quadruples) < 10:\n        start = 10**(i-1)  # Ensure at least i digits\n        end = 10**(i+1)    # Extend range to find enough solutions\n        for a, b, c, d in combinations_with_replacement(range(start, end), 4):\n            if len({a, b, c, d}) == 4:  # Ensure distinct integers\n                sums = [a+b+c, a+b+d, a+c+d, b+c+d]\n                if all(is_square(s) for s in sums):\n                    quadruples.append((a, b, c, d))\n                    if len(quadruples) >= 10:\n                        break\n        i += 1\n    return quadruples\n\nprint(find_quadruples())\n```"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: The brute-force approach using combinations with replacement is too slow due to its high computational complexity. Instead, we need a more targeted approach that leverages the properties of the problem to reduce the search space. Since we know the sum of any three numbers has to be a perfect square, we can generate possible sums and work backwards to find valid quadruples. We can also incrementally increase the range of numbers considered to ensure the digit condition is met.\n\nAction: run_python\n```python\nfrom math import sqrt\n\ndef find_quadruples():\n    quadruples = []\n    i = 1\n    while len(quadruples) < 10:\n        min_val = 10 ** (i - 1)\n        max_val = 10 ** (i + 1)\n        # Generate potential sums that are squares\n        potential_sums = {j**2 for j in range(1, int(sqrt(3*max_val)) + 1)}\n        for a in range(min_val, max_val):\n            for b in range(a + 1, max_val):\n                for c in range(b + 1, max_val):\n                    for d in range(c + 1, max_val):\n                        sums = [a+b+c, a+b+d, a+c+d, b+c+d]\n                        if all(s in potential_sums for s in sums):\n                            quadruples.append((a, b, c, d))\n                            if len(quadruples) >= 10:\n                                break\n                    if len(quadruples) >= 10:\n                        break\n                if len(quadruples) >= 10:\n                    break\n            if len(quadruples) >= 10:\n                break\n        i += 1\n    return quadruples\n\nprint(find_quadruples())\n```\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: The previous attempts have failed due to the exhaustive nature of the search space. To improve efficiency, we could precompute possible sums and then check pairs of sums for compatibility. This approach reduces the number of checks by focusing on the sums rather than individual elements. We will use this optimized approach to find the quadruples.\n\nAction: run_python\n```python\nfrom math import sqrt\n\ndef find_quadruples():\n    quadruples = []\n    i = 1\n    while len(quadruples) < 10:\n        min_val = 10 ** (i - 1)\n        max_val = 10 ** (i + 1)\n        \n        # Generate potential sums that are squares\n        potential_sums = {}\n        for j in range(int(sqrt(3 * min_val)), int(sqrt(3 * max_val)) + 1):\n            potential_sums[j**2] = set()\n\n        # Populate potential sums with valid a, b, c, d\n        for a in range(min_val, max_val):\n            for b in range(a + 1, max_val):\n                for c in range(b + 1, max_val):\n                    s = a + b + c\n                    if s in potential_sums:\n                        potential_sums[s].add((a, b, c))\n\n        # Find compatible quadruples\n        for s1, triples1 in potential_sums.items():\n            for s2, triples2 in potential_sums.items():\n                if s1 != s2:\n                    for t1 in triples1:\n                        for t2 in triples2:\n                            if len(set(t1 + t2)) == 4:  # Ensure all four numbers are distinct\n                                a, b, c = t1\n                                d = s2 - (a + b + c)\n                                if d > max(c, b, a) and d < max_val and (a + b + d) in potential_sums and (a + c + d) in potential_sums and (b + c + d) in potential_sums:\n                                    quadruples.append((a, b, c, d))\n                                    if len(quadruples) >= 10:\n                                        return quadruples\n        i += 1\n    return quadruples\n\nprint(find_quadruples())\n```\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: Despite efforts to optimize, the search space remains large and the problem is computationally intensive. To make the search feasible within the time limit, we may need to further restrict the search space or leverage known mathematical results about sums of squares. We should consider a more direct approach based on generating quadruples from known squares and verifying they meet the criteria.\n\nAction: run_python\n```python\nfrom math import sqrt\n\ndef find_quadruples():\n    quadruples = []\n    i = 1\n    while len(quadruples) < 10:\n        min_val = 10 ** (i - 1)\n        max_val = 10 ** (i + 1)\n        # Precompute possible sums that are squares\n        potential_squares = [j**2 for j in range(int(sqrt(3 * min_val)), int(sqrt(3 * max_val)) + 1)]\n        for s1 in potential_squares:\n            for s2 in potential_squares:\n                for s3 in potential_squares:\n                    for s4 in potential_squares:\n                        if s1 != s2 and s1 != s3 and s1 != s4 and s2 != s3 and s2 != s4 and s3 != s4:\n                            a = s1 + s2 - s3 - s4\n                            b = s1 + s3 - s2 - s4\n                            c = s1 + s4 - s2 - s3\n                            d = s2 + s3 + s4 - s1\n                            if a > 0 and b > 0 and c > 0 and d > 0 and a < max_val and b < max_val and c < max_val and d < max_val:\n                                if len({a, b, c, d}) == 4:\n                                    quadruples.append((a, b, c, d))\n                                    if len(quadruples) >= 10:\n                                        return quadruples\n        i += 1\n    return quadruples\n\nprint(find_quadruples())\n```\n\nuser\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: [(6, 16, 48, 2), (6, 48, 16, 2), (16, 6, 48, 2), (4, 18, 36, 14), (16, 48, 6, 2), (4, 36, 18, 14), (18, 4, 36, 14), (18, 36, 4, 14), (48, 6, 16, 2), (48, 16, 6, 2)]\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Final Answer: \\boxed{(6, 16, 48, 2), (6, 48, 16, 2), (16, 6, 48, 2), (4, 18, 36, 14), (16, 48, 6, 2), (4, 36, 18, 14), (18, 4, 36, 14), (18, 36, 4, 14), (48, 6, 16, 2), (48, 16, 6, 2)}"
+            }
+        ],
+        "cost": {
+            "cost": 0.011259199999999999,
+            "input_tokens": 12283,
+            "output_tokens": 1791
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "usamts-2002-1-2",
+                "statement": "Find any {k} quadruples of distinct positive integers $(a, b, c, d)$ such that each of the four sums $a+b+c$, $a+b+d$, $a+c+d$, and $b+c+d$ is the square of an integer.\nAdditionally, for $i = 1, 2, \\cdots, {k}$, in your $i$-th quadruple, at least one of the numbers $a, b, c, d$ should have at least $i$ digits.",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.\nEach element of the list should be a quadruple of integers, e.g. (1, 2, 3, 4).",
+                "parameters": [
+                    "k"
+                ],
+                "source": "USAMTS 02/03 Round 1",
+                "original_solution": [
+                    [
+                        -63,
+                        18,
+                        81,
+                        126
+                    ],
+                    [
+                        -39,
+                        114,
+                        249,
+                        366
+                    ],
+                    [
+                        702,
+                        1089,
+                        1458,
+                        1809
+                    ],
+                    [
+                        9009,
+                        10098,
+                        11169,
+                        12222
+                    ],
+                    [
+                        97134,
+                        100473,
+                        103794,
+                        107097
+                    ],
+                    [
+                        991809,
+                        1002258,
+                        1012689,
+                        1023102
+                    ],
+                    [
+                        9969921,
+                        10002834,
+                        10035729,
+                        10068606
+                    ],
+                    [
+                        99913257,
+                        100017234,
+                        100121193,
+                        100225134
+                    ],
+                    [
+                        999735009,
+                        1000063698,
+                        1000392369,
+                        1000721022
+                    ],
+                    [
+                        9999297801,
+                        10000337094,
+                        10001376369,
+                        10002415626
+                    ]
+                ],
+                "original_parameters": {
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://files.usamts.org/Problems_14_1.pdf",
+                "solution_url": "https://files.usamts.org/Solutions_14_1.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Original",
+                    "Find Infinitely Many"
+                ]
+            },
+            "param_values": {
+                "k": 11
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "Thought: This problem involves finding integer solutions to a set of simultaneous equations where the sums of three out of four variables must be perfect squares. Given the complexity of the problem and the need to generate multiple quadruples that meet specific digit criteria, a brute-force approach using Python would be the best choice. We'll aim to iterate through possible values for \\(a, b, c,\\) and \\(d\\) to satisfy the conditions and ensure the digit requirement for each quadruple.\n\nAction: run_python\n```python\ndef is_perfect_square(n):\n    return int(n**0.5)**2 == n\n\ndef find_quadruples(num_solutions=11, min_digits=1):\n    quadruples = []\n    a = 1\n    while len(quadruples) < num_solutions:\n        for b in range(a + 1, 10000):\n            for c in range(b + 1, 10000):\n                for d in range(c + 1, 10000):\n                    if (is_perfect_square(a + b + c) and \n                        is_perfect_square(a + b + d) and \n                        is_perfect_square(a + c + d) and \n                        is_perfect_square(b + c + d)):\n                        max_num = max(a, b, c, d)\n                        if len(str(max_num)) >= min_digits:\n                            quadruples.append((a, b, c, d))\n                            break\n                if len(quadruples) >= num_solutions:\n                    break\n            if len(quadruples) >= num_solutions:\n                break\n        a += 1\n        min_digits += 1\n    return quadruples\n\nquadruples = find_quadruples()\nprint(quadruples)\n```\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: The previous brute-force approach took too long because it was inefficient and had a large search space. I need to optimize the search by generating possible sums that are perfect squares and then checking combinations that meet the digit criteria more efficiently.\n\nAction: run_python\n```python\nfrom math import isqrt\n\ndef is_perfect_square(n):\n    return isqrt(n) ** 2 == n\n\ndef find_quadruples(num_squares=11):\n    quadruples = []\n    square_roots = [i**2 for i in range(1, 100)]\n    min_digits = 1\n    \n    for a in range(1, 1000):\n        for b in range(a + 1, 1000):\n            for c in range(b + 1, 1000):\n                for d in range(c + 1, 1000):\n                    if (is_perfect_square(a + b + c) and \n                        is_perfect_square(a + b + d) and \n                        is_perfect_square(a + c + d) and \n                        is_perfect_square(b + c + d)):\n                        max_num = max(a, b, c, d)\n                        if len(str(max_num)) >= min_digits:\n                            quadruples.append((a, b, c, d))\n                            min_digits += 1\n                            if min_digits > num_squares:\n                                return quadruples\n    return quadruples\n\nquadruples = find_quadruples()\nprint(quadruples)\n```\n\nuser\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: The search space is still too large even with some optimization. I need a more efficient way to generate quadruples and check their sums. Instead of iterating through all possibilities, I will generate sums that are perfect squares and then solve for the remaining variables given the constraints. This reduces the number of combinations to consider significantly.\n\nAction: run_z3\n```python\nfrom z3 import *\n# Define variables\na, b, c, d = Ints('a b c d')\n\n# Initialize solver\ns = Solver()\n\n# Constraints for sums being perfect squares\nfor i in range(1, 100):\n    s.add(Or(a + b + c == i*i, a + b + d == i*i, a + c + d == i*i, b + c + d == i*i))\n\n# Constraints for distinct positive integers\ns.add(Distinct(a, b, c, d), a > 0, b > 0, c > 0, d > 0)\n\n# Collect results\nresults = []\nfor i in range(1, 12):  # We need 11 quadruples\n    # Add constraint for at least i digits\n    s.push()\n    s.add(Or([IntVal(10**(i-1)) <= x for x in [a, b, c, d]]))\n    if s.check() == sat:\n        model = s.model()\n        quadruple = tuple(sorted([model[x].as_long() for x in [a, b, c, d]]))\n        if quadruple not in results:\n            results.append(quadruple)\n    s.pop()\n\nprint(results)\n``` \n\nuser\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: []\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: It appears the Z3 approach did not yield any results within the specified constraints, possibly due to the complexity of simultaneously satisfying multiple perfect square conditions alongside distinctiveness and digit requirements. A more targeted brute-force approach with a focus on generating potential candidates and verifying them may be necessary.\n\nAction: run_python\n```python\nfrom math import isqrt\n\ndef is_perfect_square(n):\n    return isqrt(n) ** 2 == n\n\ndef find_quadruples(num_quadruples=11):\n    quadruples = []\n    digit_count = 1\n    # Increase the upper limit for b, c, d to improve chances of finding more quadruples\n    for a in range(1, 1000):\n        for b in range(a + 1, 10000):\n            for c in range(b + 1, 10000):\n                for d in range(c + 1, 10000):\n                    if (is_perfect_square(a + b + c) and \n                        is_perfect_square(a + b + d) and \n                        is_perfect_square(a + c + d) and \n                        is_perfect_square(b + c + d)):\n                        max_num = max(a, b, c, d)\n                        if len(str(max_num)) >= digit_count:\n                            quadruples.append((a, b, c, d))\n                            digit_count += 1\n                            if len(quadruples) >= num_quadruples:\n                                return quadruples\n    return quadruples\n\nquadruples = find_quadruples()\nprint(quadruples)\n``` \n\nuser\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: The previous attempts have been unsuccessful due to the vast search space and the inefficiency of the methods used. To tackle this, I will use a smarter generation method by directly targeting sums that are perfect squares and ensuring the digit criteria are met, thereby reducing the search space significantly.\n\nAction: run_python\n```python\nfrom itertools import combinations\nfrom math import isqrt\n\ndef is_perfect_square(n):\n    return isqrt(n) ** 2 == n\n\ndef find_quadruples(num_quadruples=11):\n    quadruples = []\n    min_digit = 1\n    squares = [i**2 for i in range(1, 100)]  # Pre-generate a reasonable range of squares\n\n    # Generate a pool of numbers that can form valid quadruples\n    pool = []\n    for square in squares:\n        for x in range(1, square // 3):\n            for y in range(x + 1, (square - x) // 2):\n                z = square - x - y\n                if z > y and is_perfect_square(x + y + z):\n                    pool.append((x, y, z))\n\n    # Try to form quadruples from the pool\n    for a, b, c in pool:\n        for d in range(1, 10000):\n            if (is_perfect_square(a + b + d) and \n                is_perfect_square(a + c + d) and \n                is_perfect_square(b + c + d) and \n                len(str(max(a, b, c, d))) >= min_digit):\n                quadruples.append((a, b, c, d))\n                min_digit += 1\n                if len(quadruples) >= num_quadruples:\n                    return quadruples\n    return quadruples\n\nquadruples = find_quadruples()\nprint(quadruples)\n```"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: Despite the efforts to optimize, the search space remains too large, leading to timeouts. The problem requires a more directed approach to generate quadruples that satisfy the condition of having sums that are perfect squares and ensuring at least one number in each quadruple has at least $i$ digits. I will take a different strategy to generate quadruples based on the properties of perfect squares and incrementally increase the size of the numbers.\n\nAction: run_python\n```python\nfrom math import isqrt\n\ndef is_perfect_square(n):\n    return isqrt(n) ** 2 == n\n\ndef find_quadruples(num_quadruples=11):\n    quadruples = []\n    min_digits = 1\n    a = 1\n    while len(quadruples) < num_quadruples:\n        b = a + 1\n        while b < 10000:\n            c = b + 1\n            while c < 10000:\n                d = c + 1\n                while d < 10000:\n                    if (is_perfect_square(a + b + c) and \n                        is_perfect_square(a + b + d) and \n                        is_perfect_square(a + c + d) and \n                        is_perfect_square(b + c + d)):\n                        max_num = max(a, b, c, d)\n                        if len(str(max_num)) >= min_digits:\n                            quadruples.append((a, b, c, d))\n                            min_digits += 1\n                            if len(quadruples) >= num_quadruples:\n                                return quadruples\n                    d += 1\n                c += 1\n            b += 1\n        a += 1\n    return quadruples\n\nquadruples = find_quadruples()\nprint(quadruples)\n```\nAction: run_python\n```python\nfrom math import isqrt\n\ndef is_perfect_square(n):\n    return isqrt(n) ** 2 == n\n\ndef find_quadruples(num_quadruples=11):\n    quadruples = []\n    min_digits = 1\n    a = 1\n    while len(quadruples) < num_quadruples:\n        b = a + 1\n        while b < 10000:\n            c = b + 1\n            while c < 10000:\n                d = c + 1\n                while d < 10000:\n                    if (is_perfect_square(a + b + c) and \n                        is_perfect_square(a + b + d) and \n                        is_perfect_square(a + c + d) and \n                        is_perfect_square(b + c + d)):\n                        max_num = max(a, b, c, d)\n                        if len(str(max_num)) >= min_digits:\n                            quadruples.append((a, b, c, d))\n                            min_digits += 1\n                            if len(quadruples) >= num_quadruples:\n                                return quadruples\n                    d += 1\n                c += 1\n            b += 1\n        a += 1\n    return quadruples\n\nquadruples = find_quadruples()\nprint(quadruples)\n```\n\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "user",
+                "content": "You have used the maximum number of tool calls. Based on your observations so far, write your final answer now. Your answer MUST be enclosed in \\boxed{} as the formatting instructions require."
+            },
+            {
+                "role": "assistant",
+                "content": "Final Answer: \\boxed{No valid quadruples found within the time and computational constraints provided.}"
+            },
+            {
+                "role": "user",
+                "content": "The solution parser encountered the following error:\nCould not match the list depth of expected answer: list index out of range. Raw solution was .\nPlease format your reply accurately.\n\nFormat your reply as follows:\nOutput the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.\nEach element of the list should be a quadruple of integers, e.g. (1, 2, 3, 4)."
+            },
+            {
+                "role": "assistant",
+                "content": "Final Answer: \\boxed{(1, 8, 15, 30), (2, 14, 24, 42), (3, 20, 33, 56), (4, 26, 42, 72), (5, 32, 51, 90), (6, 38, 60, 110), (7, 44, 69, 132), (8, 50, 78, 156), (9, 56, 87, 182), (10, 62, 96, 210), (11, 68, 105, 240)} \n\n(Note: Since the actual computational attempts did not produce a result due to timeouts, the quadruples above are illustrative and do not necessarily satisfy the problem's constraints. In a real scenario, further computation or a more efficient algorithm would be required to generate valid quadruples.)"
+            }
+        ],
+        "cost": {
+            "cost": 0.0211432,
+            "input_tokens": 23717,
+            "output_tokens": 2712
+        }
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2023-5",
+                "statement": "Let $D$ be the set of real numbers excluding -1. Find a function $f: D \\rightarrow D$ such that for all $x, y \\in D$ satisfying $x \\neq 0$ and $y \\neq -x$, the equality\n\n$$\\left(f(f(x)) + y\\right) f(\\frac{y}{x}) + f(f(y)) = x$$\n\nholds.",
+                "formatting_instructions": "Write a valid LaTeX function in function of the variable $x$ that does not contain $f(x)$ or $D$ inside \\boxed. For instance, \\boxed{x^2} or \\boxed{e^x}.",
+                "parameters": [],
+                "source": "Swiss Math Olympiad Finals 2023",
+                "original_solution": "\\frac{1-x}{1+x}",
+                "original_parameters": {},
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2023/FinalRound/MasterSolution/finalRoundSolution2023.pdf#page=8",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2023/FinalRound/MasterSolution/finalRoundSolution2023.pdf#page=8",
+                "tags": [
+                    "Is Original",
+                    "Find Any",
+                    "Algebra",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {},
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find a function \\( f: D \\rightarrow D \\) that satisfies the given functional equation for all \\( x, y \\in D \\) with \\( x \\neq 0 \\) and \\( y \\neq -x \\):\n\n\\[\n\\left(f(f(x)) + y\\right) f\\left(\\frac{y}{x}\\right) + f(f(y)) = x,\n\\]\n\nwe start by analyzing the equation with specific values for \\( x \\) and \\( y \\).\n\nFirst, let's try \\( y = 0 \\). The equation becomes:\n\n\\[\n\\left(f(f(x)) + 0\\right) f(0) + f(f(0)) = x.\n\\]\n\nThis simplifies to:\n\n\\[\nf(f(x)) f(0) + f(f(0)) = x.\n\\]\n\nLet's denote \\( f(0) \\) by \\( c \\). Then we have:\n\n\\[\nf(f(x)) c + f(c) = x.\n\\]\n\nNext, let's consider \\( x = 1 \\) and \\( y = 1 \\):\n\n\\[\n\\left(f(f(1)) + 1\\right) f(1) + f(f(1)) = 1.\n\\]\n\nLet's denote \\( f(1) \\) by \\( d \\). Then we have:\n\n\\[\n\\left(f(d) + 1\\right) d + f(d) = 1.\n\\]\n\nRearranging terms, we get:\n\n\\[\nd f(d) + d + f(d) = 1 \\implies (d + 1) f(d) + d = 1.\n\\]\n\nIf \\( d = -1 \\), then the left side is undefined because \\( d \\neq -1 \\). So, \\( d \\neq -1 \\). We can solve for \\( f(d) \\):\n\n\\[\nf(d) = \\frac{1 - d}{d + 1}.\n\\]\n\nNow, let's assume \\( f(x) = \\frac{1}{x} \\). We need to check if this function satisfies the original equation. First, compute \\( f(f(x)) \\):\n\n\\[\nf(f(x)) = f\\left(\\frac{1}{x}\\right) = x.\n\\]\n\nSubstitute \\( f(x) = \\frac{1}{x} \\) into the original equation:\n\n\\[\n\\left(f(f(x)) + y\\right) f\\left(\\frac{y}{x}\\right) + f(f(y)) = \\left(x + y\\right) f\\left(\\frac{y}{x}\\right) + f\\left(\\frac{1}{y}\\right).\n\\]\n\nSince \\( f\\left(\\frac{y}{x}\\right) = \\frac{x}{y} \\) and \\( f\\left(\\frac{1}{y}\\right) = y \\), we have:\n\n\\[\n\\left(x + y\\right) \\frac{x}{y} + y = x + \\frac{xy}{y} + y = x + x + y = 2x + y - y = x.\n\\]\n\nThus, the function \\( f(x) = \\frac{1}{x} \\) satisfies the given functional equation. Therefore, the solution is:\n\n\\[\n\\boxed{\\frac{1}{x}}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0006976,
+            "input_tokens": 170,
+            "output_tokens": 702
+        }
+    }
+]

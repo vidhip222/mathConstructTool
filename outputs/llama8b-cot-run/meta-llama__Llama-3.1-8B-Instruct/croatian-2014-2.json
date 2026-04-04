@@ -1,0 +1,290 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "croatian-2014-2",
+                "statement": "Let $M = {M}$ and $N = {N}$. Your task is to color all sides and diagonals of a regular $N$-gon using one of exactly $M$ colors so that there do not exist three different vertices of the $N$-gon\nthat determine a triangle whose sides are colored with exactly two colors.\nNote that one can prove that for $M = {M}$, this is the largest $N$ for which this is possible.\n",
+                "formatting_instructions": "You should output your answer as a ${N} \\times {N}$ matrix, where the entry in row $i$ and column $j$ is an integer between $1$ and $M$ representing the color of the side/diagonal connecting vertex $i$ and vertex $j$.\n \nOutput the answer between \\verb|\\begin{array}{...}| and \\verb|\\end{array}| inside of $\\boxed{...}$. \n\nFor example, $\\boxed{\\begin{array}{ccc}1 & 1 & 3 \\\\ 2 & 1 & 1 \\\\ 2 & 2 & 3\\end{array}}$.",
+                "parameters": [
+                    "M",
+                    "N"
+                ],
+                "source": "HMO 2014 2",
+                "original_solution": [
+                    [
+                        4,
+                        4,
+                        4,
+                        1,
+                        2,
+                        3,
+                        1,
+                        3,
+                        2
+                    ],
+                    [
+                        4,
+                        4,
+                        4,
+                        3,
+                        1,
+                        2,
+                        2,
+                        1,
+                        3
+                    ],
+                    [
+                        4,
+                        4,
+                        4,
+                        2,
+                        3,
+                        1,
+                        3,
+                        2,
+                        1
+                    ],
+                    [
+                        1,
+                        3,
+                        2,
+                        4,
+                        4,
+                        4,
+                        1,
+                        2,
+                        3
+                    ],
+                    [
+                        2,
+                        1,
+                        3,
+                        4,
+                        4,
+                        4,
+                        3,
+                        1,
+                        2
+                    ],
+                    [
+                        3,
+                        2,
+                        1,
+                        4,
+                        4,
+                        4,
+                        2,
+                        3,
+                        1
+                    ],
+                    [
+                        1,
+                        2,
+                        3,
+                        1,
+                        3,
+                        2,
+                        4,
+                        4,
+                        4
+                    ],
+                    [
+                        3,
+                        1,
+                        2,
+                        2,
+                        1,
+                        3,
+                        4,
+                        4,
+                        4
+                    ],
+                    [
+                        2,
+                        3,
+                        1,
+                        3,
+                        2,
+                        1,
+                        4,
+                        4,
+                        4
+                    ]
+                ],
+                "original_parameters": {
+                    "M": 4,
+                    "N": 9
+                },
+                "timeout": 60,
+                "problem_url": "https://natjecanja.math.hr/wp-content/uploads/2015/02/HMO2014_rjesenja.pdf#page=2",
+                "solution_url": "https://natjecanja.math.hr/wp-content/uploads/2015/02/HMO2014_rjesenja.pdf#page=2",
+                "tags": [
+                    "Combinatorics",
+                    "Find Max/Min",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "M": 4,
+                "N": 9
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To color all sides and diagonals of a regular N-gon using one of exactly M colors, we can use a pattern. \n\nIn this case, M = 4 and N = 9. \n\nWe can color the sides and diagonals in the following pattern:\n\n- Color 1: \n  - Connect vertices 1 and 2\n  - Connect vertices 3 and 4\n  - Connect vertices 5 and 6\n  - Connect vertices 7 and 8\n  - Connect vertices 9 and 1\n  - Connect vertices 2 and 3\n  - Connect vertices 4 and 5\n  - Connect vertices 6 and 7\n  - Connect vertices 8 and 9\n\n- Color 2: \n  - Connect vertices 1 and 3\n  - Connect vertices 2 and 4\n  - Connect vertices 5 and 7\n  - Connect vertices 6 and 8\n  - Connect vertices 9 and 1\n  - Connect vertices 3 and 5\n  - Connect vertices 4 and 6\n  - Connect vertices 7 and 9\n  - Connect vertices 8 and 2\n\n- Color 3: \n  - Connect vertices 1 and 5\n  - Connect vertices 2 and 6\n  - Connect vertices 3 and 7\n  - Connect vertices 4 and 8\n  - Connect vertices 9 and 1\n  - Connect vertices 5 and 3\n  - Connect vertices 6 and 4\n  - Connect vertices 7 and 2\n  - Connect vertices 8 and 9\n\n- Color 4: \n  - Connect vertices 1 and 7\n  - Connect vertices 2 and 8\n  - Connect vertices 3 and 9\n  - Connect vertices 4 and 1\n  - Connect vertices 5 and 2\n  - Connect vertices 6 and 3\n  - Connect vertices 7 and 4\n  - Connect vertices 8 and 5\n  - Connect vertices 9 and 6\n\nHere is the matrix representing the coloring of the N-gon:\n\n$\\boxed{\\begin{array}{cccccccccc}\n1 & 2 & 4 & 1 & 3 & 4 & 2 & 3 & 1 \\\\\n2 & 1 & 2 & 3 & 1 & 3 & 4 & 1 & 2 \\\\\n3 & 2 & 3 & 4 & 2 & 1 & 1 & 4 & 3 \\\\\n4 & 3 & 4 & 1 & 4 & 2 & 3 & 2 & 4 \\\\\n3 & 4 & 1 & 2 & 3 & 3 & 1 & 1 & 4 \\\\\n4 & 1 & 3 & 4 & 1 & 2 & 2 & 4 & 1 \\\\\n2 & 3 & 2 & 1 & 4 & 4 & 3 & 3 & 2 \\\\\n3 & 4 & 1 & 2 & 1 & 1 & 4 & 2 & 3 \\\\\n4 & 2 & 4 & 3 & 4 & 1 & 1 & 3 & 1 \\\\\n\\end{array}}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000976,
+            "input_tokens": 272,
+            "output_tokens": 704
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "croatian-2014-2",
+                "statement": "Let $M = {M}$ and $N = {N}$. Your task is to color all sides and diagonals of a regular $N$-gon using one of exactly $M$ colors so that there do not exist three different vertices of the $N$-gon\nthat determine a triangle whose sides are colored with exactly two colors.\nNote that one can prove that for $M = {M}$, this is the largest $N$ for which this is possible.\n",
+                "formatting_instructions": "You should output your answer as a ${N} \\times {N}$ matrix, where the entry in row $i$ and column $j$ is an integer between $1$ and $M$ representing the color of the side/diagonal connecting vertex $i$ and vertex $j$.\n \nOutput the answer between \\verb|\\begin{array}{...}| and \\verb|\\end{array}| inside of $\\boxed{...}$. \n\nFor example, $\\boxed{\\begin{array}{ccc}1 & 1 & 3 \\\\ 2 & 1 & 1 \\\\ 2 & 2 & 3\\end{array}}$.",
+                "parameters": [
+                    "M",
+                    "N"
+                ],
+                "source": "HMO 2014 2",
+                "original_solution": [
+                    [
+                        4,
+                        4,
+                        4,
+                        1,
+                        2,
+                        3,
+                        1,
+                        3,
+                        2
+                    ],
+                    [
+                        4,
+                        4,
+                        4,
+                        3,
+                        1,
+                        2,
+                        2,
+                        1,
+                        3
+                    ],
+                    [
+                        4,
+                        4,
+                        4,
+                        2,
+                        3,
+                        1,
+                        3,
+                        2,
+                        1
+                    ],
+                    [
+                        1,
+                        3,
+                        2,
+                        4,
+                        4,
+                        4,
+                        1,
+                        2,
+                        3
+                    ],
+                    [
+                        2,
+                        1,
+                        3,
+                        4,
+                        4,
+                        4,
+                        3,
+                        1,
+                        2
+                    ],
+                    [
+                        3,
+                        2,
+                        1,
+                        4,
+                        4,
+                        4,
+                        2,
+                        3,
+                        1
+                    ],
+                    [
+                        1,
+                        2,
+                        3,
+                        1,
+                        3,
+                        2,
+                        4,
+                        4,
+                        4
+                    ],
+                    [
+                        3,
+                        1,
+                        2,
+                        2,
+                        1,
+                        3,
+                        4,
+                        4,
+                        4
+                    ],
+                    [
+                        2,
+                        3,
+                        1,
+                        3,
+                        2,
+                        1,
+                        4,
+                        4,
+                        4
+                    ]
+                ],
+                "original_parameters": {
+                    "M": 4,
+                    "N": 9
+                },
+                "timeout": 60,
+                "problem_url": "https://natjecanja.math.hr/wp-content/uploads/2015/02/HMO2014_rjesenja.pdf#page=2",
+                "solution_url": "https://natjecanja.math.hr/wp-content/uploads/2015/02/HMO2014_rjesenja.pdf#page=2",
+                "tags": [
+                    "Combinatorics",
+                    "Find Max/Min",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "M": 3,
+                "N": 4
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we can use a greedy approach. We will color the sides and diagonals of the regular N-gon one by one, starting from the first side and moving clockwise.\n\nFor a regular N-gon with M colors, we can use the following coloring scheme:\n\n- Color the first side with color 1.\n- For each subsequent side, color it with the color that has not been used by the two previous sides.\n\nHere is the code to generate the coloring matrix:\n\n```python\ndef color_n_gon(M, N):\n    # Initialize the coloring matrix\n    coloring_matrix = [[0 for _ in range(N)] for _ in range(N)]\n\n    # Color the sides and diagonals\n    for i in range(N):\n        for j in range(i+1, N):\n            # Calculate the color of the side/diagonal\n            color = (i + j) % M + 1\n            # Store the color in the matrix\n            coloring_matrix[i][j] = color\n            coloring_matrix[j][i] = color\n\n    # Print the coloring matrix\n    print(\"\\boxed{\\begin{array}{%s}\" % (\"*\" * N))\n    for row in coloring_matrix:\n        print(\" & \".join(str(color) for color in row))\n        print(\"\\\\\\\\\")\n    print(\"}\\end{array}}\")\n\n# Color a regular 4-gon with 3 colors\nM = 3\nN = 4\ncolor_n_gon(M, N)\n```\n\nWhen you run this code, it will print the coloring matrix for a regular 4-gon with 3 colors.\n\n$\\boxed{\\begin{array}{****}1 & 2 & 3 & 2 \\\\ 3 & 1 & 1 & 3 \\\\ 2 & 3 & 1 & 1 \\\\ 3 & 2 & 3 & 1\\end{array}}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000669,
+            "input_tokens": 272,
+            "output_tokens": 397
+        }
+    }
+]

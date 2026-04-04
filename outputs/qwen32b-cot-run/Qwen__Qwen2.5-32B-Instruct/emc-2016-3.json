@@ -1,0 +1,126 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "emc-2016-3",
+                "statement": "For all positive integers $n$ there exist $n$ distinct, positive rational numbers with sum of their squares equal to $n$. Find ${n}$ distinct rationals that achieve this for $n = {n}$.",
+                "formatting_instructions": "Output the answer as a comma separated list of fractions inside of $\\boxed{...}$. For example $\\boxed{\\frac{1}{2}, \\frac{2}{3}, \\frac{1}{1}}$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "EMC 2016 Juniors P3",
+                "original_solution": [
+                    0.2,
+                    1.4,
+                    0.5384615384615384,
+                    1.3076923076923077,
+                    -0.4117647058823529,
+                    1.3529411764705883,
+                    0.68,
+                    1.24,
+                    -0.034482758620689655,
+                    1.4137931034482758,
+                    0.7560975609756098,
+                    1.1951219512195121,
+                    -0.6216216216216216,
+                    1.2702702702702702,
+                    0.8032786885245902,
+                    1.1639344262295082,
+                    -0.32075471698113206,
+                    1.3773584905660377,
+                    0.35384615384615387,
+                    1.3692307692307693
+                ],
+                "original_parameters": {
+                    "n": 20
+                },
+                "timeout": 60,
+                "problem_url": "https://emc.mnm.hr/wp-content/uploads/2016/12/EMC_2016_Juniors_ENG_Solutions.pdf",
+                "solution_url": "https://emc.mnm.hr/wp-content/uploads/2016/12/EMC_2016_Juniors_ENG_Solutions.pdf",
+                "tags": [
+                    "Is Simplified",
+                    "Number Theory",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 20
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find 20 distinct, positive rational numbers whose squares sum up to 20, we can use a method based on the identity $(\\frac{1}{k})^2 + (\\frac{k-1}{k})^2 = 1$. This identity allows us to construct a set of distinct rational numbers whose squares sum up to any given integer.\n\nFirstly, let's consider the identity:\n\\[ \\left(\\frac{1}{k}\\right)^2 + \\left(\\frac{k-1}{k}\\right)^2 = 1. \\]\n\nWe will apply this identity 20 times to generate 20 distinct positive rational numbers whose squares sum up to 20. We start by using different values of \\(k\\) in the identity to ensure the rational numbers are distinct.\n\nLet's choose \\(k = 2, 3, 4, \\ldots, 21\\). This gives us the following pairs of rational numbers:\n\n\\[\n\\begin{aligned}\n&\\left( \\frac{1}{2}, \\frac{1}{2} \\right), \\\\\n&\\left( \\frac{1}{3}, \\frac{2}{3} \\right), \\\\\n&\\left( \\frac{1}{4}, \\frac{3}{4} \\right), \\\\\n&\\left( \\frac{1}{5}, \\frac{4}{5} \\right), \\\\\n&\\left( \\frac{1}{6}, \\frac{5}{6} \\right), \\\\\n&\\left( \\frac{1}{7}, \\frac{6}{7} \\right), \\\\\n&\\left( \\frac{1}{8}, \\frac{7}{8} \\right), \\\\\n&\\left( \\frac{1}{9}, \\frac{8}{9} \\right), \\\\\n&\\left( \\frac{1}{10}, \\frac{9}{10} \\right), \\\\\n&\\left( \\frac{1}{11}, \\frac{10}{11} \\right), \\\\\n&\\left( \\frac{1}{12}, \\frac{11}{12} \\right), \\\\\n&\\left( \\frac{1}{13}, \\frac{12}{13} \\right), \\\\\n&\\left( \\frac{1}{14}, \\frac{13}{14} \\right), \\\\\n&\\left( \\frac{1}{15}, \\frac{14}{15} \\right), \\\\\n&\\left( \\frac{1}{16}, \\frac{15}{16} \\right), \\\\\n&\\left( \\frac{1}{17}, \\frac{16}{17} \\right), \\\\\n&\\left( \\frac{1}{18}, \\frac{17}{18} \\right), \\\\\n&\\left( \\frac{1}{19}, \\frac{18}{19} \\right), \\\\\n&\\left( \\frac{1}{20}, \\frac{19}{20} \\right), \\\\\n&\\left( \\frac{1}{21}, \\frac{20}{21} \\right).\n\\end{aligned}\n\\]\n\nEach pair contributes 1 to the sum of the squares, so the total sum is \\(20\\).\n\nTherefore, the 20 distinct, positive rational numbers are:\n\n\\[\n\\boxed{\\frac{1}{2}, \\frac{1}{3}, \\frac{2}{3}, \\frac{1}{4}, \\frac{3}{4}, \\frac{1}{5}, \\frac{4}{5}, \\frac{1}{6}, \\frac{5}{6}, \\frac{1}{7}, \\frac{6}{7}, \\frac{1}{8}, \\frac{7}{8}, \\frac{1}{9}, \\frac{8}{9}, \\frac{1}{10}, \\frac{9}{10}, \\frac{1}{11}, \\frac{10}{11}, \\frac{1}{12}, \\frac{11}{12}}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0008072,
+            "input_tokens": 126,
+            "output_tokens": 883
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "emc-2016-3",
+                "statement": "For all positive integers $n$ there exist $n$ distinct, positive rational numbers with sum of their squares equal to $n$. Find ${n}$ distinct rationals that achieve this for $n = {n}$.",
+                "formatting_instructions": "Output the answer as a comma separated list of fractions inside of $\\boxed{...}$. For example $\\boxed{\\frac{1}{2}, \\frac{2}{3}, \\frac{1}{1}}$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "EMC 2016 Juniors P3",
+                "original_solution": [
+                    0.2,
+                    1.4,
+                    0.5384615384615384,
+                    1.3076923076923077,
+                    -0.4117647058823529,
+                    1.3529411764705883,
+                    0.68,
+                    1.24,
+                    -0.034482758620689655,
+                    1.4137931034482758,
+                    0.7560975609756098,
+                    1.1951219512195121,
+                    -0.6216216216216216,
+                    1.2702702702702702,
+                    0.8032786885245902,
+                    1.1639344262295082,
+                    -0.32075471698113206,
+                    1.3773584905660377,
+                    0.35384615384615387,
+                    1.3692307692307693
+                ],
+                "original_parameters": {
+                    "n": 20
+                },
+                "timeout": 60,
+                "problem_url": "https://emc.mnm.hr/wp-content/uploads/2016/12/EMC_2016_Juniors_ENG_Solutions.pdf",
+                "solution_url": "https://emc.mnm.hr/wp-content/uploads/2016/12/EMC_2016_Juniors_ENG_Solutions.pdf",
+                "tags": [
+                    "Is Simplified",
+                    "Number Theory",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 34
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to find 34 distinct positive rational numbers whose squares sum up to 34. We can use a known construction for this type of problem. One common approach is to use the fact that we can construct such a set using fractions derived from a specific pattern.\n\nConsider the following set of fractions:\n\n\\[\n\\left\\{\\frac{1}{k(k+1)} \\mid k = 1, 2, \\ldots, n-1\\right\\} \\cup \\left\\{\\sqrt{n - \\sum_{k=1}^{n-1} \\left(\\frac{1}{k(k+1)}\\right)^2}\\right\\}\n\\]\n\nFirst, let's calculate the sum of the squares of the first part of the set:\n\n\\[\n\\sum_{k=1}^{33} \\left(\\frac{1}{k(k+1)}\\right)^2 = \\sum_{k=1}^{33} \\left(\\frac{1}{k^2(k+1)^2}\\right)\n\\]\n\nThis sum can be simplified, but for our purposes, it suffices to know that it will be less than 1 because each term \\(\\frac{1}{k^2(k+1)^2}\\) is very small. Therefore, the remaining part of the sum to reach 34 will be close to 34. Specifically, we need to find:\n\n\\[\n\\sqrt{34 - \\sum_{k=1}^{33} \\left(\\frac{1}{k(k+1)}\\right)^2}\n\\]\n\nSince the sum of the squares of the first 33 terms is very small, the last term will be close to \\(\\sqrt{34}\\), which is approximately 5.83. However, since we are dealing with rational numbers, we can approximate this term as a fraction. For simplicity, we can take the last term to be \\(\\frac{34}{\\sqrt{34}}\\) or simply \\(\\sqrt{34}\\) in rational form.\n\nThus, the 34 distinct positive rational numbers are:\n\n\\[\n\\frac{1}{1 \\cdot 2}, \\frac{1}{2 \\cdot 3}, \\frac{1}{3 \\cdot 4}, \\ldots, \\frac{1}{33 \\cdot 34}, \\sqrt{34 - \\sum_{k=1}^{33} \\left(\\frac{1}{k(k+1)}\\right)^2}\n\\]\n\nExpressing these in a more compact form, we get:\n\n\\[\n\\boxed{\\frac{1}{2}, \\frac{1}{6}, \\frac{1}{12}, \\frac{1}{20}, \\frac{1}{30}, \\frac{1}{42}, \\frac{1}{56}, \\frac{1}{72}, \\frac{1}{90}, \\frac{1}{110}, \\frac{1}{132}, \\frac{1}{156}, \\frac{1}{182}, \\frac{1}{210}, \\frac{1}{240}, \\frac{1}{272}, \\frac{1}{306}, \\frac{1}{342}, \\frac{1}{380}, \\frac{1}{420}, \\frac{1}{462}, \\frac{1}{506}, \\frac{1}{552}, \\frac{1}{600}, \\frac{1}{650}, \\frac{1}{702}, \\frac{1}{756}, \\frac{1}{812}, \\frac{1}{870}, \\frac{1}{930}, \\frac{1}{992}, \\frac{1}{1056}, \\frac{1}{1122}, \\frac{1}{1190}, \\frac{\\sqrt{34 - \\sum_{k=1}^{33} \\left(\\frac{1}{k(k+1)}\\right)^2}}{1}}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0008152000000000001,
+            "input_tokens": 126,
+            "output_tokens": 893
+        }
+    }
+]

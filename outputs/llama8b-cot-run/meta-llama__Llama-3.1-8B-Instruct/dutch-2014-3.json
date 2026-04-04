@@ -1,0 +1,214 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2014-3",
+                "statement": "At a volleyball tournament, each team plays exactly once against each other team. Each game has a winning team, which gets 1 point. The losing team gets 0 points. Draws do not occur. In the final ranking, only one team turns out to have the least number of points (so there is no shared last place). Moreover, each team, except for the team having the least number of points, lost exactly one game against a team that got less points in the final ranking.\n\nShow, by providing an example, that the number of teams could be equal to {n}.",
+                "formatting_instructions": "Output the answer between \\verb|\\begin{array}{...}| and \\verb|\\end{array}| inside of $\\boxed{...}$. For example, $\\boxed{\\begin{array}{ccc}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9\\end{array}}$.\nThe element in the $i$-th row and $j$-th column should be 1 if team $i$ won against team $j$, and 0 otherwise. The diagonal should be 0.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "Dutch Math Olympiad Finals 2014 P3",
+                "original_solution": [
+                    [
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        0,
+                        1,
+                        0,
+                        0,
+                        1,
+                        0
+                    ],
+                    [
+                        1,
+                        1,
+                        0,
+                        1,
+                        0,
+                        1,
+                        0
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        1,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 7
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/phocadownload/opgaven/finale/2014/ProblemsKlas6.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2014/uitwerkingen_en.pdf",
+                "tags": [
+                    "Is Original",
+                    "Combinatorics",
+                    "Find Any",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "n": 7
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "$\\boxed{\\begin{array}{ccccccc}\n0 & 1 & 1 & 1 & 0 & 0 & 0\\\\\n1 & 0 & 0 & 1 & 1 & 0 & 0\\\\\n1 & 0 & 0 & 1 & 0 & 1 & 0\\\\\n1 & 1 & 1 & 0 & 0 & 0 & 0\\\\\n0 & 1 & 0 & 0 & 0 & 1 & 1\\\\\n0 & 0 & 1 & 0 & 1 & 0 & 1\\\\\n0 & 0 & 0 & 0 & 1 & 1 & 0\\\\\n\\end{array}}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.00044,
+            "input_tokens": 276,
+            "output_tokens": 164
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2014-3",
+                "statement": "At a volleyball tournament, each team plays exactly once against each other team. Each game has a winning team, which gets 1 point. The losing team gets 0 points. Draws do not occur. In the final ranking, only one team turns out to have the least number of points (so there is no shared last place). Moreover, each team, except for the team having the least number of points, lost exactly one game against a team that got less points in the final ranking.\n\nShow, by providing an example, that the number of teams could be equal to {n}.",
+                "formatting_instructions": "Output the answer between \\verb|\\begin{array}{...}| and \\verb|\\end{array}| inside of $\\boxed{...}$. For example, $\\boxed{\\begin{array}{ccc}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9\\end{array}}$.\nThe element in the $i$-th row and $j$-th column should be 1 if team $i$ won against team $j$, and 0 otherwise. The diagonal should be 0.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "Dutch Math Olympiad Finals 2014 P3",
+                "original_solution": [
+                    [
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        0,
+                        1,
+                        0,
+                        0,
+                        1,
+                        0
+                    ],
+                    [
+                        1,
+                        1,
+                        0,
+                        1,
+                        0,
+                        1,
+                        0
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        1,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 7
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/phocadownload/opgaven/finale/2014/ProblemsKlas6.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2014/uitwerkingen_en.pdf",
+                "tags": [
+                    "Is Original",
+                    "Combinatorics",
+                    "Find Any",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "n": 10
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "$\\boxed{\\begin{array}{cccccccccccc}\n0 & 1 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 1 \\\\\n0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\\\\n1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\\\\n0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n\\end{array}}$\n\nThis matrix represents the results of the games. The team with the least number of points is the last team, and each other team lost exactly one game against a team that got less points in the final ranking."
+            }
+        ],
+        "cost": {
+            "cost": 0.000626,
+            "input_tokens": 276,
+            "output_tokens": 350
+        }
+    }
+]

@@ -1,0 +1,236 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "bxmo-2015-4",
+                "statement": "An arithmetic progression is a set of the form ${{a, a+d, . . . , a+kd}}$, where $a, d, k$ are positive integers and $k > 2$. Thus an arithmetic progression has at least three elements and the successive elements have difference $d$, called the common difference of the arithmetic progression.\n\nLet $n = {n}$ be a positive integer. For each partition of the set $\\{{1, 2, 3, ..., 3n\\}}$ into arithmetic progressions, we consider the sum $S$ of the respective common differences of these arithmetic progressions. The maximum value $S$ can attain is $n^2$. Partition the set into sets of arithmetic progressions such that $S$ attains this maximum.",
+                "formatting_instructions": "Output the answer as a comma separated list of lists inside of \\boxed{...}. For example \\boxed{(1,2,3),(4,5,6),(7,8,9)}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "BxMO 2015 P4",
+                "original_solution": [
+                    [
+                        1,
+                        16,
+                        31
+                    ],
+                    [
+                        2,
+                        17,
+                        32
+                    ],
+                    [
+                        3,
+                        18,
+                        33
+                    ],
+                    [
+                        4,
+                        19,
+                        34
+                    ],
+                    [
+                        5,
+                        20,
+                        35
+                    ],
+                    [
+                        6,
+                        21,
+                        36
+                    ],
+                    [
+                        7,
+                        22,
+                        37
+                    ],
+                    [
+                        8,
+                        23,
+                        38
+                    ],
+                    [
+                        9,
+                        24,
+                        39
+                    ],
+                    [
+                        10,
+                        25,
+                        40
+                    ],
+                    [
+                        11,
+                        26,
+                        41
+                    ],
+                    [
+                        12,
+                        27,
+                        42
+                    ],
+                    [
+                        13,
+                        28,
+                        43
+                    ],
+                    [
+                        14,
+                        29,
+                        44
+                    ],
+                    [
+                        15,
+                        30,
+                        45
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 15
+                },
+                "timeout": 60,
+                "problem_url": "http://bxmo.org/problems/bxmo-problems-2015-zz.pdf",
+                "solution_url": "http://bxmo.org/problems/bxmo-problems-2015-zz.pdf",
+                "tags": [
+                    "Is Simplified",
+                    "Find Max/Min",
+                    "Number Theory"
+                ]
+            },
+            "param_values": {
+                "n": 15
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To achieve the maximum value of \\( S \\), which is \\( n^2 \\) when \\( n = 15 \\), we need to partition the set \\(\\{1, 2, 3, ..., 45\\}\\) into arithmetic progressions with the largest possible common differences. Since the sum of the common differences should add up to 15^2 = 225, one way to do this is to create arithmetic progressions with the largest possible differences that fit within the set.\n\nThe simplest approach to maximize the sum of the common differences is to use the largest possible common difference for each sequence. Since the set is \\(\\{1, 2, 3, ..., 45\\}\\), the largest common difference \\( d \\) we can use is 15, since any larger would not allow for at least three terms in the sequence within the range.\n\nWe can create three sequences with the common difference of 15:\n1. \\((1, 16, 31)\\)\n2. \\((2, 17, 32)\\)\n3. \\((3, 18, 33)\\)\n4. \\((4, 19, 34)\\)\n5. \\((5, 20, 35)\\)\n6. \\((6, 21, 36)\\)\n7. \\((7, 22, 37)\\)\n8. \\((8, 23, 38)\\)\n9. \\((9, 24, 39)\\)\n10. \\((10, 25, 40)\\)\n11. \\((11, 26, 41)\\)\n12. \\((12, 27, 42)\\)\n13. \\((13, 28, 43)\\)\n14. \\((14, 29, 44)\\)\n15. \\((15, 30, 45)\\)\n\nEach of these sequences has a common difference of 15, and there are 15 such sequences, so the total sum \\( S \\) of the common differences is \\( 15 \\times 15 = 225 \\).\n\nTherefore, the partition of the set that maximizes \\( S \\) is:\n\n\\boxed{(1,16,31),(2,17,32),(3,18,33),(4,19,34),(5,20,35),(6,21,36),(7,22,37),(8,23,38),(9,24,39),(10,25,40),(11,26,41),(12,27,42),(13,28,43),(14,29,44),(15,30,45)}"
+            }
+        ],
+        "cost": {
+            "cost": 0.0006944000000000001,
+            "input_tokens": 235,
+            "output_tokens": 633
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "bxmo-2015-4",
+                "statement": "An arithmetic progression is a set of the form ${{a, a+d, . . . , a+kd}}$, where $a, d, k$ are positive integers and $k > 2$. Thus an arithmetic progression has at least three elements and the successive elements have difference $d$, called the common difference of the arithmetic progression.\n\nLet $n = {n}$ be a positive integer. For each partition of the set $\\{{1, 2, 3, ..., 3n\\}}$ into arithmetic progressions, we consider the sum $S$ of the respective common differences of these arithmetic progressions. The maximum value $S$ can attain is $n^2$. Partition the set into sets of arithmetic progressions such that $S$ attains this maximum.",
+                "formatting_instructions": "Output the answer as a comma separated list of lists inside of \\boxed{...}. For example \\boxed{(1,2,3),(4,5,6),(7,8,9)}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "BxMO 2015 P4",
+                "original_solution": [
+                    [
+                        1,
+                        16,
+                        31
+                    ],
+                    [
+                        2,
+                        17,
+                        32
+                    ],
+                    [
+                        3,
+                        18,
+                        33
+                    ],
+                    [
+                        4,
+                        19,
+                        34
+                    ],
+                    [
+                        5,
+                        20,
+                        35
+                    ],
+                    [
+                        6,
+                        21,
+                        36
+                    ],
+                    [
+                        7,
+                        22,
+                        37
+                    ],
+                    [
+                        8,
+                        23,
+                        38
+                    ],
+                    [
+                        9,
+                        24,
+                        39
+                    ],
+                    [
+                        10,
+                        25,
+                        40
+                    ],
+                    [
+                        11,
+                        26,
+                        41
+                    ],
+                    [
+                        12,
+                        27,
+                        42
+                    ],
+                    [
+                        13,
+                        28,
+                        43
+                    ],
+                    [
+                        14,
+                        29,
+                        44
+                    ],
+                    [
+                        15,
+                        30,
+                        45
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 15
+                },
+                "timeout": 60,
+                "problem_url": "http://bxmo.org/problems/bxmo-problems-2015-zz.pdf",
+                "solution_url": "http://bxmo.org/problems/bxmo-problems-2015-zz.pdf",
+                "tags": [
+                    "Is Simplified",
+                    "Find Max/Min",
+                    "Number Theory"
+                ]
+            },
+            "param_values": {
+                "n": 17
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To maximize the sum \\( S \\) of the common differences of the arithmetic progressions, we need to carefully construct partitions of the set \\(\\{1, 2, 3, \\ldots, 51\\}\\) (since \\( n = 17 \\) implies the set is \\(\\{1, 2, \\ldots, 3n = 51\\}\\)) into arithmetic progressions. The goal is to achieve the maximum possible value for \\( S \\), which is given as \\( n^2 = 17^2 = 289 \\).\n\nTo achieve this maximum, each arithmetic progression should ideally have a large common difference while still fitting within the constraints of the set. One effective way is to create arithmetic progressions with the largest possible common differences.\n\nWe can start by creating arithmetic progressions with the highest possible common differences:\n\n1. Create an arithmetic progression starting from 1 with a common difference of 17: \\((1, 18, 35)\\).\n2. Create another arithmetic progression starting from 2 with a common difference of 17: \\((2, 19, 36)\\).\n3. Continue this pattern up to \\((17, 34, 51)\\).\n\nEach of these progressions has a common difference of 17, and there are 17 such progressions. Therefore, the total sum \\( S \\) of the common differences is \\( 17 \\times 17 = 289 \\).\n\nThus, the required partition of the set into arithmetic progressions such that \\( S \\) attains the maximum value of 289 is:\n\n\\[\n\\boxed{(1,18,35),(2,19,36),(3,20,37),(4,21,38),(5,22,39),(6,23,40),(7,24,41),(8,25,42),(9,26,43),(10,27,44),(11,28,45),(12,29,46),(13,30,47),(14,31,48),(15,32,49),(16,33,50),(17,34,51)}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0005888,
+            "input_tokens": 235,
+            "output_tokens": 501
+        }
+    }
+]

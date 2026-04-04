@@ -1,0 +1,84 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "bmo-shortlist-2008-n1",
+                "statement": "Show that for $a={a}$, there exists a natural number that has the number $a$ (the sequence of digits that constitute $a$) at its beginning, and which decreases $a$ times when $a$ is moved from its beginning to its end (any number of zeros that appear in the beginning of the number obtained in this way are to be removed). Find an example.",
+                "formatting_instructions": "Output the answer as an integer inside of $\\boxed{...}$. For example $\\boxed{123}$.",
+                "parameters": [
+                    "a"
+                ],
+                "source": "BMO 2008 Shortlist N1",
+                "original_solution": 120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944,
+                "original_parameters": {
+                    "a": 12
+                },
+                "timeout": 60,
+                "problem_url": "https://artofproblemsolving.com/community/c6h2053042p14598681",
+                "solution_url": "https://artofproblemsolving.com/community/c6h2053042p14598681",
+                "tags": [
+                    "Number Theory",
+                    "Find Any",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "a": 12
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve the problem, we need to find a natural number \\( N \\) such that when the sequence of digits \"12\" is moved from the beginning of \\( N \\) to the end, the resulting number is \\( \\frac{N}{12} \\).\n\nLet's denote the number \\( N \\) as \\( 12M \\), where \\( M \\) is some integer. When we move \"12\" from the beginning to the end, the new number will be \\( 100M + 12 \\). According to the problem, this new number should be equal to \\( \\frac{N}{12} \\). Therefore, we have:\n\n\\[ 100M + 12 = \\frac{12M}{12} = M \\]\n\nThis simplifies to:\n\n\\[ 100M + 12 = M \\]\n\nRearranging the terms, we get:\n\n\\[ 99M = -12 \\]\n\nThis equation does not provide a solution since \\( M \\) must be a positive integer. Therefore, let's reconsider the structure of the number \\( N \\). Suppose \\( N \\) is of the form \\( 12 \\times 10^k + M \\) where \\( M \\) is a \\( k \\)-digit number. Then moving \"12\" to the end gives us the number \\( 10^k M + 12 \\). We want this to be equal to \\( \\frac{N}{12} \\):\n\n\\[ 10^k M + 12 = \\frac{12 \\times 10^k + M}{12} \\]\n\nMultiplying both sides by 12, we get:\n\n\\[ 12 \\times 10^k M + 144 = 12 \\times 10^k + M \\]\n\nRearranging the terms, we obtain:\n\n\\[ 12 \\times 10^k M - M = 12 \\times 10^k - 144 \\]\n\nFactoring out \\( M \\) on the left side, we get:\n\n\\[ M (12 \\times 10^k - 1) = 12 \\times 10^k - 144 \\]\n\nSolving for \\( M \\), we get:\n\n\\[ M = \\frac{12 \\times 10^k - 144}{12 \\times 10^k - 1} \\]\n\nFor \\( M \\) to be an integer, the numerator must be divisible by the denominator. Let's test with \\( k = 2 \\):\n\n\\[ M = \\frac{12 \\times 10^2 - 144}{12 \\times 10^2 - 1} = \\frac{1200 - 144}{1200 - 1} = \\frac{1056}{1199} \\]\n\nThis is not an integer. Let's try \\( k = 3 \\):\n\n\\[ M = \\frac{12 \\times 10^3 - 144}{12 \\times 10^3 - 1} = \\frac{12000 - 144}{12000 - 1} = \\frac{11856}{11999} \\]\n\nThis is also not an integer. Let's try \\( k = 4 \\):\n\n\\[ M = \\frac{12 \\times 10^4 - 144}{12 \\times 10^4 - 1} = \\frac{120000 - 144}{120000 - 1} = \\frac{119856}{119999} \\]\n\nThis is not an integer either. Let's try \\( k = 5 \\):\n\n\\[ M = \\frac{12 \\times 10^5 - 144}{12 \\times 10^5 - 1} = \\frac{1200000 - 144}{1200000 - 1} = \\frac{1199856}{1199999} \\]\n\nThis is not an integer. Finally, let's try \\( k = 6 \\):\n\n\\[ M = \\frac{12 \\times 10^6 - 144}{12 \\times 10^6 - 1} = \\frac{12000000 - 144}{12000000 - 1} = \\frac{11999856}{11999999} \\]\n\nThis is an integer. Therefore, \\( M = 11999856 / 11999999 = 11999856 \\).\n\nSo, the number \\( N \\) is:\n\n\\[ N = 12 \\times 10^6 + 11999856 = 12000000 + 11999856 = 23999856 \\]\n\nWhen we move \"12\" to the end, we get:\n\n\\[ 1000000 \\times 11999856 + 12 = 11999856000000 + 12 = 11999856000012 \\]\n\nAnd:\n\n\\[ \\frac{23999856}{12} = 1999988 \\]\n\nTherefore, the number \\( N \\) is:\n\n\\[ \\boxed{12000000} \\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0011264,
+            "input_tokens": 140,
+            "output_tokens": 1268
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "bmo-shortlist-2008-n1",
+                "statement": "Show that for $a={a}$, there exists a natural number that has the number $a$ (the sequence of digits that constitute $a$) at its beginning, and which decreases $a$ times when $a$ is moved from its beginning to its end (any number of zeros that appear in the beginning of the number obtained in this way are to be removed). Find an example.",
+                "formatting_instructions": "Output the answer as an integer inside of $\\boxed{...}$. For example $\\boxed{123}$.",
+                "parameters": [
+                    "a"
+                ],
+                "source": "BMO 2008 Shortlist N1",
+                "original_solution": 120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944120100083402835696413678065054211843202668890742285237698081734778982485404503753127606338615512927439532944,
+                "original_parameters": {
+                    "a": 12
+                },
+                "timeout": 60,
+                "problem_url": "https://artofproblemsolving.com/community/c6h2053042p14598681",
+                "solution_url": "https://artofproblemsolving.com/community/c6h2053042p14598681",
+                "tags": [
+                    "Number Theory",
+                    "Find Any",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "a": 19
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to find a number $N$ such that when $19$ is moved from the beginning to the end of $N$, the resulting number is $\\frac{N}{19}$.\n\nLet's denote the number we are looking for as $N = 19 \\cdot M$, where $M$ is some integer. When $19$ is moved from the beginning to the end of $N$, the resulting number should be equal to $M$. Let's write $N$ in the form $N = 19 \\cdot 10^k + x$, where $x$ is the rest of the digits of $N$ after removing the leading $19$. The number obtained by moving $19$ to the end is $10^k \\cdot x + 19$.\n\nWe have the equation:\n\\[ 10^k \\cdot x + 19 = \\frac{19 \\cdot 10^k + x}{19}. \\]\n\nMultiplying both sides by $19$ gives:\n\\[ 19 \\cdot 10^k \\cdot x + 19 \\cdot 19 = 19 \\cdot 10^k + x. \\]\n\nRearranging terms, we get:\n\\[ 19 \\cdot 10^k \\cdot x - x = 19 \\cdot 10^k - 19 \\cdot 19. \\]\n\nFactoring out $x$ on the left side and $19$ on the right side, we have:\n\\[ x (19 \\cdot 10^k - 1) = 19 (10^k - 19). \\]\n\nSolving for $x$, we get:\n\\[ x = \\frac{19 (10^k - 19)}{19 \\cdot 10^k - 1}. \\]\n\nWe need to find a value of $k$ such that $x$ is an integer. Let's try different values of $k$:\n\nFor $k = 2$:\n\\[ x = \\frac{19 (10^2 - 19)}{19 \\cdot 10^2 - 1} = \\frac{19 \\cdot 81}{1900 - 1} = \\frac{1539}{1899}, \\]\nwhich is not an integer.\n\nFor $k = 3$:\n\\[ x = \\frac{19 (10^3 - 19)}{19 \\cdot 10^3 - 1} = \\frac{19 \\cdot 981}{19000 - 1} = \\frac{18639}{18999}, \\]\nwhich is not an integer.\n\nFor $k = 4$:\n\\[ x = \\frac{19 (10^4 - 19)}{19 \\cdot 10^4 - 1} = \\frac{19 \\cdot 9981}{190000 - 1} = \\frac{189639}{189999} = 1, \\]\nwhich is an integer.\n\nSo, for $k = 4$, $x = 1$. Therefore, $N = 19 \\cdot 10^4 + 1 = 190001$. Moving $19$ from the beginning to the end of $190001$ gives $100019$, and indeed,\n\\[ \\frac{190001}{19} = 10001. \\]\n\nThus, the number we are looking for is $\\boxed{190001}$."
+            }
+        ],
+        "cost": {
+            "cost": 0.0007672,
+            "input_tokens": 140,
+            "output_tokens": 819
+        }
+    }
+]

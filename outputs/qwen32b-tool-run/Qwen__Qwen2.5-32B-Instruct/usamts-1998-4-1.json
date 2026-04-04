@@ -1,0 +1,138 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "usamts-1998-4-1",
+                "statement": "Find a {n}-digit integer N that is an integer multiple of $2^{{ {n} }}$ and whose digits consist only of digits {a} and {b}.",
+                "formatting_instructions": "Output the answer as an integer inside of $\\boxed{...}$. For example $\\boxed{123}$.",
+                "parameters": [
+                    "a",
+                    "b",
+                    "n"
+                ],
+                "source": "USAMTS 98/99 Round 4",
+                "original_solution": "9888898888999898998898989989888",
+                "original_parameters": {
+                    "a": 8,
+                    "b": 9,
+                    "n": 31
+                },
+                "timeout": 60,
+                "problem_url": "https://files.usamts.org/Problems_10_4.pdf",
+                "solution_url": "https://files.usamts.org/Solutions_10_4.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Original",
+                    "Is Generalized",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "a": 8,
+                "b": 9,
+                "n": 31
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "Thought: We need to find a 31-digit number that is a multiple of \\(2^{31}\\) and consists only of the digits 8 and 9. This problem is best approached by constructing the number directly since it has specific digit constraints and divisibility conditions. A brute-force search through all possibilities would be impractical due to the size of the search space, but we can generate numbers meeting the digit criteria and check for divisibility by \\(2^{31}\\). Given the constraints, we can start from the largest possible number (all nines) and decrement until we find one that meets the criteria.\nAction: run_python\n```python\ndef find_special_number():\n    # Start with the maximum 31-digit number made up of 8's and 9's\n    max_num = int('9'*31)\n    \n    # Iterate downwards to find the first number that meets the criteria\n    for num in range(max_num, int('8'*31) - 1, -1):\n        str_num = str(num)\n        if '8' in str_num and '9' in str_num and all(digit in '89' for digit in str_num):\n            if num % (2**31) == 0:\n                return num\n\nspecial_number = find_special_number()\nprint(special_number)\n```\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: The brute-force approach is too slow due to the large number of possibilities and the need to check each number individually for divisibility by \\(2^{31}\\). Instead, I'll use a more efficient method by constructing the number directly. Since the number must be divisible by \\(2^{31}\\), its last 31 bits must be zero in binary representation. Starting from the smallest 31-digit number consisting of 8s and 9s, I will construct the number ensuring that its last 31 bits are zero when converted to binary. This means the last 31 digits of the number should be adjusted accordingly to make it divisible by \\(2^{31}\\).\nAction: run_python\n```python\n# Function to find a 31-digit number that is a multiple of 2^31 and consists of digits 8 and 9 only\ndef find_special_number():\n    # The number must end in 31 zeros in binary, so the last 31 digits must form a number divisible by 2^31\n    for i in range(int('9'*31), int('8'*31)-1, -1):\n        str_i = str(i)\n        if set(str_i).issubset(set(['8', '9'])) and i % (2**31) == 0:\n            return i\n\nspecial_number = find_special_number()\nprint(special_number)\n```\n\nassistant\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: The previous brute-force attempts were inefficient and led to timeouts. A more structured approach is necessary to ensure efficiency. Since the number must be a multiple of \\(2^{31}\\), its last 31 bits must be zero, meaning the number itself must end with at least 31 zeros in binary form. However, the constraint that the number can only contain digits 8 and 9 complicates the construction directly. Therefore, the strategy will involve generating a potential number consisting of 8s and 9s and verifying its divisibility by \\(2^{31}\\) efficiently.\n\nGiven the complexity and constraints, a direct generation and checking approach might still be inefficient. An alternative is to manually adjust the structure of the number to ensure divisibility while adhering to the digit constraint.\n\nSince a brute force approach did not work, a more analytical approach will be taken, starting with the largest possible number made up of 8s and 9s and working down, while ensuring the number is divisible by \\(2^{31}\\).\n\nAction: run_python\n```python\n# Constructing the number manually for efficiency\r\ndef find_special_number():\r\n    # Start with a large number made of 8s and 9s and check for divisibility\r\n    base_number = int('9' * 31)\r\n    \r\n    # Adjust the number to ensure divisibility by 2^31\r\n    for i in range(base_number, int('8' * 31) - 1, -1):\r\n        str_i = str(i)\r\n        if set(str_i).issubset(set(['8', '9'])) and i % (2**31) == 0:\r\n            return i\r\n\r\nspecial_number = find_special_number()\r\nprint(special_number)\n```\nassistant\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: TimeoutError: execution exceeded 30s"
+            },
+            {
+                "role": "assistant",
+                "content": "Thought: The brute-force approach and even a slightly optimized search are inefficient given the constraints. Instead, let's construct the number directly. Since the number needs to be a multiple of \\(2^{31}\\), its last 31 digits in binary must be zeros, implying the number ends in zeros in decimal form when considering binary divisibility. Considering the constraint that the number must consist only of the digits 8 and 9, a direct construction based on binary divisibility criteria is needed.\n\nSince \\(2^{31}\\) is a power of two, the number must be even and divisible by 2 repeatedly for 31 times. The most straightforward way to meet both digit and divisibility requirements is to construct the number with the maximum possible leading digits (9) and ensuring the last digits satisfy the divisibility condition.\n\nLet's directly construct such a number by starting with the highest possible 31-digit number of 9s and adjusting it to meet the criteria.\n\nAction: run_python\n```python\n# Constructing a number that is a multiple of 2^31 and contains only digits 8 and 9\r\ndef find_special_number():\r\n    # Start with a number made of 9s\r\n    num_str = '9' * 31\r\n    \r\n    # Convert to integer and adjust to be divisible by 2^31\r\n    num = int(num_str)\r\n    remainder = num % (2 ** 31)\r\n    adjustment = 2 ** 31 - remainder if remainder != 0 else 0\r\n    special_num = num - adjustment if adjustment != 0 else num\r\n    \r\n    # Ensure the number still contains only digits 8 and 9\r\n    if all(c in '89' for c in str(special_num)):\r\n        return special_num\r\n    else:\r\n        raise ValueError(\"No valid number found\")\r\n\r\nspecial_number = find_special_number()\r\nprint(special_number)\n```"
+            },
+            {
+                "role": "user",
+                "content": "Observation: 9999999999999999999999999999998\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Final Answer: \\boxed{9999999999999999999999999999998}"
+            }
+        ],
+        "cost": {
+            "cost": 0.009808800000000001,
+            "input_tokens": 10867,
+            "output_tokens": 1394
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "usamts-1998-4-1",
+                "statement": "Find a {n}-digit integer N that is an integer multiple of $2^{{ {n} }}$ and whose digits consist only of digits {a} and {b}.",
+                "formatting_instructions": "Output the answer as an integer inside of $\\boxed{...}$. For example $\\boxed{123}$.",
+                "parameters": [
+                    "a",
+                    "b",
+                    "n"
+                ],
+                "source": "USAMTS 98/99 Round 4",
+                "original_solution": "9888898888999898998898989989888",
+                "original_parameters": {
+                    "a": 8,
+                    "b": 9,
+                    "n": 31
+                },
+                "timeout": 60,
+                "problem_url": "https://files.usamts.org/Problems_10_4.pdf",
+                "solution_url": "https://files.usamts.org/Solutions_10_4.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Original",
+                    "Is Generalized",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "a": 8,
+                "b": 9,
+                "n": 26
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "Thought: We need to find a 26-digit integer composed only of the digits 8 and 9 that is also a multiple of $2^{26}$. This is essentially a constraint satisfaction problem that can be solved by checking each possible combination of 8s and 9s in the least significant bits to ensure divisibility by $2^{26}$, while the rest of the digits can be freely chosen between 8 and 9. Since we're dealing with binary choices for each digit and a specific constraint on divisibility, `run_z3` is the best tool to handle the search efficiently.\n\nAction: run_z3\n```python\nfrom z3 import *\n\n# Create a solver instance\nsolver = Solver()\n\n# Define 26 bit vector variables for the digits\ndigits = [BitVec(f'd{i}', 4) for i in range(26)]\n\n# Constraint: Each digit is either 8 or 9\nfor d in digits:\n    solver.add(Or(d == 8, d == 9))\n\n# Convert the sequence of digits into a number and constrain it to be divisible by 2^26\nnumber = Sum([digits[i] * (10**(25-i)) for i in range(26)])\nsolver.add(number % (2**26) == 0)\n\n# Try to solve the problem\nif solver.check() == sat:\n    model = solver.model()\n    # Reconstruct the number from the model\n    num = sum(model[digits[i]].as_long() * (10**(25-i)) for i in range(26))\n    print(num)\nelse:\n    print(\"No solution found\")\n```\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: 98998999999999999999999888\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Final Answer: \\boxed{98998999999999999999999888}"
+            }
+        ],
+        "cost": {
+            "cost": 0.0030144000000000004,
+            "input_tokens": 3382,
+            "output_tokens": 386
+        }
+    }
+]

@@ -1,0 +1,86 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "bxmo-2020-4",
+                "statement": "A divisor $d$ of a positive integer $n$ is said to be a close divisor of $n$ if $\\sqrt{{n}} < d < 2\\sqrt{{n}}$\n\nFind a positive integer with exactly {n} close divisors.",
+                "formatting_instructions": "Output the answer as an integer inside of $\\boxed{...}$. For example $\\boxed{123}$.\nYour answer can contain mathematical operations using valid LaTeX notation.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "BxMO 2020 P4",
+                "original_solution": 279881131416394240606885720272762082771158038577967792128,
+                "original_parameters": {
+                    "n": 60
+                },
+                "timeout": 60,
+                "problem_url": "http://bxmo.org/problems/bxmo-problems-2020-zz.pdf",
+                "solution_url": "http://bxmo.org/problems/bxmo-problems-2t020-zz.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Find Any",
+                    "Is Generalized",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 60
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find a positive integer with exactly 60 close divisors, we first need to understand what it means for a divisor to be \"close.\" A divisor \\(d\\) of a positive integer \\(n\\) is defined as a close divisor if \\(\\sqrt{n} < d < 2\\sqrt{n}\\). This implies that the ratio of any close divisor to \\(\\sqrt{n}\\) lies between 1 and 2.\n\nGiven that we want exactly 60 close divisors, let's denote the total number of divisors of \\(n\\) as \\(D(n)\\). If \\(n\\) has \\(k\\) divisors in total, then the number of close divisors will depend on how these divisors are distributed around \\(\\sqrt{n}\\).\n\nSince the divisors come in pairs (if \\(d\\) is a divisor of \\(n\\), so is \\(\\frac{n}{d}\\)), and considering the range \\(\\sqrt{n} < d < 2\\sqrt{n}\\), the number of such divisors can be estimated by half of the total number of divisors, adjusted for the specific range.\n\nTo have exactly 60 close divisors, we need \\(D(n)\\) to be sufficiently large and structured such that the distribution around \\(\\sqrt{n}\\) results in exactly 60 divisors in the specified range.\n\nA good candidate for \\(n\\) would be a number whose prime factorization allows for a large number of divisors, specifically one that could yield 120 total divisors (since half of them should fall in the close divisor range).\n\nLet's consider \\(n = p_1^{e_1} p_2^{e_2} \\cdots p_k^{e_k}\\), where \\(p_i\\) are primes and \\(e_i\\) are their respective exponents. The total number of divisors \\(D(n)\\) is given by:\n\\[\nD(n) = (e_1 + 1)(e_2 + 1) \\cdots (e_k + 1)\n\\]\nWe need this product to equal 120, because then approximately half of these divisors will fall in the range \\(\\sqrt{n} < d < 2\\sqrt{n}\\).\n\nOne possible combination is:\n\\[\n(e_1 + 1)(e_2 + 1)(e_3 + 1) = 5 \\times 4 \\times 6 = 120\n\\]\nThis corresponds to \\(e_1 = 4\\), \\(e_2 = 3\\), and \\(e_3 = 5\\). Thus, a suitable choice for \\(n\\) would be:\n\\[\nn = 2^5 \\cdot 3^4 \\cdot 5^3 = 32 \\cdot 81 \\cdot 125 = 324000\n\\]\n\nChecking the number of divisors:\n\\[\nD(324000) = (5+1)(4+1)(3+1) = 6 \\times 5 \\times 4 = 120\n\\]\nHalf of these divisors will be close divisors, thus giving us exactly 60 close divisors.\n\nTherefore, the positive integer with exactly 60 close divisors is:\n\\[\n\\boxed{324000}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0006576000000000002,
+            "input_tokens": 121,
+            "output_tokens": 701
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "bxmo-2020-4",
+                "statement": "A divisor $d$ of a positive integer $n$ is said to be a close divisor of $n$ if $\\sqrt{{n}} < d < 2\\sqrt{{n}}$\n\nFind a positive integer with exactly {n} close divisors.",
+                "formatting_instructions": "Output the answer as an integer inside of $\\boxed{...}$. For example $\\boxed{123}$.\nYour answer can contain mathematical operations using valid LaTeX notation.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "BxMO 2020 P4",
+                "original_solution": 279881131416394240606885720272762082771158038577967792128,
+                "original_parameters": {
+                    "n": 60
+                },
+                "timeout": 60,
+                "problem_url": "http://bxmo.org/problems/bxmo-problems-2020-zz.pdf",
+                "solution_url": "http://bxmo.org/problems/bxmo-problems-2t020-zz.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Find Any",
+                    "Is Generalized",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 108
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find a positive integer with exactly 108 close divisors, we first need to understand how the number of close divisors relates to the total number of divisors of a number \\( n \\).\n\nGiven that a divisor \\( d \\) of \\( n \\) is close if \\( \\sqrt{n} < d < 2\\sqrt{n} \\), we know that for every divisor \\( d \\) in this range, there is a corresponding divisor \\( \\frac{n}{d} \\) which must lie in the range \\( \\frac{n}{2\\sqrt{n}} < \\frac{n}{d} < \\sqrt{n} \\). This means that each close divisor \\( d \\) pairs with another divisor \\( \\frac{n}{d} \\) such that together they cover the interval \\( (\\sqrt{n}, 2\\sqrt{n}) \\).\n\nIf \\( n \\) has \\( D \\) divisors in total, then the number of close divisors is \\( \\frac{D - k}{2} \\), where \\( k \\) is the number of divisors that are not close (i.e., those less than or equal to \\( \\sqrt{n} \\) or greater than or equal to \\( 2\\sqrt{n} \\)). Since we want exactly 108 close divisors, we have:\n\\[ \\frac{D - k}{2} = 108 \\]\nwhich implies:\n\\[ D - k = 216 \\]\n\nFor simplicity, let's assume \\( n \\) is a perfect square, so \\( \\sqrt{n} \\) is an integer. In this case, \\( k \\) would be the number of divisors up to and including \\( \\sqrt{n} \\), which is half of the total number of divisors (since the divisors pair up around \\( \\sqrt{n} \\)). Thus, \\( k \\approx \\frac{D}{2} \\), and we get:\n\\[ D - \\frac{D}{2} = 216 \\]\n\\[ \\frac{D}{2} = 216 \\]\n\\[ D = 432 \\]\n\nSo, we need a number \\( n \\) with exactly 432 divisors. The number of divisors function \\( D(n) \\) for \\( n = p_1^{e_1} p_2^{e_2} \\cdots p_k^{e_k} \\) is given by:\n\\[ D(n) = (e_1 + 1)(e_2 + 1) \\cdots (e_k + 1) \\]\nWe need to find a combination of exponents such that their product is 432. One possible factorization is \\( 432 = 8 \\times 9 \\times 6 \\), which corresponds to the exponents \\( e_1 = 7, e_2 = 8, e_3 = 5 \\). Therefore, we can choose:\n\\[ n = 2^7 \\times 3^8 \\times 5^5 \\]\n\nLet's calculate this value:\n\\[ 2^7 = 128 \\]\n\\[ 3^8 = 6561 \\]\n\\[ 5^5 = 3125 \\]\n\\[ n = 128 \\times 6561 \\times 3125 \\]\n\nNow, let's perform the multiplication step-by-step:\n\\[ 128 \\times 6561 = 839808 \\]\n\\[ 839808 \\times 3125 = 2624400000 \\]\n\nThus, the positive integer with exactly 108 close divisors is:\n\\[ \\boxed{2624400000} \\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0007376,
+            "input_tokens": 122,
+            "output_tokens": 800
+        }
+    }
+]

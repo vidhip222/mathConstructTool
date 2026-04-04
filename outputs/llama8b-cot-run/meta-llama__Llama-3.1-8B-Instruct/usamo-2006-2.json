@@ -1,0 +1,142 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "usamo-2006-2",
+                "statement": "Given $k = {k}$ and $N = {N}$, find a set of $2k+1$ distinct positive integers that has sum greater than $N$ but every subset of size $k$ has sum at most $N/2$.\nNote that for given $k = {k}$, one can prove that $N = {N}$ is the smallest $N$ for which such set exists.",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.",
+                "parameters": [
+                    "k",
+                    "N"
+                ],
+                "source": "2006 USAMO Problem 2",
+                "original_solution": [
+                    145,
+                    146,
+                    147,
+                    148,
+                    149,
+                    150,
+                    151,
+                    152,
+                    153,
+                    154,
+                    155,
+                    156,
+                    157,
+                    158,
+                    159,
+                    160,
+                    161,
+                    162,
+                    163,
+                    164,
+                    165,
+                    166,
+                    167,
+                    168,
+                    169
+                ],
+                "original_parameters": {
+                    "k": 12,
+                    "N": 3924
+                },
+                "timeout": 60,
+                "problem_url": "https://artofproblemsolving.com/wiki/index.php/2006_USAMO_Problems/Problem_2",
+                "solution_url": "https://artofproblemsolving.com/wiki/index.php/2006_USAMO_Problems/Problem_2",
+                "tags": [
+                    "Number Theory",
+                    "Find Max/Min",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "k": 12,
+                "N": 3924
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find the set of $2k+1$ distinct positive integers that has sum greater than $N$ but every subset of size $k$ has sum at most $N/2$, we can use a greedy approach combined with some mathematical reasoning.\n\nGiven $k = 12$, we are looking for a set of $2k+1 = 25$ distinct positive integers.\n\nSince we need the sum of the set to be greater than $N = 3924$, let's try to find the smallest possible sum that satisfies the condition.\n\nWe know that every subset of size $k$ must have a sum at most $N/2 = 1962$. \n\nLet's assume that the set is composed of consecutive integers from $1$ to $n$. We want the sum of the set to be greater than $N$, so we can write the inequality:\n\n$\\frac{n(n+1)}{2} > N$\n\nSubstituting $N = 3924$, we get:\n\n$\\frac{n(n+1)}{2} > 3924$\n\nMultiplying both sides by $2$ and rearranging the inequality, we get:\n\n$n^2 + n - 7852 > 0$\n\nWe can solve this quadratic inequality by finding the roots of the corresponding quadratic equation:\n\n$n^2 + n - 7852 = 0$\n\nUsing the quadratic formula, we get:\n\n$n = \\frac{-1 \\pm \\sqrt{1 + 4 \\cdot 7852}}{2}$\n\nSimplifying, we get:\n\n$n = \\frac{-1 \\pm \\sqrt{31609}}{2}$\n\n$n = \\frac{-1 \\pm 177.65}{2}$\n\nSince $n$ must be a positive integer, we take the positive root:\n\n$n = \\frac{-1 + 177.65}{2}$\n\n$n \\approx 88.325$\n\nSince $n$ must be an integer, we round up to the nearest integer:\n\n$n \\geq 89$\n\nHowever, we need a set of $25$ distinct integers, so we need to find the smallest $n$ such that the sum of the first $n$ positive integers is greater than $3924$ and the sum of any subset of size $12$ is at most $1962$.\n\nLet's try $n = 89$:\n\nThe sum of the first $89$ positive integers is:\n\n$\\frac{89(89+1)}{2} = 3976$\n\nThis sum is greater than $3924$, so we have a valid set. However, we need to check if the sum of any subset of size $12$ is at most $1962$.\n\nWe can use a greedy approach to construct the set. We start with the largest possible number, $89$, and add numbers in decreasing order until we have a set of $25$ distinct integers.\n\nThe set is:\n\n$89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65$\n\nThe sum of the set is:\n\n$3976 > 3924$\n\nThe sum of any subset of size $12$ is at most $1962$, so we have a valid set.\n\nTherefore, the set of $25$ distinct positive integers is:\n\n$\\boxed{89, 88, 87, 86, 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71, 70, 69, 68, 67, 66, 65}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000962,
+            "input_tokens": 158,
+            "output_tokens": 804
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "usamo-2006-2",
+                "statement": "Given $k = {k}$ and $N = {N}$, find a set of $2k+1$ distinct positive integers that has sum greater than $N$ but every subset of size $k$ has sum at most $N/2$.\nNote that for given $k = {k}$, one can prove that $N = {N}$ is the smallest $N$ for which such set exists.",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.",
+                "parameters": [
+                    "k",
+                    "N"
+                ],
+                "source": "2006 USAMO Problem 2",
+                "original_solution": [
+                    145,
+                    146,
+                    147,
+                    148,
+                    149,
+                    150,
+                    151,
+                    152,
+                    153,
+                    154,
+                    155,
+                    156,
+                    157,
+                    158,
+                    159,
+                    160,
+                    161,
+                    162,
+                    163,
+                    164,
+                    165,
+                    166,
+                    167,
+                    168,
+                    169
+                ],
+                "original_parameters": {
+                    "k": 12,
+                    "N": 3924
+                },
+                "timeout": 60,
+                "problem_url": "https://artofproblemsolving.com/wiki/index.php/2006_USAMO_Problems/Problem_2",
+                "solution_url": "https://artofproblemsolving.com/wiki/index.php/2006_USAMO_Problems/Problem_2",
+                "tags": [
+                    "Number Theory",
+                    "Find Max/Min",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "k": 22,
+                "N": 22814
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we can use a greedy approach and the Pigeonhole Principle. \n\nFirst, let's consider the total sum of the set. The sum of the set is $S = \\sum_{i=1}^{2k+1} a_i > N$. \n\nNow, let's consider the subsets of size $k$. Each subset $S' \\subseteq S$ of size $k$ must have sum at most $N/2$, i.e., $S' \\leq N/2$.\n\nWe can use the Pigeonhole Principle to show that the sum of the $k$ largest elements in the set is at least $N/2$.\n\nTo do this, consider the following. Suppose that the sum of the $k$ largest elements in the set is at most $N/2$. Then, we can remove the $k$ largest elements from the set and replace them with $k$ new elements, each equal to $1$. This will result in a set with sum $S - (N/2 - k) + k = S - N/2 + k > N/2$. However, this set still has the property that every subset of size $k$ has sum at most $N/2$. This is a contradiction, since we removed $k$ elements with sum at least $N/2$.\n\nTherefore, the sum of the $k$ largest elements in the set is at least $N/2$.\n\nNow, we can construct the set as follows:\n\nLet $a_1 = a_2 = \\ldots = a_k = N/2 - k + 1$, and let $a_{k+1} = a_{k+2} = \\ldots = a_{2k} = N/2 - k$. Finally, let $a_{2k+1} = N - (k-1)(N/2 - k)$.\n\nThis set satisfies the required conditions. The sum of the set is $S = (k)(N/2 - k + 1) + (k)(N/2 - k) + (N - (k-1)(N/2 - k)) = k(N/2 - k + 1) + k(N/2 - k) + N - (k-1)(N/2 - k) = k(N - k) + N = N + k(N - k) > N$.\n\nAlso, the sum of any subset of size $k$ is at most $N/2$. \n\nFinally, we can calculate the answer for $k=22$ and $N=22814$.\n\n$\\boxed{12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 22814 - (22-1)(22814/2 - 22)}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000791,
+            "input_tokens": 158,
+            "output_tokens": 633
+        }
+    }
+]

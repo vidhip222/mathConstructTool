@@ -1,0 +1,236 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "imc-2018-6",
+                "statement": "Find ${n}$ x ${k}$ real matrix such that all of its columns are non-zero vectors and for every pair of indices $i, j$ such that $|i - j| > 1$, the vectors at columns $i$ and $j$ are orthogonal.",
+                "formatting_instructions": "Output the answer between \\verb|\\begin{array}{...}| and \\verb|\\end{array}| inside of $\\boxed{...}$. For example, $\\boxed{\\begin{array}{ccc}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9\\end{array}}$.",
+                "parameters": [
+                    "n",
+                    "k"
+                ],
+                "source": "IMC 2018 P6",
+                "original_solution": [
+                    [
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 6,
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://www.imc-math.org.uk/imc2018/imc2018-day2-solutions.pdf#page=1",
+                "solution_url": "https://www.imc-math.org.uk/imc2018/imc2018-day2-solutions.pdf#page=1",
+                "tags": [
+                    "Algebra",
+                    "Find Max/Min",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 6,
+                "k": 10
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find a $6 \\times 10$ matrix where all columns are non-zero vectors and any two columns that are more than one index apart are orthogonal, we can construct a matrix with specific patterns. The simplest way to achieve this is by using a block diagonal structure with vectors that ensure orthogonality when the columns are more than one index apart.\n\nGiven the constraints, we can consider constructing a matrix with repeated patterns or predefined orthogonal vectors in blocks, ensuring that the orthogonality condition is met.\n\nHere's one possible construction:\n\n\\[\n\\boxed{\n\\begin{array}{cccccccccc}\n1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\\\\n\\end{array}\n}\n\\]\n\nIn this example, each column vector is a unit vector along one of the axes in $\\mathbb{R}^6$. This ensures that all columns are non-zero, and any two columns that are more than one index apart (i.e., their indices differ by more than 1) will be orthogonal because they have no common non-zero entries.\n\nHowever, this matrix does not fully utilize the $6 \\times 10$ space since only the first six columns are populated. To make use of the full space while still maintaining the orthogonality condition, we can create a pattern that repeats or uses different orthogonal vectors. Here is another example:\n\n\\[\n\\boxed{\n\\begin{array}{cccccccccc}\n1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n\\end{array}\n}\n\\]\n\nIn this second example, columns alternate between two different vectors to maintain the orthogonality condition for columns more than one index apart. Each pair of consecutive columns shares a similar pattern, but the zero rows ensure that any columns more than one apart do not share non-zero entries, thus satisfying the orthogonality requirement."
+            }
+        ],
+        "cost": {
+            "cost": 0.0006928,
+            "input_tokens": 165,
+            "output_tokens": 701
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "imc-2018-6",
+                "statement": "Find ${n}$ x ${k}$ real matrix such that all of its columns are non-zero vectors and for every pair of indices $i, j$ such that $|i - j| > 1$, the vectors at columns $i$ and $j$ are orthogonal.",
+                "formatting_instructions": "Output the answer between \\verb|\\begin{array}{...}| and \\verb|\\end{array}| inside of $\\boxed{...}$. For example, $\\boxed{\\begin{array}{ccc}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9\\end{array}}$.",
+                "parameters": [
+                    "n",
+                    "k"
+                ],
+                "source": "IMC 2018 P6",
+                "original_solution": [
+                    [
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        1,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        1
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 6,
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://www.imc-math.org.uk/imc2018/imc2018-day2-solutions.pdf#page=1",
+                "solution_url": "https://www.imc-math.org.uk/imc2018/imc2018-day2-solutions.pdf#page=1",
+                "tags": [
+                    "Algebra",
+                    "Find Max/Min",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 10,
+                "k": 14
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to construct a $10 \\times 14$ real matrix where each column is a non-zero vector and any two columns $i$ and $j$ with $|i-j| > 1$ are orthogonal.\n\nFirstly, we can consider using the standard basis vectors in $\\mathbb{R}^{10}$, which are vectors with exactly one entry equal to 1 and all others equal to 0. These vectors are mutually orthogonal. However, since we have 14 columns and only 10 dimensions, we need to reuse some vectors or create new ones while maintaining orthogonality conditions.\n\nA straightforward way to fulfill these requirements is to use the first ten standard basis vectors for the first ten columns and then use combinations of these vectors to form the remaining four columns while ensuring the orthogonality condition holds for columns with indices differing by more than 1.\n\nFor simplicity, let's define the first ten columns as the standard basis vectors:\n\n\\[\n\\begin{array}{cccccccccccccc}\n1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & \\cdot & \\cdot & \\cdot & \\cdot \\\\\n\\end{array}\n\\]\n\nNext, we will create the last four columns by combining the first ten columns such that they are orthogonal to the columns they should be according to the given condition. We can choose the following simple combinations:\n\n\\[\n\\begin{array}{cccccccccccccc}\n1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\\\\n0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\\\\n0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\\\\n\\end{array}\n\\]\n\nThus, the final matrix is:\n\n$\\boxed{\\begin{array}{cccccccccccccc}\n1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\\\\n0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\\\\n0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\\\\n\\end{array}}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.001364,
+            "input_tokens": 166,
+            "output_tokens": 1539
+        }
+    }
+]

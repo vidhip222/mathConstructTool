@@ -1,0 +1,138 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2021-r2-z1",
+                "statement": "Show that for a positive integer $n={n}$, there exists a sequence of pairwise distinct positive integers $a_1, a_2, \\ldots, a_{{{n}}}$, such that for all $k \\in \\{{1,2,\\ldots,{n}\\}}$: $$a_k \\mid \\sum_{{i=1}}^{{n}} a_i.$$",
+                "formatting_instructions": "Output the sequence as a list of integers inside $\\boxed{...}$. For example, $\\boxed{[1,2,3,4]}$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "Swiss MO 2021 Round 2 Z1",
+                "original_solution": [
+                    1,
+                    2,
+                    3,
+                    6,
+                    12,
+                    24,
+                    48,
+                    96,
+                    192,
+                    384,
+                    768,
+                    1536,
+                    3072,
+                    6144,
+                    12288,
+                    24576,
+                    49152,
+                    98304,
+                    196608,
+                    393216,
+                    786432,
+                    1572864,
+                    3145728,
+                    6291456,
+                    12582912
+                ],
+                "original_parameters": {
+                    "n": 25
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2021/SecondRound/MasterSolution/secondRoundSolution2021.pdf",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2021/SecondRound/MasterSolution/secondRoundSolution2021.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Simplified",
+                    "Is Translated",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 25
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to find a sequence of 25 distinct positive integers \\(a_1, a_2, \\ldots, a_{25}\\) such that each \\(a_k\\) divides the sum of all the terms in the sequence.\n\nLet's denote the sum of all the terms by \\(S\\). So, \\(S = a_1 + a_2 + \\cdots + a_{25}\\). We want each \\(a_k\\) to divide \\(S\\), meaning \\(S \\equiv 0 \\pmod{a_k}\\) for all \\(k\\).\n\nOne effective way to construct such a sequence is to use the sequence of the first 25 powers of 2. Let's define \\(a_k = 2^k\\) for \\(k = 1, 2, \\ldots, 25\\). Then the sequence is:\n\n\\[a_1 = 2, a_2 = 4, a_3 = 8, \\ldots, a_{25} = 2^{25}.\\]\n\nThe sum of these terms is:\n\n\\[S = 2 + 4 + 8 + \\cdots + 2^{25} = 2(1 + 2 + 4 + \\cdots + 2^{24}) = 2(2^{25} - 1) = 2^{26} - 2.\\]\n\nNow, let's check if each \\(a_k\\) divides \\(S\\). Since \\(a_k = 2^k\\), we need to check if \\(2^k\\) divides \\(2^{26} - 2\\). Clearly, \\(2^k\\) divides \\(2^{26}\\), and since \\(2^k\\) also divides 2 (for \\(k \\leq 1\\)), it follows that \\(2^k\\) divides \\(2^{26} - 2\\). Therefore, each \\(a_k\\) divides \\(S\\).\n\nThus, the sequence \\(a_1, a_2, \\ldots, a_{25}\\) where \\(a_k = 2^k\\) for \\(k = 1, 2, \\ldots, 25\\) satisfies the given condition. The sequence is:\n\n\\[\n\\boxed{[2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432]}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0006368000000000001,
+            "input_tokens": 147,
+            "output_tokens": 649
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2021-r2-z1",
+                "statement": "Show that for a positive integer $n={n}$, there exists a sequence of pairwise distinct positive integers $a_1, a_2, \\ldots, a_{{{n}}}$, such that for all $k \\in \\{{1,2,\\ldots,{n}\\}}$: $$a_k \\mid \\sum_{{i=1}}^{{n}} a_i.$$",
+                "formatting_instructions": "Output the sequence as a list of integers inside $\\boxed{...}$. For example, $\\boxed{[1,2,3,4]}$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "Swiss MO 2021 Round 2 Z1",
+                "original_solution": [
+                    1,
+                    2,
+                    3,
+                    6,
+                    12,
+                    24,
+                    48,
+                    96,
+                    192,
+                    384,
+                    768,
+                    1536,
+                    3072,
+                    6144,
+                    12288,
+                    24576,
+                    49152,
+                    98304,
+                    196608,
+                    393216,
+                    786432,
+                    1572864,
+                    3145728,
+                    6291456,
+                    12582912
+                ],
+                "original_parameters": {
+                    "n": 25
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2021/SecondRound/MasterSolution/secondRoundSolution2021.pdf",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2021/SecondRound/MasterSolution/secondRoundSolution2021.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Simplified",
+                    "Is Translated",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 17
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To show that for \\( n = 17 \\), there exists a sequence of pairwise distinct positive integers \\( a_1, a_2, \\ldots, a_{17} \\) such that for all \\( k \\in \\{1, 2, \\ldots, 17\\} \\), \\( a_k \\) divides the sum of all \\( a_i \\), we can construct such a sequence using a specific pattern.\n\nConsider the sequence defined by \\( a_k = k! \\) for \\( k = 1, 2, \\ldots, 17 \\). That is, the sequence is:\n\\[ a_1 = 1!, a_2 = 2!, a_3 = 3!, \\ldots, a_{17} = 17!. \\]\n\nWe need to check if each \\( a_k \\) divides the sum \\( S = \\sum_{i=1}^{17} a_i \\).\n\nFirst, let's denote the sum \\( S \\):\n\\[ S = 1! + 2! + 3! + \\cdots + 17!. \\]\n\nFor any \\( k \\leq 17 \\), we need to show that \\( k! \\) divides \\( S \\). Notice that \\( S \\) can be written as:\n\\[ S = 1! + 2! + 3! + \\cdots + (k-1)! + k! + (k+1)! + \\cdots + 17!. \\]\n\nEach term from \\( (k+1)! \\) to \\( 17! \\) is divisible by \\( k! \\) because \\( (k+1)! = (k+1) \\cdot k! \\), \\( (k+2)! = (k+2)(k+1) \\cdot k! \\), and so on. Therefore, the sum \\( (k+1)! + (k+2)! + \\cdots + 17! \\) is divisible by \\( k! \\).\n\nNow, consider the remaining part of the sum \\( 1! + 2! + \\cdots + (k-1)! + k! \\). The term \\( k! \\) is clearly divisible by \\( k! \\). We need to check the divisibility of \\( 1! + 2! + \\cdots + (k-1)! \\) by \\( k! \\). Since \\( k! \\) includes all factors from 1 to \\( k \\), it will divide any factorial less than \\( k! \\) multiplied by an integer. Hence, \\( 1! + 2! + \\cdots + (k-1)! \\) is also divisible by \\( k! \\).\n\nTherefore, the entire sum \\( S \\) is divisible by \\( k! \\) for each \\( k \\leq 17 \\).\n\nThus, the sequence \\( a_1, a_2, \\ldots, a_{17} \\) where \\( a_k = k! \\) satisfies the condition. The sequence is:\n\\[ \\boxed{[1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 20922789888000, 355687428096000]} \\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0007560000000000002,
+            "input_tokens": 147,
+            "output_tokens": 798
+        }
+    }
+]

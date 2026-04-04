@@ -1,0 +1,114 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "usamts-1998-4-1",
+                "statement": "Find a {n}-digit integer N that is an integer multiple of $2^{{ {n} }}$ and whose digits consist only of digits {a} and {b}.",
+                "formatting_instructions": "Output the answer as an integer inside of $\\boxed{...}$. For example $\\boxed{123}$.",
+                "parameters": [
+                    "a",
+                    "b",
+                    "n"
+                ],
+                "source": "USAMTS 98/99 Round 4",
+                "original_solution": "9888898888999898998898989989888",
+                "original_parameters": {
+                    "a": 8,
+                    "b": 9,
+                    "n": 31
+                },
+                "timeout": 60,
+                "problem_url": "https://files.usamts.org/Problems_10_4.pdf",
+                "solution_url": "https://files.usamts.org/Solutions_10_4.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Original",
+                    "Is Generalized",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "a": 8,
+                "b": 9,
+                "n": 31
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "Step 1 \u2014 Write a Thought and an Action block:\n\nThought: We need to find a 31-digit integer N that consists only of digits 8 and 9 and is a multiple of $2^{31}$. The largest power of 2 less than $10^{31}$ is $2^{30} \\cdot 10^{1}$. This means that N must be of the form $2^{31} \\cdot (8 \\cdot 10^{k} + n)$, where $0 \\le n \\le 7$ and $k$ is a positive integer. Since we want the smallest such integer, we should choose $n=0$ and $k$ as small as possible while still making the number a multiple of $2^{31}$.\nAction: run_python\n\n```python\ndef find_N():\n    # Calculate the largest power of 2 less than 10^31\n    largest_power_of_2 = 2 ** 30 * 10 ** 1\n    # Calculate the number of digits in the largest power of 2\n    num_digits = len(str(largest_power_of_2))\n    # Calculate the smallest number of the form 8*10^k that is a multiple of 2^31\n    k = num_digits - 1\n    # Calculate N\n    N = 2 ** 31 * (8 * 10 ** k)\n    return N\n\nN = find_N()\nprint(N)\n```\n\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: 171798691840000000000\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Final Answer: $\\boxed{171798691840000000000}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.0036379999999999997,
+            "input_tokens": 3316,
+            "output_tokens": 322
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "usamts-1998-4-1",
+                "statement": "Find a {n}-digit integer N that is an integer multiple of $2^{{ {n} }}$ and whose digits consist only of digits {a} and {b}.",
+                "formatting_instructions": "Output the answer as an integer inside of $\\boxed{...}$. For example $\\boxed{123}$.",
+                "parameters": [
+                    "a",
+                    "b",
+                    "n"
+                ],
+                "source": "USAMTS 98/99 Round 4",
+                "original_solution": "9888898888999898998898989989888",
+                "original_parameters": {
+                    "a": 8,
+                    "b": 9,
+                    "n": 31
+                },
+                "timeout": 60,
+                "problem_url": "https://files.usamts.org/Problems_10_4.pdf",
+                "solution_url": "https://files.usamts.org/Solutions_10_4.pdf",
+                "tags": [
+                    "Number Theory",
+                    "Is Original",
+                    "Is Generalized",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "a": 8,
+                "b": 9,
+                "n": 26
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "Step 1 \u2014 Write a Thought and an Action block:\n\nThought: We need to find a 26-digit integer N that is a multiple of $2^{26}$ and consists only of the digits 8 and 9. The most appropriate tool to solve this problem is run_python, as it can be used to brute-force the search for such an integer.\n\nAction: run_python\n```python\nimport math\n\n# Find the largest power of 2 that is less than 10^26\nmax_power = 0\nwhile 2**max_power < 10**26:\n    max_power += 1\n\n# Generate all possible 26-digit numbers with digits 8 and 9\nfor i in range(10**26):\n    num_str = format(i, '026b').replace('0', '9').replace('1', '8')\n    num = int(num_str)\n\n    # Check if the number is a multiple of 2^26\n    if num % (2**26) == 0:\n        print(num)\n        break\n```\n\n"
+            },
+            {
+                "role": "user",
+                "content": "Observation: 98888999898998898989989888\n"
+            },
+            {
+                "role": "assistant",
+                "content": "Final Answer: $\\boxed{98888999898998898989989888}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.003474,
+            "input_tokens": 3234,
+            "output_tokens": 240
+        }
+    }
+]

@@ -1,0 +1,114 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2018-8-selection",
+                "statement": "Determine {k_minus_1} integers $n \\in [2, 2^{{{k}}})$ such that for every integer $0 \\leq i,j \\leq n$:\n\n$$i + j \\equiv \\binom{{n}}{{i}} + \\binom{{n}}{{j}} \\quad (mod~2).$$",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.",
+                "parameters": [
+                    "k"
+                ],
+                "source": "Swiss Math Olympiad IMO Selection 2020",
+                "original_solution": [
+                    2,
+                    6,
+                    14,
+                    30,
+                    62,
+                    126,
+                    254,
+                    510,
+                    1022,
+                    2046,
+                    4094,
+                    8190,
+                    16382,
+                    32766
+                ],
+                "original_parameters": {
+                    "k": 15
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2018/Selection/MasterSolution/selectionSolution2018.pdf#page=12",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2018/Selection/MasterSolution/selectionSolution2018.pdf#page=12",
+                "tags": [
+                    "Is Simplified",
+                    "Find All",
+                    "Combinatorics"
+                ]
+            },
+            "param_values": {
+                "k": 15
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we can consider the cases when $i + j$ is even or odd separately.\n\nCase 1: $i + j$ is even.\n\nIn this case, $\\binom{n}{i} + \\binom{n}{j}$ must also be even.\n\n$\\binom{n}{i}$ is even if and only if $n$ is even and $i \\neq 0, n$.\n\n$\\binom{n}{j}$ is even if and only if $n$ is even and $j \\neq 0, n$.\n\nSo, when $i + j$ is even, $n$ must be even.\n\nCase 2: $i + j$ is odd.\n\nIn this case, $\\binom{n}{i} + \\binom{n}{j}$ must also be odd.\n\n$\\binom{n}{i}$ is odd if and only if $n$ is odd.\n\n$\\binom{n}{j}$ is odd if and only if $n$ is odd.\n\nSo, when $i + j$ is odd, $n$ must be odd.\n\nNow we need to find the possible values of $n$ in the range $[2, 2^{15})$.\n\nWhen $n$ is even, $n$ must be a power of 2. \n\nWhen $n$ is odd, $n$ must be one less than a power of 2.\n\nWe can list the possible values of $n$ as follows:\n\n- Even $n$: $2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384$\n- Odd $n$: $1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191$\n\nThe possible values of $n$ are:\n\n$2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16383$\n\nHowever, 16383 is not in the range $[2, 2^{15})$, so we remove it.\n\nThe final answer is: $\\boxed{2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 32768}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.00068,
+            "input_tokens": 137,
+            "output_tokens": 543
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2018-8-selection",
+                "statement": "Determine {k_minus_1} integers $n \\in [2, 2^{{{k}}})$ such that for every integer $0 \\leq i,j \\leq n$:\n\n$$i + j \\equiv \\binom{{n}}{{i}} + \\binom{{n}}{{j}} \\quad (mod~2).$$",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.",
+                "parameters": [
+                    "k"
+                ],
+                "source": "Swiss Math Olympiad IMO Selection 2020",
+                "original_solution": [
+                    2,
+                    6,
+                    14,
+                    30,
+                    62,
+                    126,
+                    254,
+                    510,
+                    1022,
+                    2046,
+                    4094,
+                    8190,
+                    16382,
+                    32766
+                ],
+                "original_parameters": {
+                    "k": 15
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2018/Selection/MasterSolution/selectionSolution2018.pdf#page=12",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2018/Selection/MasterSolution/selectionSolution2018.pdf#page=12",
+                "tags": [
+                    "Is Simplified",
+                    "Find All",
+                    "Combinatorics"
+                ]
+            },
+            "param_values": {
+                "k": 22
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find the values of $n$ that satisfy the given congruence, we can start by considering the properties of binomial coefficients.\n\nFor any integer $n$, we have $\\binom{n}{i} \\equiv \\binom{n}{n-i} \\pmod{2}$.\n\nWe can rewrite the given congruence as:\n\n$$i + j \\equiv \\binom{n}{i} + \\binom{n}{j} \\pmod{2}$$\n\n$$i + j \\equiv \\binom{n}{j} + \\binom{n}{n-i} \\pmod{2}$$\n\nSince $i + j \\equiv \\binom{n}{j} + \\binom{n}{n-i} \\pmod{2}$, we have:\n\n$$\\binom{n}{i} \\equiv \\binom{n}{n-i} \\pmod{2}$$\n\nSince $\\binom{n}{i} \\equiv \\binom{n}{n-i} \\pmod{2}$, we have $\\binom{n}{i} \\equiv \\binom{n}{i} \\pmod{2}$, which is true for all $n$.\n\nNow, we consider the case when $i = j$:\n\n$$i + i \\equiv \\binom{n}{i} + \\binom{n}{i} \\pmod{2}$$\n\n$$2i \\equiv 2\\binom{n}{i} \\pmod{2}$$\n\n$$i \\equiv \\binom{n}{i} \\pmod{2}$$\n\nSince $i \\equiv \\binom{n}{i} \\pmod{2}$, we have $\\binom{n}{i} \\equiv \\binom{n}{i} \\pmod{2}$, which is true for all $n$.\n\nNow, we consider the case when $i = n-i$:\n\n$$i + (n-i) \\equiv \\binom{n}{i} + \\binom{n}{n-i} \\pmod{2}$$\n\n$$n \\equiv \\binom{n}{i} + \\binom{n}{i} \\pmod{2}$$\n\n$$n \\equiv 2\\binom{n}{i} \\pmod{2}$$\n\nSince $n \\equiv 2\\binom{n}{i} \\pmod{2}$, we have $n \\equiv 0 \\pmod{2}$.\n\nTherefore, $n$ must be even.\n\nSince $n \\in [2, 2^{22})$, we have $n \\in [2, 2^{22}) \\cap 2\\mathbb{Z}$.\n\nNow, we consider the case when $i = n-1$ and $j = 1$:\n\n$$1 + (n-1) \\equiv \\binom{n}{1} + \\binom{n}{n-1} \\pmod{2}$$\n\n$$n \\equiv 2 \\pmod{2}$$\n\nSince $n \\equiv 2 \\pmod{2}$, we have $n \\equiv 0 \\pmod{2}$.\n\nNow, we consider the case when $i = n-2$ and $j = 2$:\n\n$$2 + (n-2) \\equiv \\binom{n}{2} + \\binom{n}{n-2} \\pmod{2}$$\n\n$$n-2 \\equiv 2 \\pmod{2}$$\n\nSince $n-2 \\equiv 2 \\pmod{2}$, we have $n \\equiv 0 \\pmod{2}$.\n\nWe can continue this process for all cases, and we will find that $n$ must be of the form $2^{k}$ for some integer $k$.\n\nNow, we need to find 21 integers $n \\in [2, 2^{22})$ that are of the form $2^{k}$.\n\nWe can find these integers by iterating over all possible values of $k$ and checking if $2^{k} \\in [2, 2^{22})$.\n\nHere are the 21 integers $n \\in [2, 2^{22})$ that satisfy the given congruence:\n\n$\\boxed{2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.001112,
+            "input_tokens": 137,
+            "output_tokens": 975
+        }
+    }
+]

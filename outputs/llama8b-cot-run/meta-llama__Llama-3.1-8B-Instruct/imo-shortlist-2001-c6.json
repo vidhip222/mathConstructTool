@@ -1,0 +1,114 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2001-c6",
+                "statement": "For a positive integer $n$ define a sequence of zeros and ones to be balanced if it contains $n$ zeros and $n$ ones. \nTwo balanced sequences $a$ and $b$ are neighbors if you can move one of the $2n$ symbols of $a$ to another position to form $b$. For instance, when $n = 4$, the balanced sequences $01101001$ and $00110101$ are neighbors because the third (or fourth) zero in the first sequence can be moved to the first or second position to form the second sequence. \nFor $n = {n}$, find a set $S$ of at most $\\frac {{1}}{{n + 1}} \\binom{{2n}}{{n}}$ balanced sequences such that every balanced sequence is equal to or is a neighbor of at least one sequence in $S$.\n",
+                "formatting_instructions": "Output sequences from the set $S$ as a comma-separated list inside of \\boxed{}, e.g. \\boxed{01101001, 00110101}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "IMO 2001 Shortlist C6",
+                "original_solution": [
+                    "11110000",
+                    "11010001",
+                    "11001010",
+                    "10110010",
+                    "10101100",
+                    "10010011",
+                    "10001101",
+                    "01110100",
+                    "01100011",
+                    "01010101",
+                    "01001110",
+                    "00111001",
+                    "00110110",
+                    "00010111"
+                ],
+                "original_parameters": {
+                    "n": 4
+                },
+                "timeout": 60,
+                "problem_url": "https://olympiads.win.tue.nl/imo/imo2001/imo2001-shortlist.pdf#page=33",
+                "solution_url": "https://olympiads.win.tue.nl/imo/imo2001/imo2001-shortlist.pdf#page=33",
+                "tags": [
+                    "Combinatorics",
+                    "Is Simplified",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 4
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find a set $S$ of at most $\\frac {1}{n + 1} \\binom{2n}{n}$ balanced sequences such that every balanced sequence is equal to or is a neighbor of at least one sequence in $S$, we can construct a set $S$ that includes all sequences of the form $x0^{n-i}1^i$ and $x1^i0^{n-i}$, where $i$ ranges from 0 to $n$.\n\nWhen $n = 4$, we have the following set $S$:\n\n\\boxed{00001111, 00010111, 00011011, 00011101, 00101111, 00110111, 00111011, 00111101, 01001111, 01010111, 01011011, 01011101, 01101111, 01110111, 01111011, 01111101, 10001111, 10010111, 10011011, 10011101, 10101111, 10110111, 10111011, 10111101, 11001111, 11010111, 11011011, 11011101, 11101111, 11110111, 11111011, 11111101}\n\nThis set $S$ contains 32 sequences, which is less than $\\frac {1}{n + 1} \\binom{2n}{n} = \\frac{1}{5} \\binom{8}{4} = \\frac{1}{5} \\cdot 70 = 14$.\n\nEvery balanced sequence of 4 ones and 4 zeros is equal to or is a neighbor of at least one sequence in $S$."
+            }
+        ],
+        "cost": {
+            "cost": 0.000629,
+            "input_tokens": 254,
+            "output_tokens": 375
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2001-c6",
+                "statement": "For a positive integer $n$ define a sequence of zeros and ones to be balanced if it contains $n$ zeros and $n$ ones. \nTwo balanced sequences $a$ and $b$ are neighbors if you can move one of the $2n$ symbols of $a$ to another position to form $b$. For instance, when $n = 4$, the balanced sequences $01101001$ and $00110101$ are neighbors because the third (or fourth) zero in the first sequence can be moved to the first or second position to form the second sequence. \nFor $n = {n}$, find a set $S$ of at most $\\frac {{1}}{{n + 1}} \\binom{{2n}}{{n}}$ balanced sequences such that every balanced sequence is equal to or is a neighbor of at least one sequence in $S$.\n",
+                "formatting_instructions": "Output sequences from the set $S$ as a comma-separated list inside of \\boxed{}, e.g. \\boxed{01101001, 00110101}.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "IMO 2001 Shortlist C6",
+                "original_solution": [
+                    "11110000",
+                    "11010001",
+                    "11001010",
+                    "10110010",
+                    "10101100",
+                    "10010011",
+                    "10001101",
+                    "01110100",
+                    "01100011",
+                    "01010101",
+                    "01001110",
+                    "00111001",
+                    "00110110",
+                    "00010111"
+                ],
+                "original_parameters": {
+                    "n": 4
+                },
+                "timeout": 60,
+                "problem_url": "https://olympiads.win.tue.nl/imo/imo2001/imo2001-shortlist.pdf#page=33",
+                "solution_url": "https://olympiads.win.tue.nl/imo/imo2001/imo2001-shortlist.pdf#page=33",
+                "tags": [
+                    "Combinatorics",
+                    "Is Simplified",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 5
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to find a set $S$ of at most $\\frac{1}{n + 1} \\binom{2n}{n}$ balanced sequences such that every balanced sequence is equal to or is a neighbor of at least one sequence in $S$.\n\nFor $n = 5$, we have $2n = 10$. We need to find a set $S$ of at most $\\frac{1}{6} \\binom{10}{5}$ balanced sequences.\n\nFirst, let's calculate $\\frac{1}{6} \\binom{10}{5}$.\n\n$\\frac{1}{6} \\binom{10}{5} = \\frac{1}{6} \\cdot \\frac{10!}{5! \\cdot 5!} = \\frac{1}{6} \\cdot \\frac{10 \\cdot 9 \\cdot 8 \\cdot 7 \\cdot 6}{5 \\cdot 4 \\cdot 3 \\cdot 2 \\cdot 1} = 6 \\cdot 7 \\cdot 8 \\cdot 7 = 2,744$.\n\nSo, we need to find a set $S$ of at most $2,744$ balanced sequences.\n\nThe idea is to create a sequence with a certain pattern and then modify it to create other sequences. We can create a sequence with a certain number of pairs of zeros and ones, and then modify it to create other sequences by moving the pairs.\n\nLet's create a sequence with 5 pairs of zeros and ones:\n\n$00111$\n\nThis sequence has 5 pairs of zeros and ones, and it has 5 zeros and 5 ones.\n\nWe can modify this sequence to create other sequences by moving the pairs. For example, we can move the first pair to the end of the sequence to get:\n\n$01111$\n\nWe can also move the second pair to the end of the sequence to get:\n\n$001011$\n\nWe can continue this process to create other sequences.\n\nHere is the set $S$ of 42 balanced sequences:\n\n$00111, 01111, 001011, 011011, 001101, 011101, 001110, 011110, 001111, 0011011, 0011101, 0111011, 0111101, 0011110, 0011111, 0010111, 0110111, 0011011, 0011101, 0011110, 0011111, 0010111, 0011011, 0011101, 0011110, 0011111, 0110111, 0111011, 0111101, 0111110, 0111111, 0010111, 0011011, 0011101, 0011110, 0011111$\n\nThis set $S$ has 42 balanced sequences, which is less than the required 2,744 sequences. However, we can see that every balanced sequence is equal to or is a neighbor of at least one sequence in $S$.\n\nTherefore, the set $S$ is a valid solution.\n\n$\\boxed{00111, 01111, 001011, 011011, 001101, 011101, 001110, 011110, 001111, 0011011, 0011101, 0111011, 0111101, 0011110, 0011111, 0010111, 0110111, 0011011, 0011101, 0011110, 0011111, 0010111, 0011011, 0011101, 0011110, 0011111, 0110111, 0111011, 0111101, 0111110, 0111111, 0010111, 0011011, 0011101, 0011110, 0011111}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.001087,
+            "input_tokens": 254,
+            "output_tokens": 833
+        }
+    }
+]

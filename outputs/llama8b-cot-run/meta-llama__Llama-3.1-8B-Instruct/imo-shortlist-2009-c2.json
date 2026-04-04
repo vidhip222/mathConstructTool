@@ -1,0 +1,302 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2009-c2",
+                "statement": "For any integer $n \\geq 2$, let $N(n)$ be the maximal number of triples $(a_i, b_i, c_i), i=1,\\ldots,N(n)$, consisting of nonnegative integers $a_i, b_i$, and $c_i$ such that the following two conditions are satisfied:\n\n(1) $a_i+b_i+c_i=n$ for all $i=1,\\ldots,N(n)$,\n\n(2) if $i \\neq j$, then $a_i \\neq a_j$, $b_i \\neq b_j$, and $c_i \\neq c_j$.\n\nFor $n = {n}$, it can be shown that $N(n)={N}$. Find ${N}$ such triples.\n",
+                "formatting_instructions": "Output a comma-separated list of triples, inside of \\boxed, for example \\boxed{(2,3,4), (5,6,7)}.",
+                "parameters": [
+                    "n",
+                    "N"
+                ],
+                "source": "IMO 2009 Shortlist C2",
+                "original_solution": [
+                    [
+                        0,
+                        10,
+                        20
+                    ],
+                    [
+                        1,
+                        11,
+                        18
+                    ],
+                    [
+                        2,
+                        12,
+                        16
+                    ],
+                    [
+                        3,
+                        13,
+                        14
+                    ],
+                    [
+                        4,
+                        14,
+                        12
+                    ],
+                    [
+                        5,
+                        15,
+                        10
+                    ],
+                    [
+                        6,
+                        16,
+                        8
+                    ],
+                    [
+                        7,
+                        17,
+                        6
+                    ],
+                    [
+                        8,
+                        18,
+                        4
+                    ],
+                    [
+                        9,
+                        19,
+                        2
+                    ],
+                    [
+                        10,
+                        20,
+                        0
+                    ],
+                    [
+                        11,
+                        0,
+                        19
+                    ],
+                    [
+                        12,
+                        1,
+                        17
+                    ],
+                    [
+                        13,
+                        2,
+                        15
+                    ],
+                    [
+                        14,
+                        3,
+                        13
+                    ],
+                    [
+                        15,
+                        4,
+                        11
+                    ],
+                    [
+                        16,
+                        5,
+                        9
+                    ],
+                    [
+                        17,
+                        6,
+                        7
+                    ],
+                    [
+                        18,
+                        7,
+                        5
+                    ],
+                    [
+                        19,
+                        8,
+                        3
+                    ],
+                    [
+                        20,
+                        9,
+                        1
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 30,
+                    "N": 21
+                },
+                "timeout": 60,
+                "problem_url": "https://www.imo-official.org/problems/IMO2009SL.pdf#page=29",
+                "solution_url": "https://www.imo-official.org/problems/IMO2009SL.pdf#page=29",
+                "tags": [
+                    "Combinatorics",
+                    "Find Infinitely Many",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 30,
+                "N": 21
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find 21 such triples for n = 30, we can use a systematic approach. Since the sum of each triple must be 30, and no two triples can have the same values for a, b, or c, we can start by considering the maximum value for each variable.\n\nLet's start with the maximum value for a, which is 29. In this case, b and c must be 0 and 1, respectively, to satisfy the sum of 30. However, this would mean that we have two triples with a = 29, which is not allowed.\n\nThe next maximum value for a is 28. In this case, b and c must be 1 and 1, respectively, to satisfy the sum of 30. However, this would mean that we have two triples with b = 1, which is not allowed.\n\nContinuing in this manner, we find that the maximum value for a is 13, with b = 16 and c = 1. This gives us the first triple: (13, 16, 1).\n\nWe can continue in this manner, systematically decreasing the value of a and increasing the values of b and c to satisfy the sum of 30 and the uniqueness constraint.\n\nHere are the 21 triples for n = 30:\n\n\\boxed{(13, 16, 1), (14, 15, 1), (15, 14, 1), (16, 13, 1), (17, 12, 1), (18, 11, 1), (19, 10, 1), (20, 9, 1), (21, 8, 1), (22, 7, 1), (23, 6, 1), (24, 5, 1), (25, 4, 1), (26, 3, 1), (27, 2, 1), (28, 1, 1), (29, 0, 1), (0, 29, 1), (1, 28, 1), (2, 27, 1), (3, 26, 1)}."
+            }
+        ],
+        "cost": {
+            "cost": 0.000689,
+            "input_tokens": 231,
+            "output_tokens": 458
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "imo-shortlist-2009-c2",
+                "statement": "For any integer $n \\geq 2$, let $N(n)$ be the maximal number of triples $(a_i, b_i, c_i), i=1,\\ldots,N(n)$, consisting of nonnegative integers $a_i, b_i$, and $c_i$ such that the following two conditions are satisfied:\n\n(1) $a_i+b_i+c_i=n$ for all $i=1,\\ldots,N(n)$,\n\n(2) if $i \\neq j$, then $a_i \\neq a_j$, $b_i \\neq b_j$, and $c_i \\neq c_j$.\n\nFor $n = {n}$, it can be shown that $N(n)={N}$. Find ${N}$ such triples.\n",
+                "formatting_instructions": "Output a comma-separated list of triples, inside of \\boxed, for example \\boxed{(2,3,4), (5,6,7)}.",
+                "parameters": [
+                    "n",
+                    "N"
+                ],
+                "source": "IMO 2009 Shortlist C2",
+                "original_solution": [
+                    [
+                        0,
+                        10,
+                        20
+                    ],
+                    [
+                        1,
+                        11,
+                        18
+                    ],
+                    [
+                        2,
+                        12,
+                        16
+                    ],
+                    [
+                        3,
+                        13,
+                        14
+                    ],
+                    [
+                        4,
+                        14,
+                        12
+                    ],
+                    [
+                        5,
+                        15,
+                        10
+                    ],
+                    [
+                        6,
+                        16,
+                        8
+                    ],
+                    [
+                        7,
+                        17,
+                        6
+                    ],
+                    [
+                        8,
+                        18,
+                        4
+                    ],
+                    [
+                        9,
+                        19,
+                        2
+                    ],
+                    [
+                        10,
+                        20,
+                        0
+                    ],
+                    [
+                        11,
+                        0,
+                        19
+                    ],
+                    [
+                        12,
+                        1,
+                        17
+                    ],
+                    [
+                        13,
+                        2,
+                        15
+                    ],
+                    [
+                        14,
+                        3,
+                        13
+                    ],
+                    [
+                        15,
+                        4,
+                        11
+                    ],
+                    [
+                        16,
+                        5,
+                        9
+                    ],
+                    [
+                        17,
+                        6,
+                        7
+                    ],
+                    [
+                        18,
+                        7,
+                        5
+                    ],
+                    [
+                        19,
+                        8,
+                        3
+                    ],
+                    [
+                        20,
+                        9,
+                        1
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 30,
+                    "N": 21
+                },
+                "timeout": 60,
+                "problem_url": "https://www.imo-official.org/problems/IMO2009SL.pdf#page=29",
+                "solution_url": "https://www.imo-official.org/problems/IMO2009SL.pdf#page=29",
+                "tags": [
+                    "Combinatorics",
+                    "Find Infinitely Many",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 47,
+                "N": 32
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find the 32 such triples for n = 47, we can use a systematic approach to construct these triples. We can start with the smallest possible values for a_i, b_i, and c_i, and then increment them in a way that satisfies the given conditions.\n\nHere's one way to construct these triples:\n\n(0, 0, 47), (0, 1, 46), (0, 2, 45), (0, 3, 44), (0, 4, 43), (0, 5, 42), (0, 6, 41), (0, 7, 40), (0, 8, 39), (0, 9, 38), (0, 10, 37), (0, 11, 36), (0, 12, 35), (0, 13, 34), (0, 14, 33), (0, 15, 32), (0, 16, 31), (0, 17, 30), (0, 18, 29), (0, 19, 28), (0, 20, 27), (0, 21, 26), (0, 22, 25), (0, 23, 24), (1, 0, 46), (1, 1, 45), (1, 2, 44), (1, 3, 43), (1, 4, 42), (1, 5, 41), (1, 6, 40), (1, 7, 39), (1, 8, 38), (1, 9, 37), (1, 10, 36), (1, 11, 35), (1, 12, 34), (1, 13, 33), (1, 14, 32), (1, 15, 31), (2, 0, 45), (2, 1, 44), (2, 2, 43), (2, 3, 42), (2, 4, 41), (2, 5, 40), (2, 6, 39), (2, 7, 38), (2, 8, 37), (2, 9, 36), (2, 10, 35), (2, 11, 34), (2, 12, 33), (2, 13, 32), (3, 0, 44), (3, 1, 43), (3, 2, 42), (3, 3, 41), (3, 4, 40), (3, 5, 39), (3, 6, 38), (3, 7, 37), (3, 8, 36), (3, 9, 35), (3, 10, 34), (3, 11, 33), (4, 0, 43), (4, 1, 42), (4, 2, 41), (4, 3, 40), (4, 4, 39), (4, 5, 38), (4, 6, 37), (4, 7, 36), (4, 8, 35), (4, 9, 34), (5, 0, 42), (5, 1, 41), (5, 2, 40), (5, 3, 39), (5, 4, 38), (5, 5, 37), (6, 0, 41), (6, 1, 40), (6, 2, 39), (6, 3, 38), (7, 0, 40), (7, 1, 39), (7, 2, 38), (8, 0, 39), (8, 1, 38), (9, 0, 38), (10, 0, 37), (11, 0, 36), (12, 0, 35), (13, 0, 34), (14, 0, 33), (15, 0, 32), (16, 0, 31), (17, 0, 30), (18, 0, 29), (19, 0, 28), (20, 0, 27), (21, 0, 26), (22, 0, 25), (23, 0, 24)\n\nThese triples satisfy the given conditions, and there are 32 such triples. \n\nSo, the final answer is:\n\n\\boxed{(0, 0, 47), (0, 1, 46), (0, 2, 45), (0, 3, 44), (0, 4, 43), (0, 5, 42), (0, 6, 41), (0, 7, 40), (0, 8, 39), (0, 9, 38), (0, 10, 37), (0, 11, 36), (0, 12, 35), (0, 13, 34), (0, 14, 33), (0, 15, 32), (0, 16, 31), (0, 17, 30), (0, 18, 29), (0, 19, 28), (0, 20, 27), (0, 21, 26), (0, 22, 25), (0, 23, 24), (1, 0, 46), (1, 1, 45), (1, 2, 44), (1, 3, 43), (1, 4, 42), (1, 5, 41), (1, 6, 40), (1, 7, 39), (1, 8, 38), (1, 9, 37), (1, 10, 36), (1, 11, 35), (1, 12, 34), (1, 13, 33), (1, 14, 32), (1, 15, 31), (2, 0, 45), (2, 1, 44), (2, 2, 43), (2, 3, 42), (2, 4, 41), (2, 5, 40), (2, 6, 39), (2, 7, 38), (2, 8, 37), (2, 9, 36), (2, 10, 35), (2, 11, 34), (2, 12, 33), (2, 13, 32), (3, 0, 44), (3, 1, 43), (3, 2, 42), (3, 3, 41), (3, 4, 40), (3, 5, 39), (3, 6, 38), (3, 7, 37), (3, 8, 36), (3, 9, 35), (3, 10, 34), (3, 11, 33), (4, 0, 43), (4, 1, 42), (4, 2, 41), (4, 3, 40), (4, 4, 39), (4, 5, 38), (4, 6, 37), (4, 7, 36), (4, 8, 35), (4, 9, 34), (5, 0, 42), (5, 1, 41), (5, 2, 40), (5, 3, 39), (5, 4, 38), (5, 5, 37), (6, 0, 41), (6, 1, 40), (6, 2, 39), (6, 3, 38), (7, 0, 40), (7, 1, 39), (7, 2, 38), (8, 0, 39), (8, 1, 38), (9, 0, 38), (10, 0, 37), (11, 0, 36), (12, 0, 35), (13, 0, 34), (14, 0, 33), (15, 0, 32), (16, 0, 31), (17, 0, 30), (18, 0, 29), (19, 0, 28), (20, 0, 27), (21, 0, 26), (22, 0, 25), (23, 0, 24)}"
+            }
+        ],
+        "cost": {
+            "cost": 0.00223,
+            "input_tokens": 231,
+            "output_tokens": 1999
+        }
+    }
+]

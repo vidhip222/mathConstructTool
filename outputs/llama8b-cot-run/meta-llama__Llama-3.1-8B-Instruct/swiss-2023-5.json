@@ -1,0 +1,38 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2023-5",
+                "statement": "Let $D$ be the set of real numbers excluding -1. Find a function $f: D \\rightarrow D$ such that for all $x, y \\in D$ satisfying $x \\neq 0$ and $y \\neq -x$, the equality\n\n$$\\left(f(f(x)) + y\\right) f(\\frac{y}{x}) + f(f(y)) = x$$\n\nholds.",
+                "formatting_instructions": "Write a valid LaTeX function in function of the variable $x$ that does not contain $f(x)$ or $D$ inside \\boxed. For instance, \\boxed{x^2} or \\boxed{e^x}.",
+                "parameters": [],
+                "source": "Swiss Math Olympiad Finals 2023",
+                "original_solution": "\\frac{1-x}{1+x}",
+                "original_parameters": {},
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2023/FinalRound/MasterSolution/finalRoundSolution2023.pdf#page=8",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2023/FinalRound/MasterSolution/finalRoundSolution2023.pdf#page=8",
+                "tags": [
+                    "Is Original",
+                    "Find Any",
+                    "Algebra",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {},
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find the function $f: D \\rightarrow D$, we can start by substituting $f(f(x))$ and $f(f(y))$ with some variables to simplify the equation.\n\nLet $a = f(f(x))$ and $b = f(f(y))$. Since $f(f(x))$ and $f(f(y))$ are in the set $D$, they cannot be equal to -1.\n\nWe have the equation:\n\n$$\\left(a + y\\right) f\\left(\\frac{y}{x}\\right) + b = x$$\n\nNow we can rearrange the equation to get:\n\n$$a + y + b - x = -\\left(f\\left(\\frac{y}{x}\\right)\\right)^{-1} \\left(f\\left(\\frac{y}{x}\\right)\\right) \\left(a + y\\right)$$\n\n$$\\left(f\\left(\\frac{y}{x}\\right)\\right)^{-1} \\left(f\\left(\\frac{y}{x}\\right)\\right) \\left(a + y\\right) = a + y + b - x$$\n\nSince $\\left(f\\left(\\frac{y}{x}\\right)\\right)^{-1} \\left(f\\left(\\frac{y}{x}\\right)\\right) = 1$, we have:\n\n$$a + y + b - x = a + y$$\n\nSimplifying the equation further, we get:\n\n$$b - x = 0$$\n\n$$b = x$$\n\nSince $b = f(f(y))$ and $b = x$, we have $f(f(y)) = x$.\n\nSimilarly, we can let $c = f\\left(\\frac{y}{x}\\right)$. Since $c$ is in the set $D$, it cannot be equal to -1.\n\nWe have the equation:\n\n$$a + y + b + c - x = 0$$\n\nSince $a = f(f(x)) = x$ and $b = x$, we have:\n\n$$x + y + c - x = 0$$\n\n$$y + c = 0$$\n\n$$c = -y$$\n\nSince $c = f\\left(\\frac{y}{x}\\right)$, we have:\n\n$$f\\left(\\frac{y}{x}\\right) = -y$$\n\nSince $y \\neq -x$, we have $\\frac{y}{x} \\neq 1$.\n\nLet $t = \\frac{y}{x}$. We have:\n\n$$f(t) = -y$$\n\nSince $y \\neq 0$, we have $t \\neq 0$.\n\nWe can let $u = f(x)$. Since $f(x) \\neq -1$, we have $u \\neq -1$.\n\nWe have the equation:\n\n$$\\left(f(f(x)) + y\\right) f\\left(\\frac{y}{x}\\right) + f(f(y)) = x$$\n\n$$\\left(f(u) + y\\right) f(t) + f(x) = x$$\n\nSince $f(u) = f(f(x))$ and $f(t) = -y$, we have:\n\n$$\\left(f(u) + y\\right) (-y) + f(x) = x$$\n\n$$-yf(u) - y^2 + f(x) = x$$\n\nSince $f(x) = u$, we have:\n\n$$-yf(u) - y^2 + u = x$$\n\nWe also have:\n\n$$f(t) = -y$$\n\n$$f(u) = f(f(x)) = f(f\\left(\\frac{y}{x}\\right)) = f(t) = -y$$\n\nSubstituting $f(u) = -y$ into the equation, we get:\n\n$$y(-y) - y^2 + u = x$$\n\n$$-y^2 - y^2 + u = x$$\n\n$$-2y^2 + u = x$$\n\nSince $u = f(x)$, we have:\n\n$$-2y^2 + f(x) = x$$\n\nSince $y \\neq 0$, we have:\n\n$$f(x) = x + 2y^2$$\n\nSince $f(x) = x + 2y^2$, the function $f(x)$ is a function of $x$ and $y$.\n\nSince $y$ is not fixed, we cannot determine a unique function of $x$.\n\nHowever, we can observe that $f(x) = x + 2y^2$ is a function of $x$ and $y$.\n\nSince $y \\neq 0$, we can let $y = 1$. We have:\n\n$$f(x) = x + 2(1)^2$$\n\n$$f(x) = x + 2$$\n\nSo, a valid function $f: D \\rightarrow D$ is $f(x) = \\boxed{x + 2}$."
+            }
+        ],
+        "cost": {
+            "cost": 0.001232,
+            "input_tokens": 176,
+            "output_tokens": 1056
+        }
+    }
+]

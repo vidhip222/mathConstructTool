@@ -1,0 +1,112 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "usamo-2000-4",
+                "statement": "Color ${k}$ squares of a ${n} \\times {n}$ chessboard, so that there do not exist three colored squares whose centers form a right triangle with sides parallel to the edges of the board.",
+                "formatting_instructions": "Output the answer between \\verb|\\begin{array}{...}| and \\verb|\\end{array}| inside of $\\boxed{...}$. For example, $\\boxed{\\begin{array}{ccc}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9\\end{array}}$.\nOutput the chessboard where empty cells \"o\" are replaced with colored cells \"x\":\n\n$${init_chessboard}$$\n",
+                "parameters": [
+                    "n",
+                    "k"
+                ],
+                "source": "2000 USAMO Problem 4",
+                "original_solution": [
+                    "oxxxxxxxxx",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo"
+                ],
+                "original_parameters": {
+                    "n": 10,
+                    "k": 18
+                },
+                "timeout": 60,
+                "problem_url": "https://artofproblemsolving.com/wiki/index.php/2000_USAMO_Problems/Problem_4",
+                "solution_url": "https://artofproblemsolving.com/wiki/index.php/2000_USAMO_Problems/Problem_4",
+                "tags": [
+                    "Combinatorics",
+                    "Is Generalized",
+                    "Find Max/Min"
+                ]
+            },
+            "param_values": {
+                "n": 10,
+                "k": 18
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to ensure that no three colored squares form a right triangle with sides parallel to the edges of the board. One way to achieve this is by coloring squares in such a way that no two colored squares share the same row or column. This will prevent any right triangles from forming since a right triangle would require at least two points to be in the same row or column.\n\nSince we have a \\(10 \\times 10\\) board, we can color one square per row and one square per column, thus ensuring no two colored squares are in the same row or column. We can color exactly 10 squares this way, but we need to color 18 squares. To do this while still adhering to the condition, we can repeat the process for another set of 8 rows (or columns).\n\nHere is one possible arrangement:\n\n\\[\n\\boxed{\\begin{array}{cccccccccc}\nx & o & o & o & o & o & o & o & o & o \\\\\no & x & o & o & o & o & o & o & o & o \\\\\no & o & x & o & o & o & o & o & o & o \\\\\no & o & o & x & o & o & o & o & o & o \\\\\no & o & o & o & x & o & o & o & o & o \\\\\no & o & o & o & o & x & o & o & o & o \\\\\no & o & o & o & o & o & x & o & o & o \\\\\no & o & o & o & o & o & o & x & o & o \\\\\no & o & o & o & o & o & o & o & x & o \\\\\no & o & o & o & o & o & o & o & o & x \\\\\n\\end{array}}\n\\]\n\nThis pattern colors 10 squares, one per row and one per column. To add 8 more squares without violating the condition, we can shift the pattern by one column:\n\n\\[\n\\boxed{\\begin{array}{cccccccccc}\nx & o & o & o & o & o & o & o & o & o \\\\\no & x & o & o & o & o & o & o & o & o \\\\\no & o & x & o & o & o & o & o & o & o \\\\\no & o & o & x & o & o & o & o & o & o \\\\\no & o & o & o & x & o & o & o & o & o \\\\\no & o & o & o & o & x & o & o & o & o \\\\\no & o & o & o & o & o & x & o & o & o \\\\\no & o & o & o & o & o & o & x & o & o \\\\\no & o & o & o & o & o & o & o & x & o \\\\\no & o & o & o & o & o & o & o & o & x \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\n\\end{array}}\n\\]\n\nCombining both patterns, we get:\n\n\\[\n\\boxed{\\begin{array}{cccccccccc}\nx & o & o & o & o & o & o & o & o & o \\\\\no & x & o & o & o & o & o & o & o & o \\\\\no & o & x & o & o & o & o & o & o & o \\\\\no & o & o & x & o & o & o & o & o & o \\\\\no & o & o & o & x & o & o & o & o & o \\\\\no & o & o & o & o & x & o & o & o & o \\\\\no & o & o & o & o & o & x & o & o & o \\\\\no & o & o & o & o & o & o & x & o & o \\\\\no & o & o & o & o & o & o & o & x & o \\\\\no & o & o & o & o & o & o & o & o & x \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\n\\end{array}}\n\\]\n\nBut since we need only 18 squares, we can choose any 8 additional squares from the remaining uncolored squares, ensuring they don't violate the condition. For simplicity, let's choose the first 8 squares of the next 8 rows:\n\n\\[\n\\boxed{\\begin{array}{cccccccccc}\nx & o & o & o & o & o & o & o & o & o \\\\\no & x & o & o & o & o & o & o & o & o \\\\\no & o & x & o & o & o & o & o & o & o \\\\\no & o & o & x & o & o & o & o & o & o \\\\\no & o & o & o & x & o & o & o & o & o \\\\\no & o & o & o & o & x & o & o & o & o \\\\\no & o & o & o & o & o & x & o & o & o \\\\\no & o & o & o & o & o & o & x & o & o \\\\\no & o & o & o & o & o & o & o & x & o \\\\\no & o & o & o & o & o & o & o & o & x \\\\\nx & o & o & o & o & o & o & o & o & o \\\\\no & x & o & o & o & o & o & o & o & o \\\\\no & o & x & o & o & o & o & o & o & o \\\\\no & o & o & x & o & o & o & o & o & o \\\\\no & o & o & o & x & o & o & o & o & o \\\\\no & o & o & o & o & x & o & o & o & o \\\\\no & o & o & o & o & o & x & o & o & o \\\\\no & o & o & o & o & o & o & x & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o \\\\\n\\end{array}}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0017128000000000002,
+            "input_tokens": 388,
+            "output_tokens": 1753
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "usamo-2000-4",
+                "statement": "Color ${k}$ squares of a ${n} \\times {n}$ chessboard, so that there do not exist three colored squares whose centers form a right triangle with sides parallel to the edges of the board.",
+                "formatting_instructions": "Output the answer between \\verb|\\begin{array}{...}| and \\verb|\\end{array}| inside of $\\boxed{...}$. For example, $\\boxed{\\begin{array}{ccc}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9\\end{array}}$.\nOutput the chessboard where empty cells \"o\" are replaced with colored cells \"x\":\n\n$${init_chessboard}$$\n",
+                "parameters": [
+                    "n",
+                    "k"
+                ],
+                "source": "2000 USAMO Problem 4",
+                "original_solution": [
+                    "oxxxxxxxxx",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo",
+                    "xooooooooo"
+                ],
+                "original_parameters": {
+                    "n": 10,
+                    "k": 18
+                },
+                "timeout": 60,
+                "problem_url": "https://artofproblemsolving.com/wiki/index.php/2000_USAMO_Problems/Problem_4",
+                "solution_url": "https://artofproblemsolving.com/wiki/index.php/2000_USAMO_Problems/Problem_4",
+                "tags": [
+                    "Combinatorics",
+                    "Is Generalized",
+                    "Find Max/Min"
+                ]
+            },
+            "param_values": {
+                "n": 22,
+                "k": 41
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to color $41$ squares on a $22 \\times 22$ chessboard in such a way that no three colored squares form a right triangle with sides parallel to the edges of the board.\n\nA straightforward approach to avoid forming a right triangle is to color squares in such a way that no two colored squares share the same row or column. This ensures that no three colored squares can form a right triangle since any three would necessarily be aligned either vertically or horizontally, preventing the formation of a right angle.\n\nGiven that we have $22$ rows and $22$ columns, we can color one square per row without violating the condition. However, we need to color $41$ squares, which is more than the number of rows (or columns). Thus, we must carefully select additional squares.\n\nOne way to achieve this is by coloring squares in a pattern that avoids having three in a line. We can start by coloring the first $22$ squares, one in each row, but not necessarily in the same column. Then, for the remaining $19$ squares, we can place them in the remaining rows and columns in a manner that still avoids forming a right triangle.\n\nHere's an example configuration:\n\n- Color one square in each of the first $22$ rows.\n- For the remaining $19$ squares, place them in a way that no two additional squares are in the same row or column, and they don't form a right triangle with any previously colored squares.\n\nThis can be achieved by placing the additional $19$ squares in the last few rows and columns in a staggered manner.\n\nFor simplicity, let's place the first $22$ squares in the first $22$ columns, one per row, and then distribute the remaining $19$ squares across the rest of the board in a non-conflicting manner:\n\n\\[\n\\boxed{\\begin{array}{cccccccccccccccccccccc}\nx & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & x & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & x & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & x & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & x & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & x & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & x & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & x & o & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & x & o & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & x & o & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & x & o & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & x & o & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & x & o & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & x & o & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & o & x & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & o & o & x & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & x & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & x & o & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & x & o & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & x & o & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & x & o \\\\\no & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & o & x \\\\\n\\end{array}}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0020312,
+            "input_tokens": 1159,
+            "output_tokens": 1380
+        }
+    }
+]

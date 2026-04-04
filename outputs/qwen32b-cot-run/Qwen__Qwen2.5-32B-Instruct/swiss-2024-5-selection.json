@@ -1,0 +1,134 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2024-5-selection",
+                "statement": "Let $n = {n}$ be an integer and let $a_1, ..., a_{{{n}}}$ and $b_1, ..., b_{{{n}}}$ be sequences of positive integers such that the $n+1$ products\n\n\\begin{{align*}}\n    a_1 \\cdot a_2 \\cdot ... \\cdot a_{{n-1}} \\cdot a_{{n}} \\\\\n    b_1 \\cdot a_2 \\cdot ... \\cdot a_{{n-1}} \\cdot a_{{n}} \\\\\n    b_1 \\cdot b_2 \\cdot ... \\cdot a_{{n-1}} \\cdot a_{{n}} \\\\\n    \\vdots \\\\\n    b_1 \\cdot b_2 \\cdot ... \\cdot b_{{n-1}} \\cdot a_{{n}} \\\\\n    b_1 \\cdot b_2 \\cdot ... \\cdot b_{{n-1}} \\cdot b_{{n}} \\\\\n\\end{{align*}}\n\ntaken in this order, form a strictly increasing arithmetic progression. Find an example of the two sequences such that the common difference of this arithmetic progression is $n!$.\n\n\\textit{{Remark: An arithmetic progression is a sequence of the form $a, a + r, a + 2r, ..., a + kr$ where $a, r$, and $k$ are integers and $r$ is called the common difference.}}",
+                "formatting_instructions": "Output the answer as a comma separated list of lists inside of $\\boxed{...}$. The first list should from the sequence $a_1, ..., a_n$ and the second sequence forms $b_1, ..., b_n$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "Swiss Math Olympiad IMO Selection 2024",
+                "original_solution": [
+                    [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10
+                    ],
+                    [
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2024/Selection/MasterSolution/selectionSolution2024.pdf#page=13",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2024/Selection/MasterSolution/selectionSolution2024.pdf#page=13",
+                "tags": [
+                    "Is Simplified",
+                    "Algebra",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 10
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to find sequences $a_1, a_2, \\dots, a_{10}$ and $b_1, b_2, \\dots, b_{10}$ such that the given products form a strictly increasing arithmetic progression with a common difference of $10!$. This means for each step, the product increases by $10!$.\n\nGiven the nature of the problem, we can start by considering the simplest case where $a_i = 1$ for all $i$, which simplifies the products significantly. However, since we want the common difference to be $10!$, we will need to adjust the values of $b_i$ accordingly.\n\nThe sequence of products is:\n\n\\[\nP_1 = a_1 \\cdot a_2 \\cdot \\ldots \\cdot a_{10},\n\\]\n\\[\nP_2 = b_1 \\cdot a_2 \\cdot \\ldots \\cdot a_{10},\n\\]\n\\[\nP_3 = b_1 \\cdot b_2 \\cdot a_3 \\cdot \\ldots \\cdot a_{10},\n\\]\n\\[\n\\vdots\n\\]\n\\[\nP_{11} = b_1 \\cdot b_2 \\cdot \\ldots \\cdot b_{10}.\n\\]\n\nFor simplicity, assume $a_i = 1$ for all $i$, then the sequence simplifies to:\n\n\\[\nP_1 = 1,\n\\]\n\\[\nP_2 = b_1,\n\\]\n\\[\nP_3 = b_1 \\cdot b_2,\n\\]\n\\[\n\\vdots\n\\]\n\\[\nP_{11} = b_1 \\cdot b_2 \\cdot \\ldots \\cdot b_{10}.\n\\]\n\nSince these form a strictly increasing arithmetic progression with a common difference of $10!$, we have:\n\n\\[\nP_2 - P_1 = b_1 - 1 = 10!,\n\\]\n\\[\nP_3 - P_2 = b_1 \\cdot b_2 - b_1 = 10!,\n\\]\n\\[\n\\vdots\n\\]\n\\[\nP_{11} - P_{10} = b_1 \\cdot b_2 \\cdot \\ldots \\cdot b_{10} - b_1 \\cdot b_2 \\cdot \\ldots \\cdot b_9 = 10!.\n\\]\n\nFrom $b_1 - 1 = 10!$, we get $b_1 = 10! + 1$. Then,\n\n\\[\nb_1 \\cdot b_2 - b_1 = 10! \\implies (10! + 1) \\cdot b_2 - (10! + 1) = 10! \\implies (10! + 1)(b_2 - 1) = 10! \\implies b_2 - 1 = \\frac{10!}{10! + 1} \\approx 1 \\implies b_2 = 2.\n\\]\n\nSimilarly,\n\n\\[\nb_1 \\cdot b_2 \\cdot b_3 - b_1 \\cdot b_2 = 10! \\implies (10! + 1) \\cdot 2 \\cdot b_3 - (10! + 1) \\cdot 2 = 10! \\implies (10! + 1) \\cdot 2 (b_3 - 1) = 10! \\implies b_3 - 1 = \\frac{10!}{2(10! + 1)} \\approx 1 \\implies b_3 = 3.\n\\]\n\nContinuing this pattern, we get $b_i = i + 1$ for all $i$. Thus, the sequences are:\n\n\\[\na_1, a_2, \\ldots, a_{10} = 1, 1, \\ldots, 1,\n\\]\n\\[\nb_1, b_2, \\ldots, b_{10} = 10! + 1, 2, 3, \\ldots, 11.\n\\]\n\nTherefore, the answer is:\n\n\\[\n\\boxed{[1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [3628801, 2, 3, 4, 5, 6, 7, 8, 9, 11]}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0010936000000000001,
+            "input_tokens": 376,
+            "output_tokens": 991
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2024-5-selection",
+                "statement": "Let $n = {n}$ be an integer and let $a_1, ..., a_{{{n}}}$ and $b_1, ..., b_{{{n}}}$ be sequences of positive integers such that the $n+1$ products\n\n\\begin{{align*}}\n    a_1 \\cdot a_2 \\cdot ... \\cdot a_{{n-1}} \\cdot a_{{n}} \\\\\n    b_1 \\cdot a_2 \\cdot ... \\cdot a_{{n-1}} \\cdot a_{{n}} \\\\\n    b_1 \\cdot b_2 \\cdot ... \\cdot a_{{n-1}} \\cdot a_{{n}} \\\\\n    \\vdots \\\\\n    b_1 \\cdot b_2 \\cdot ... \\cdot b_{{n-1}} \\cdot a_{{n}} \\\\\n    b_1 \\cdot b_2 \\cdot ... \\cdot b_{{n-1}} \\cdot b_{{n}} \\\\\n\\end{{align*}}\n\ntaken in this order, form a strictly increasing arithmetic progression. Find an example of the two sequences such that the common difference of this arithmetic progression is $n!$.\n\n\\textit{{Remark: An arithmetic progression is a sequence of the form $a, a + r, a + 2r, ..., a + kr$ where $a, r$, and $k$ are integers and $r$ is called the common difference.}}",
+                "formatting_instructions": "Output the answer as a comma separated list of lists inside of $\\boxed{...}$. The first list should from the sequence $a_1, ..., a_n$ and the second sequence forms $b_1, ..., b_n$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "Swiss Math Olympiad IMO Selection 2024",
+                "original_solution": [
+                    [
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10
+                    ],
+                    [
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2024/Selection/MasterSolution/selectionSolution2024.pdf#page=13",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2024/Selection/MasterSolution/selectionSolution2024.pdf#page=13",
+                "tags": [
+                    "Is Simplified",
+                    "Algebra",
+                    "Find Any"
+                ]
+            },
+            "param_values": {
+                "n": 22
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to construct sequences \\(a_1, \\ldots, a_{22}\\) and \\(b_1, \\ldots, b_{22}\\) such that the given products form a strictly increasing arithmetic progression with a common difference of \\(22!\\). \n\nFirstly, we denote the common difference as \\(d = 22!\\). Let the initial product be \\(P_0 = a_1 \\cdot a_2 \\cdot \\cdots \\cdot a_{22}\\).\n\nThe sequence of products is:\n\\[\nP_0, P_0 + d, P_0 + 2d, \\ldots, P_0 + 21d\n\\]\n\nWe can express each product as:\n\\[\nP_k = P_0 + kd\n\\]\nwhere \\(k\\) ranges from 0 to 21.\n\nFor simplicity, we choose \\(a_i = 1\\) for all \\(i\\) and find suitable \\(b_i\\) values. Then the initial product \\(P_0\\) simplifies to:\n\\[\nP_0 = 1 \\cdot 1 \\cdot \\cdots \\cdot 1 = 1\n\\]\n\nNow, the products become:\n\\[\n1, 1 + 22!, 1 + 2 \\cdot 22!, \\ldots, 1 + 21 \\cdot 22!\n\\]\n\nTo achieve this, we set \\(b_i = 22! + 1\\) for all \\(i\\). This ensures that each replacement of an \\(a_i\\) by a \\(b_i\\) increases the product by exactly \\(22!\\), thus maintaining the arithmetic progression.\n\nTherefore, the sequences are:\n\\[\na_1 = 1, a_2 = 1, \\ldots, a_{22} = 1\n\\]\n\\[\nb_1 = 22! + 1, b_2 = 22! + 1, \\ldots, b_{22} = 22! + 1\n\\]\n\nThus, the final answer is:\n\\[\n\\boxed{[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1, 22! + 1]}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.000856,
+            "input_tokens": 376,
+            "output_tokens": 694
+        }
+    }
+]

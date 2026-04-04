@@ -1,0 +1,234 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "konhauser-2016-1",
+                "statement": "A footworm grows at a constant rate of one foot per day and stops growing when it reaches one foot. A full-grown worm can be cut into two worms of lengths $x$ and $1-x$, each of which then grows at the constant rate until full-grown. Worms that are not full-grown cannot be cut. Show how to produce, in {timestr}, {number} full-grown worms, where you start with one full-grown worm.",
+                "formatting_instructions": "Output the answer as a comma separated list of lists inside of $\\boxed{...}$. Each list first contains the current time in days, then a list of the worms' current lengths before the cut, and then a list of the worms' current lengths after the cut.\n\nFor instance, to cut a worm of length 1 into two worms of length 0.5 at time $\\frac{1}{2}$, you would output '$\\frac{1}{2}, (1), (0.5, 0.5)$'. A correct solution to produce $4$ worms in 1 day would be:\n$\\boxed{\n    (0, (1), (0.5, 0.5)),\n    (\\frac{1}{2}, (1, 1), (0.5, 0.5, 1)),\n    (\\frac{1}{2}, (1, 0.5, 0.5), (0.5, 0.5, 0.5, 0.5)),\n}$\nNote that you cannot cut more than one worm in a single line. The last line where all worms are full-grown at time 1 must be omitted.",
+                "parameters": [
+                    "number",
+                    "time"
+                ],
+                "source": "Konhauser Problemfest 2016 P1",
+                "original_solution": [
+                    [
+                        0,
+                        [
+                            1
+                        ],
+                        [
+                            0.03125,
+                            0.96875
+                        ]
+                    ],
+                    [
+                        0.03125,
+                        [
+                            0.0625,
+                            1
+                        ],
+                        [
+                            0.0625,
+                            0.0625,
+                            0.9375
+                        ]
+                    ],
+                    [
+                        0.09375,
+                        [
+                            0.125,
+                            0.125,
+                            1
+                        ],
+                        [
+                            0.125,
+                            0.125,
+                            0.125,
+                            0.875
+                        ]
+                    ],
+                    [
+                        0.21875,
+                        [
+                            0.25,
+                            0.25,
+                            0.25,
+                            1
+                        ],
+                        [
+                            0.25,
+                            0.25,
+                            0.25,
+                            0.25,
+                            0.75
+                        ]
+                    ],
+                    [
+                        0.46875,
+                        [
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.5,
+                            1
+                        ],
+                        [
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.5
+                        ]
+                    ]
+                ],
+                "original_parameters": {
+                    "time": "1",
+                    "number": 6
+                },
+                "timeout": 60,
+                "problem_url": "https://www.macalester.edu/mscs/wp-content/uploads/sites/591/2016/03/Konhauser2016.pdf#page=1",
+                "solution_url": "https://www.macalester.edu/mscs/wp-content/uploads/sites/591/2016/03/Konhauser2016.pdf#page=6",
+                "tags": [
+                    "Combinatorics",
+                    "Find Any",
+                    "Is Original",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "number": 6,
+                "time": "1"
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to strategically cut the worms at specific times to ensure that by the end of the day, we have six full-grown worms. Here is a step-by-step plan to achieve this:\n\n- Start with a full-grown worm of length 1.\n- At time $t=0$, cut the worm into two parts: $(0.5, 0.5)$. Both will grow to full size by the end of the day.\n- At time $t=\\frac{1}{2}$, both worms are now full-grown. Cut one of them into two parts: $(0.5, 0.5)$. This gives us three full-grown worms and two half-grown worms.\n- At time $t=\\frac{3}{4}$, the two half-grown worms from the previous step are now three-quarters grown. Cut one of these into two parts: $(0.25, 0.25)$. This gives us four full-grown worms and four quarter-grown worms.\n- At time $t=\\frac{7}{8}$, the two quarter-grown worms from the previous step are now seven-eighths grown. Cut one of these into two parts: $(0.125, 0.125)$. This gives us five full-grown worms and six eighth-grown worms.\n\nBy the end of the day ($t=1$), all worms will be fully grown, resulting in six full-grown worms. \n\nHere's the solution formatted according to the instructions:\n\n$\\boxed{\n(0, (1), (0.5, 0.5)),\n(\\frac{1}{2}, (1, 1), (0.5, 0.5, 1)),\n(\\frac{3}{4}, (1, 1, 1), (0.5, 0.5, 1, 1)),\n(\\frac{7}{8}, (1, 1, 1, 1), (0.5, 0.5, 1, 1, 1))\n}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.0006552000000000001,
+            "input_tokens": 379,
+            "output_tokens": 440
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "konhauser-2016-1",
+                "statement": "A footworm grows at a constant rate of one foot per day and stops growing when it reaches one foot. A full-grown worm can be cut into two worms of lengths $x$ and $1-x$, each of which then grows at the constant rate until full-grown. Worms that are not full-grown cannot be cut. Show how to produce, in {timestr}, {number} full-grown worms, where you start with one full-grown worm.",
+                "formatting_instructions": "Output the answer as a comma separated list of lists inside of $\\boxed{...}$. Each list first contains the current time in days, then a list of the worms' current lengths before the cut, and then a list of the worms' current lengths after the cut.\n\nFor instance, to cut a worm of length 1 into two worms of length 0.5 at time $\\frac{1}{2}$, you would output '$\\frac{1}{2}, (1), (0.5, 0.5)$'. A correct solution to produce $4$ worms in 1 day would be:\n$\\boxed{\n    (0, (1), (0.5, 0.5)),\n    (\\frac{1}{2}, (1, 1), (0.5, 0.5, 1)),\n    (\\frac{1}{2}, (1, 0.5, 0.5), (0.5, 0.5, 0.5, 0.5)),\n}$\nNote that you cannot cut more than one worm in a single line. The last line where all worms are full-grown at time 1 must be omitted.",
+                "parameters": [
+                    "number",
+                    "time"
+                ],
+                "source": "Konhauser Problemfest 2016 P1",
+                "original_solution": [
+                    [
+                        0,
+                        [
+                            1
+                        ],
+                        [
+                            0.03125,
+                            0.96875
+                        ]
+                    ],
+                    [
+                        0.03125,
+                        [
+                            0.0625,
+                            1
+                        ],
+                        [
+                            0.0625,
+                            0.0625,
+                            0.9375
+                        ]
+                    ],
+                    [
+                        0.09375,
+                        [
+                            0.125,
+                            0.125,
+                            1
+                        ],
+                        [
+                            0.125,
+                            0.125,
+                            0.125,
+                            0.875
+                        ]
+                    ],
+                    [
+                        0.21875,
+                        [
+                            0.25,
+                            0.25,
+                            0.25,
+                            1
+                        ],
+                        [
+                            0.25,
+                            0.25,
+                            0.25,
+                            0.25,
+                            0.75
+                        ]
+                    ],
+                    [
+                        0.46875,
+                        [
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.5,
+                            1
+                        ],
+                        [
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.5,
+                            0.5
+                        ]
+                    ]
+                ],
+                "original_parameters": {
+                    "time": "1",
+                    "number": 6
+                },
+                "timeout": 60,
+                "problem_url": "https://www.macalester.edu/mscs/wp-content/uploads/sites/591/2016/03/Konhauser2016.pdf#page=1",
+                "solution_url": "https://www.macalester.edu/mscs/wp-content/uploads/sites/591/2016/03/Konhauser2016.pdf#page=6",
+                "tags": [
+                    "Combinatorics",
+                    "Find Any",
+                    "Is Original",
+                    "Is Generalized"
+                ]
+            },
+            "param_values": {
+                "number": 10,
+                "time": "\\frac{1023}{1024}"
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To achieve the goal of having 10 full-grown worms in $\\frac{1023}{1024}$ of a day, starting from one full-grown worm, we need to strategically cut the worms at appropriate times so that they grow simultaneously without exceeding the specified time limit. Here's a step-by-step plan:\n\n1. **Initial Cut**: At time 0, we have one full-grown worm. We cut it into two worms, each of length 0.5.\n2. **First Round of Growth**: By time $\\frac{1}{2}$, both worms will have grown to full size (1).\n3. **Second Round of Cuts**: At time $\\frac{1}{2}$, we cut both worms into smaller worms, each half the size of their current length. This results in four worms, each of length 0.5.\n4. **Second Round of Growth**: By time $\\frac{3}{4}$, all four worms will have grown to full size (1).\n5. **Third Round of Cuts**: At time $\\frac{3}{4}$, we cut three of these worms into smaller worms, each half the size of their current length. This results in seven worms, five of which are full-grown and two of which are of length 0.5.\n6. **Third Round of Growth**: By time $\\frac{7}{8}$, the two smaller worms will have grown to full size (1). Now, we have seven full-grown worms.\n7. **Fourth Round of Cuts**: At time $\\frac{7}{8}$, we cut two of these worms into smaller worms, each half the size of their current length. This results in nine worms, seven of which are full-grown and two of which are of length 0.5.\n8. **Fourth Round of Growth**: By time $\\frac{15}{16}$, the two smaller worms will have grown to full size (1). Now, we have nine full-grown worms.\n9. **Fifth Round of Cuts**: At time $\\frac{15}{16}$, we cut one of these worms into smaller worms, each half the size of their current length. This results in ten worms, nine of which are full-grown and one of which is of length 0.5.\n10. **Final Round of Growth**: By time $\\frac{31}{32}$, the remaining smaller worm will have grown to full size (1). Now, we have ten full-grown worms.\n\nThe sequence of cuts and growths can be represented as follows:\n\n\\[\n\\boxed{\n(0, (1), (0.5, 0.5)),\n(\\frac{1}{2}, (1, 1), (0.5, 0.5, 0.5, 0.5)),\n(\\frac{3}{4}, (1, 1, 1, 1), (0.5, 0.5, 0.5, 0.5, 1)),\n(\\frac{7}{8}, (1, 1, 1, 1, 1), (0.5, 0.5, 1, 1, 1, 1)),\n(\\frac{15}{16}, (1, 1, 1, 1, 1, 1), (0.5, 1, 1, 1, 1, 1, 1)),\n(\\frac{31}{32}, (1, 1, 1, 1, 1, 1, 1), (1, 1, 1, 1, 1, 1, 1, 1))\n}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0009488000000000002,
+            "input_tokens": 393,
+            "output_tokens": 793
+        }
+    }
+]

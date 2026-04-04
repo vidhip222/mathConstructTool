@@ -1,0 +1,432 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2019-2",
+                "statement": "There are $n$ guests at a party. Any two guests are either friends or not friends. Every guest is friends with exactly {k} of the other guests. Whenever a guest is not friends with two other guests, those two other guests cannot be friends with each other either.\n\nFind ${n}$ configurations of friendships that satisfy these conditions. Each of the configurations should have a different value of $n$.",
+                "formatting_instructions": "Output each configuration between \\verb|\\begin{array}{...}| and \\verb|\\end{array}|. All configurations should appear inside of a single $\\boxed{...}$. For example, $\\boxed{\\begin{array}{ccc}0 & 1 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 0 & 0\\end{array},\\begin{array}{cc}0 & 1 \\\\ 1 & 0\\end{array}}$.\nThe element in the $i$-th row and $j$-th column should be 1 if guest $i$ is friends with guest $j$, and 0 otherwise. Elements on the diagonal should be 0.",
+                "parameters": [
+                    "k",
+                    "n"
+                ],
+                "source": "Dutch Math Olympiad Finals 2019 P2",
+                "original_solution": [
+                    [
+                        [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            0,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            0,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            0,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            0,
+                            0,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            0,
+                            0,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0
+                        ]
+                    ]
+                ],
+                "original_parameters": {
+                    "k": 4,
+                    "n": 3
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/phocadownload/opgaven/finale/2019/ProblemsKlas6.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/phocadownload/opgaven/finale/2019/Solutions.pdf",
+                "tags": [
+                    "Is Original",
+                    "Is Generalized",
+                    "Combinatorics",
+                    "Find All"
+                ]
+            },
+            "param_values": {
+                "k": 4,
+                "n": 3
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "$\\boxed{\\begin{array}{ccc}0 & 1 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 0 & 0\\end{array},\\begin{array}{ccc}0 & 1 & 1 \\\\ 1 & 0 & 1 \\\\ 1 & 1 & 0\\end{array},\\begin{array}{cccc}0 & 1 & 1 & 1 \\\\ 1 & 0 & 1 & 1 \\\\ 1 & 1 & 0 & 1 \\\\ 1 & 1 & 1 & 0\\end{array}}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000408,
+            "input_tokens": 272,
+            "output_tokens": 136
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2019-2",
+                "statement": "There are $n$ guests at a party. Any two guests are either friends or not friends. Every guest is friends with exactly {k} of the other guests. Whenever a guest is not friends with two other guests, those two other guests cannot be friends with each other either.\n\nFind ${n}$ configurations of friendships that satisfy these conditions. Each of the configurations should have a different value of $n$.",
+                "formatting_instructions": "Output each configuration between \\verb|\\begin{array}{...}| and \\verb|\\end{array}|. All configurations should appear inside of a single $\\boxed{...}$. For example, $\\boxed{\\begin{array}{ccc}0 & 1 & 0 \\\\ 1 & 0 & 0 \\\\ 0 & 0 & 0\\end{array},\\begin{array}{cc}0 & 1 \\\\ 1 & 0\\end{array}}$.\nThe element in the $i$-th row and $j$-th column should be 1 if guest $i$ is friends with guest $j$, and 0 otherwise. Elements on the diagonal should be 0.",
+                "parameters": [
+                    "k",
+                    "n"
+                ],
+                "source": "Dutch Math Olympiad Finals 2019 P2",
+                "original_solution": [
+                    [
+                        [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            0,
+                            0,
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            0,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            0,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            0,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            0,
+                            0,
+                            1,
+                            1,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            0,
+                            0,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            0,
+                            0,
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0
+                        ],
+                        [
+                            1,
+                            1,
+                            1,
+                            1,
+                            0,
+                            0
+                        ]
+                    ]
+                ],
+                "original_parameters": {
+                    "k": 4,
+                    "n": 3
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/phocadownload/opgaven/finale/2019/ProblemsKlas6.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/phocadownload/opgaven/finale/2019/Solutions.pdf",
+                "tags": [
+                    "Is Original",
+                    "Is Generalized",
+                    "Combinatorics",
+                    "Find All"
+                ]
+            },
+            "param_values": {
+                "k": 7,
+                "n": 2
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "$\\boxed{\\begin{array}{cccccc}\n0 & 1 & 1 & 1 & 1 & 1 \\\\\n1 & 0 & 1 & 0 & 0 & 0 \\\\\n1 & 1 & 0 & 1 & 0 & 0 \\\\\n1 & 0 & 1 & 0 & 1 & 0 \\\\\n1 & 0 & 0 & 1 & 0 & 1 \\\\\n1 & 0 & 0 & 0 & 1 & 0 \\\\\n\\end{array},\\begin{array}{cccccc}\n0 & 1 & 1 & 1 & 0 & 0 \\\\\n1 & 0 & 1 & 1 & 0 & 0 \\\\\n1 & 1 & 0 & 1 & 0 & 0 \\\\\n1 & 1 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 \\\\\n0 & 0 & 0 & 0 & 1 & 0 \\\\\n\\end{array}}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000506,
+            "input_tokens": 272,
+            "output_tokens": 234
+        }
+    }
+]

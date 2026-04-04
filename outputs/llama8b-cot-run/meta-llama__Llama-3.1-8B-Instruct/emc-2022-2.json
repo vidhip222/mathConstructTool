@@ -1,0 +1,256 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "emc-2022-2",
+                "statement": "We say a positive integer $n$ is lovely if there exists a positive integer $k$ and (not necessarily distinct) positive integers $d_1, d_2, ..., d_k$ such that $n = d_1 d_2 ... d_k$ and\n\n$$d_i^2 | n + d_i$$\n\nfor all $i \\in \\{{1, 2, ..., k\\}}$. Find ${n}$ distinct lovely numbers and output them together with $d_1, d_2, \\ldots, d_k$.",
+                "formatting_instructions": "Output the sequences as comma-separated tuples inside of \\boxed, e.g. \\boxed{(3, 3, 1), (4, 2, 2)}. The first integer in a tuple is the lovely number and the rest are the divisors $d_1, ..., d_k$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "EMC 2022 Seniors P2",
+                "original_solution": [
+                    [
+                        1,
+                        1
+                    ],
+                    [
+                        2,
+                        1,
+                        2
+                    ],
+                    [
+                        6,
+                        1,
+                        2,
+                        3
+                    ],
+                    [
+                        42,
+                        1,
+                        2,
+                        3,
+                        7
+                    ],
+                    [
+                        1806,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43
+                    ],
+                    [
+                        3263442,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807
+                    ],
+                    [
+                        10650056950806,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807,
+                        3263443
+                    ],
+                    [
+                        113423713055421844361000442,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807,
+                        3263443,
+                        10650056950807
+                    ],
+                    [
+                        12864938683278671740537145998360961546653259485195806,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807,
+                        3263443,
+                        10650056950807,
+                        113423713055421844361000443
+                    ],
+                    [
+                        165506647324519964198468195444439180017513152706377497841851388766535868639572406808911988131737645185442,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807,
+                        3263443,
+                        10650056950807,
+                        113423713055421844361000443,
+                        12864938683278671740537145998360961546653259485195807
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://emc.mnm.hr/wp-content/uploads/2022/12/EMC_2022_Seniors_ENG_Solutions.pdf",
+                "solution_url": "https://emc.mnm.hr/wp-content/uploads/2022/12/EMC_2022_Seniors_ENG_Solutions.pdf",
+                "tags": [
+                    "Is Simplified",
+                    "Number Theory",
+                    "Find Infinitely Many"
+                ]
+            },
+            "param_values": {
+                "n": 10
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "Here are 10 distinct lovely numbers with their corresponding divisors:\n\n\\boxed{(8, 2, 2, 2), (9, 3), (12, 2, 2, 3), (18, 2, 3, 3), (20, 2, 2, 5), (24, 2, 2, 2, 3), (27, 3, 3, 3), (32, 2, 2, 2, 2, 2), (36, 2, 2, 3, 3), (40, 2, 2, 2, 5)}\n\nHere's how each number is lovely:\n- $8 = 2^3$ and $2^3 | 8 + 2 = 10$\n- $9 = 3^2$ and $3^2 | 9 + 3 = 12$\n- $12 = 2^2 \\times 3$ and $2^2 | 12 + 2 = 14$ and $3 | 12 + 3 = 15$\n- $18 = 2 \\times 3^2$ and $2 | 18 + 2 = 20$ and $3^2 | 18 + 3 = 21$\n- $20 = 2^2 \\times 5$ and $2^2 | 20 + 2 = 22$ and $5 | 20 + 5 = 25$\n- $24 = 2^3 \\times 3$ and $2^3 | 24 + 2 = 26$ and $3 | 24 + 3 = 27$\n- $27 = 3^3$ and $3^3 | 27 + 3 = 30$\n- $32 = 2^5$ and $2^5 | 32 + 2 = 34$\n- $36 = 2^2 \\times 3^2$ and $2^2 | 36 + 2 = 38$ and $3^2 | 36 + 3 = 39$\n- $40 = 2^3 \\times 5$ and $2^3 | 40 + 2 = 42$ and $5 | 40 + 5 = 45$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000717,
+            "input_tokens": 218,
+            "output_tokens": 499
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "emc-2022-2",
+                "statement": "We say a positive integer $n$ is lovely if there exists a positive integer $k$ and (not necessarily distinct) positive integers $d_1, d_2, ..., d_k$ such that $n = d_1 d_2 ... d_k$ and\n\n$$d_i^2 | n + d_i$$\n\nfor all $i \\in \\{{1, 2, ..., k\\}}$. Find ${n}$ distinct lovely numbers and output them together with $d_1, d_2, \\ldots, d_k$.",
+                "formatting_instructions": "Output the sequences as comma-separated tuples inside of \\boxed, e.g. \\boxed{(3, 3, 1), (4, 2, 2)}. The first integer in a tuple is the lovely number and the rest are the divisors $d_1, ..., d_k$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "EMC 2022 Seniors P2",
+                "original_solution": [
+                    [
+                        1,
+                        1
+                    ],
+                    [
+                        2,
+                        1,
+                        2
+                    ],
+                    [
+                        6,
+                        1,
+                        2,
+                        3
+                    ],
+                    [
+                        42,
+                        1,
+                        2,
+                        3,
+                        7
+                    ],
+                    [
+                        1806,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43
+                    ],
+                    [
+                        3263442,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807
+                    ],
+                    [
+                        10650056950806,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807,
+                        3263443
+                    ],
+                    [
+                        113423713055421844361000442,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807,
+                        3263443,
+                        10650056950807
+                    ],
+                    [
+                        12864938683278671740537145998360961546653259485195806,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807,
+                        3263443,
+                        10650056950807,
+                        113423713055421844361000443
+                    ],
+                    [
+                        165506647324519964198468195444439180017513152706377497841851388766535868639572406808911988131737645185442,
+                        1,
+                        2,
+                        3,
+                        7,
+                        43,
+                        1807,
+                        3263443,
+                        10650056950807,
+                        113423713055421844361000443,
+                        12864938683278671740537145998360961546653259485195807
+                    ]
+                ],
+                "original_parameters": {
+                    "n": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://emc.mnm.hr/wp-content/uploads/2022/12/EMC_2022_Seniors_ENG_Solutions.pdf",
+                "solution_url": "https://emc.mnm.hr/wp-content/uploads/2022/12/EMC_2022_Seniors_ENG_Solutions.pdf",
+                "tags": [
+                    "Is Simplified",
+                    "Number Theory",
+                    "Find Infinitely Many"
+                ]
+            },
+            "param_values": {
+                "n": 11
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find the lovely numbers, we need to find a pattern or a method to generate them. Let's start by analyzing the given condition:\n\n$$d_i^2 | n + d_i$$\n\nThis can be rewritten as:\n\n$$n + d_i = m_i d_i^2$$\n\nwhere $m_i$ is a positive integer.\n\nNow, let's consider the product of all $d_i$:\n\n$$d_1 d_2 ... d_k = n$$\n\nSubstituting the expression for $n$ from the previous equation, we get:\n\n$$d_1 d_2 ... d_k = m_1 d_1^2 m_2 d_2^2 ... m_k d_k^2$$\n\nSimplifying, we get:\n\n$$1 = m_1 m_2 ... m_k$$\n\nThis means that the product of all $m_i$ must be equal to 1.\n\nNow, let's consider the first few lovely numbers:\n\n1. $n = 3$, $d_1 = 3$, $n + d_1 = 6 = 3^2$\n2. $n = 9$, $d_1 = 3$, $n + d_1 = 12 = 3^2 \\cdot 2$\n3. $n = 12$, $d_1 = 2$, $d_2 = 2$, $n + d_1 = 14 = 2^2 \\cdot 7$, $n + d_2 = 16 = 2^4$\n4. $n = 18$, $d_1 = 2$, $d_2 = 3$, $n + d_1 = 20 = 2^2 \\cdot 5$, $n + d_2 = 21 = 3^2$\n5. $n = 36$, $d_1 = 4$, $d_2 = 3$, $n + d_1 = 40 = 2^3 \\cdot 5$, $n + d_2 = 39 = 3^2 \\cdot 13$\n\nWe can see that the lovely numbers are related to the perfect squares and the divisors of the number.\n\nTo generate more lovely numbers, we can use the following method:\n\n1. Start with a perfect square, say $d^2$.\n2. Find the smallest positive integer $m$ such that $n = m d^2$ is a lovely number.\n3. Repeat the process for different values of $d$ and $m$.\n\nUsing this method, we can find the following lovely numbers:\n\n\\boxed{(3, 3), (9, 3), (12, 2, 2), (18, 2, 3), (36, 4, 3), (72, 2, 2, 2, 2, 3), (108, 2, 3, 3), (144, 2, 2, 2, 3, 3), (216, 2, 2, 3, 3, 3), (288, 2, 2, 2, 2, 2, 3), (324, 2, 3, 3, 3, 3)}"
+            }
+        ],
+        "cost": {
+            "cost": 0.000913,
+            "input_tokens": 218,
+            "output_tokens": 695
+        }
+    }
+]

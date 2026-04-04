@@ -1,0 +1,172 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2010-4",
+                "statement": "For $m = {m}$, determine ${k}$ pairs $(x,y)$ of rational numbers with $0 < x < 1$ and $0 < y < 1$ for which $x+my$ and $mx+y$ are both integers. An example for $m = 3$ is $(x, y) = \\left(\\frac{{3}}{{8}},\\frac{{7}}{{8}}\\right)$ since $x+3y=\\frac{{3}}{{8}} + \\frac{{21}}{{8}} = \\frac{{24}}{{8}} = 3$ and $3x+y=\\frac{{9}}{{8}} + \\frac{{7}}{{8}} = \\frac{{16}}{{8}} = 2$.\n\n$(x,y)$ and $(y,x)$ are not considered to be the same pair.",
+                "formatting_instructions": "Give your solution as a list of fraction pairs within a single $\\boxed{}$ environment. For instance, $\\boxed{(\\frac{1}{2},\\frac{3}{4}),(\\frac{1}{3},\\frac{2}{4})}$",
+                "parameters": [
+                    "k",
+                    "m"
+                ],
+                "source": "Dutch Math Olympiad Finals 2010 P4",
+                "original_solution": [
+                    [
+                        0.000999000999000999,
+                        0.000999000999000999
+                    ],
+                    [
+                        0.000998000998000998,
+                        0.001999001999001999
+                    ],
+                    [
+                        0.000997000997000997,
+                        0.002999002999002999
+                    ],
+                    [
+                        0.000996000996000996,
+                        0.003999003999003999
+                    ],
+                    [
+                        0.000995000995000995,
+                        0.004999004999004999
+                    ],
+                    [
+                        0.000994000994000994,
+                        0.005999005999005999
+                    ],
+                    [
+                        0.000993000993000993,
+                        0.006999006999006999
+                    ],
+                    [
+                        0.000992000992000992,
+                        0.007999007999007999
+                    ],
+                    [
+                        0.000991000991000991,
+                        0.008999008999009
+                    ],
+                    [
+                        0.00099000099000099,
+                        0.00999900999901
+                    ]
+                ],
+                "original_parameters": {
+                    "m": 1000,
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/opgaven_en.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/uitwerkingen_en.pdf",
+                "tags": [
+                    "Is Generalized",
+                    "Number Theory",
+                    "Find All"
+                ]
+            },
+            "param_values": {
+                "k": 10,
+                "m": 1000
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find the pairs of rational numbers $(x,y)$ for $m = 1000$, we need to satisfy the conditions:\n\n1. $0 < x < 1$\n2. $0 < y < 1$\n3. $x+my$ is an integer\n4. $mx+y$ is an integer\n\nWe can start by looking for pairs of numbers $(x,y)$ that satisfy conditions 1 and 2.\n\nSince we want both $x+my$ and $mx+y$ to be integers, we can rewrite the equations as:\n\n1. $x+1000y = k$ (integer)\n2. $1000x+y = l$ (integer)\n\nTo simplify the problem, we can look for values of $x$ and $y$ that are close to each other, as this will make it easier to satisfy both conditions.\n\nAfter analyzing the problem, we can find the following 10 pairs of rational numbers $(x,y)$:\n\n$\\boxed{(\\frac{1}{5},\\frac{1}{5}),(\\frac{2}{5},\\frac{2}{5}),(\\frac{3}{5},\\frac{3}{5}),(\\frac{4}{5},\\frac{4}{5}),(\\frac{1}{4},\\frac{3}{1000}),(\\frac{3}{4},\\frac{997}{1000}),(\\frac{1}{8},\\frac{7}{1000}),(\\frac{7}{8},\\frac{993}{1000}),(\\frac{1}{10},\\frac{99}{1000}),(\\frac{9}{10},\\frac{991}{1000})}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000615,
+            "input_tokens": 266,
+            "output_tokens": 349
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "dutch-2010-4",
+                "statement": "For $m = {m}$, determine ${k}$ pairs $(x,y)$ of rational numbers with $0 < x < 1$ and $0 < y < 1$ for which $x+my$ and $mx+y$ are both integers. An example for $m = 3$ is $(x, y) = \\left(\\frac{{3}}{{8}},\\frac{{7}}{{8}}\\right)$ since $x+3y=\\frac{{3}}{{8}} + \\frac{{21}}{{8}} = \\frac{{24}}{{8}} = 3$ and $3x+y=\\frac{{9}}{{8}} + \\frac{{7}}{{8}} = \\frac{{16}}{{8}} = 2$.\n\n$(x,y)$ and $(y,x)$ are not considered to be the same pair.",
+                "formatting_instructions": "Give your solution as a list of fraction pairs within a single $\\boxed{}$ environment. For instance, $\\boxed{(\\frac{1}{2},\\frac{3}{4}),(\\frac{1}{3},\\frac{2}{4})}$",
+                "parameters": [
+                    "k",
+                    "m"
+                ],
+                "source": "Dutch Math Olympiad Finals 2010 P4",
+                "original_solution": [
+                    [
+                        0.000999000999000999,
+                        0.000999000999000999
+                    ],
+                    [
+                        0.000998000998000998,
+                        0.001999001999001999
+                    ],
+                    [
+                        0.000997000997000997,
+                        0.002999002999002999
+                    ],
+                    [
+                        0.000996000996000996,
+                        0.003999003999003999
+                    ],
+                    [
+                        0.000995000995000995,
+                        0.004999004999004999
+                    ],
+                    [
+                        0.000994000994000994,
+                        0.005999005999005999
+                    ],
+                    [
+                        0.000993000993000993,
+                        0.006999006999006999
+                    ],
+                    [
+                        0.000992000992000992,
+                        0.007999007999007999
+                    ],
+                    [
+                        0.000991000991000991,
+                        0.008999008999009
+                    ],
+                    [
+                        0.00099000099000099,
+                        0.00999900999901
+                    ]
+                ],
+                "original_parameters": {
+                    "m": 1000,
+                    "k": 10
+                },
+                "timeout": 60,
+                "problem_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/opgaven_en.pdf",
+                "solution_url": "https://wiskundeolympiade.nl/files/opgaven/finale/2010/uitwerkingen_en.pdf",
+                "tags": [
+                    "Is Generalized",
+                    "Number Theory",
+                    "Find All"
+                ]
+            },
+            "param_values": {
+                "k": 22,
+                "m": 28670
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To find the pairs $(x,y)$ of rational numbers with $0 < x < 1$ and $0 < y < 1$ for which $x+my$ and $mx+y$ are both integers, we can use the following method.\n\nWe need $x+my$ and $mx+y$ to be integers. This means that $x+my$ must be a multiple of $m$, and $mx+y$ must be a multiple of $m$.\n\nSo, we are looking for $x$ and $y$ such that $x+my = km$ and $mx+y = lm$, where $k$ and $l$ are integers.\n\nSince $x$ and $y$ are between $0$ and $1$, we can rewrite the equations as $x = km - my$ and $y = lm - mx$.\n\nSince $x$ and $y$ are between $0$ and $1$, we can rewrite the equations as $0 < km - my < 1$ and $0 < lm - mx < 1$.\n\nFor a given $m$, we can find all pairs $(x,y)$ that satisfy these equations.\n\nFor $m = 28670$, we can find the following pairs $(x,y)$:\n\n1. $(\\frac{1}{28670}, \\frac{28669}{28670})$\n2. $(\\frac{2}{28670}, \\frac{28668}{28670})$\n3. $(\\frac{3}{28670}, \\frac{28667}{28670})$\n4. $(\\frac{4}{28670}, \\frac{28666}{28670})$\n5. $(\\frac{5}{28670}, \\frac{28665}{28670})$\n6. $(\\frac{6}{28670}, \\frac{28664}{28670})$\n7. $(\\frac{7}{28670}, \\frac{28663}{28670})$\n8. $(\\frac{8}{28670}, \\frac{28662}{28670})$\n9. $(\\frac{9}{28670}, \\frac{28661}{28670})$\n10. $(\\frac{10}{28670}, \\frac{28660}{28670})$\n11. $(\\frac{11}{28670}, \\frac{28659}{28670})$\n12. $(\\frac{12}{28670}, \\frac{28658}{28670})$\n13. $(\\frac{13}{28670}, \\frac{28657}{28670})$\n14. $(\\frac{14}{28670}, \\frac{28656}{28670})$\n15. $(\\frac{15}{28670}, \\frac{28655}{28670})$\n16. $(\\frac{16}{28670}, \\frac{28654}{28670})$\n17. $(\\frac{17}{28670}, \\frac{28653}{28670})$\n18. $(\\frac{18}{28670}, \\frac{28652}{28670})$\n19. $(\\frac{19}{28670}, \\frac{28651}{28670})$\n20. $(\\frac{20}{28670}, \\frac{28650}{28670})$\n21. $(\\frac{21}{28670}, \\frac{28649}{28670})$\n22. $(\\frac{22}{28670}, \\frac{28648}{28670})$\n\nSo, the pairs $(x,y)$ are:\n\n$\\boxed{(\\frac{1}{28670}, \\frac{28669}{28670}), (\\frac{2}{28670}, \\frac{28668}{28670}), (\\frac{3}{28670}, \\frac{28667}{28670}), (\\frac{4}{28670}, \\frac{28666}{28670}), (\\frac{5}{28670}, \\frac{28665}{28670}), (\\frac{6}{28670}, \\frac{28664}{28670}), (\\frac{7}{28670}, \\frac{28663}{28670}), (\\frac{8}{28670}, \\frac{28662}{28670}), (\\frac{9}{28670}, \\frac{28661}{28670}), (\\frac{10}{28670}, \\frac{28660}{28670}), (\\frac{11}{28670}, \\frac{28659}{28670}), (\\frac{12}{28670}, \\frac{28658}{28670}), (\\frac{13}{28670}, \\frac{28657}{28670}), (\\frac{14}{28670}, \\frac{28656}{28670}), (\\frac{15}{28670}, \\frac{28655}{28670}), (\\frac{16}{28670}, \\frac{28654}{28670}), (\\frac{17}{28670}, \\frac{28653}{28670}), (\\frac{18}{28670}, \\frac{28652}{28670}), (\\frac{19}{28670}, \\frac{28651}{28670}), (\\frac{20}{28670}, \\frac{28650}{28670}), (\\frac{21}{28670}, \\frac{28649}{28670}), (\\frac{22}{28670}, \\frac{28648}{28670})}$"
+            }
+        ],
+        "cost": {
+            "cost": 0.001378,
+            "input_tokens": 266,
+            "output_tokens": 1112
+        }
+    }
+]

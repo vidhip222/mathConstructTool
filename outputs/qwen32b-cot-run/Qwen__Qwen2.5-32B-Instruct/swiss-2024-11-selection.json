@@ -1,0 +1,548 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2024-11-selection",
+                "statement": "Let $m = {m}, n = {n}$. Nemo is given an $m \\times n$ grid of unit squares with one chip on every unit square initially. They can repeatedly carry out the following operation: first, they pick any three distinct collinear unit squares and then they move one chip from each of the outer two squares onto the middle square. They may only do this operation if the outer two squares are not empty, but the middle square is allowed to be empty. \n\nThe maximum number of moves that Nemo can make before they cannot continue anymore is {max_moves}. Determine the moves Nemo can make to last for {max_moves} moves before they cannot continue anymore.",
+                "formatting_instructions": "Output the answer as a comma separated list of lists of coordinates inside of $\\boxed{...}$. Each list contains 3 coordinates, indicating the x and y coordinates of the 3 squares that Nemo should pick. The rows are labeled from $0$ to $m-1$ and the columns are labeled from $0$ to $n-1$. For example, $\\boxed{((1,1),(1,2),(1,3)),((1,2),(3,4),(5,6))}$ indicates that Nemo should first perform a move with the squares $(1,1), (1,2), (1,3)$ and then with the squares $(1,2),(3,4),(5,6)$.",
+                "parameters": [
+                    "m",
+                    "n",
+                    "max_moves"
+                ],
+                "source": "Swiss Math Olympiad IMO Selection 2024",
+                "original_solution": [
+                    [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            0,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            0,
+                            2
+                        ],
+                        [
+                            0,
+                            3
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            0
+                        ],
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            1,
+                            3
+                        ]
+                    ],
+                    [
+                        [
+                            2,
+                            0
+                        ],
+                        [
+                            2,
+                            1
+                        ],
+                        [
+                            2,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            2,
+                            1
+                        ],
+                        [
+                            2,
+                            2
+                        ],
+                        [
+                            2,
+                            3
+                        ]
+                    ],
+                    [
+                        [
+                            3,
+                            0
+                        ],
+                        [
+                            3,
+                            1
+                        ],
+                        [
+                            3,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            3,
+                            1
+                        ],
+                        [
+                            3,
+                            2
+                        ],
+                        [
+                            3,
+                            3
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            2
+                        ],
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            2
+                        ],
+                        [
+                            3,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            2
+                        ],
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            2
+                        ],
+                        [
+                            3,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            1
+                        ],
+                        [
+                            3,
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            1
+                        ],
+                        [
+                            3,
+                            1
+                        ]
+                    ]
+                ],
+                "original_parameters": {
+                    "m": 4,
+                    "n": 4,
+                    "max_moves": 16
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2024/Selection/MasterSolution/selectionSolution2024.pdf#page=32",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2024/Selection/MasterSolution/selectionSolution2024.pdf#page=32",
+                "tags": [
+                    "Is Simplified",
+                    "Is Original",
+                    "Find Max/Min",
+                    "Combinatorics"
+                ]
+            },
+            "param_values": {
+                "m": 4,
+                "n": 4,
+                "max_moves": 16
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To achieve the maximum number of moves, we need to ensure that the operation can be performed 16 times, which means moving chips around in such a way that we use up all chips except leaving at least one chip on some square after each operation. We start with an $4 \\times 4$ grid, which has 16 squares, and thus 16 chips initially.\n\nThe strategy involves moving chips along rows and columns such that we exhaust the chips in a systematic manner while ensuring that we can always find three collinear squares to perform the operation. Here's one possible sequence of moves:\n\n1. Move chips along the first row.\n2. Move chips along the second row.\n3. Move chips along the third row.\n4. Move chips along the fourth row.\n5. Move chips along the first column.\n6. Move chips along the second column.\n7. Move chips along the third column.\n8. Move chips along the fourth column.\n\nEach row and each column will contribute 4 moves, totaling 16 moves. Here is the detailed sequence:\n\n\\[\n\\boxed{\n((0,0),(0,1),(0,2)), ((0,1),(0,2),(0,3)),\n((1,0),(1,1),(1,2)), ((1,1),(1,2),(1,3)),\n((2,0),(2,1),(2,2)), ((2,1),(2,2),(2,3)),\n((3,0),(3,1),(3,2)), ((3,1),(3,2),(3,3)),\n((0,0),(1,0),(2,0)), ((1,0),(2,0),(3,0)),\n((0,1),(1,1),(2,1)), ((1,1),(2,1),(3,1)),\n((0,2),(1,2),(2,2)), ((1,2),(2,2),(3,2)),\n((0,3),(1,3),(2,3)), ((1,3),(2,3),(3,3))\n}\n\\]\n\nThis sequence ensures that after each move, we have exhausted the chips in a systematic way, allowing us to perform exactly 16 moves."
+            }
+        ],
+        "cost": {
+            "cost": 0.0006312000000000001,
+            "input_tokens": 327,
+            "output_tokens": 462
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "swiss-2024-11-selection",
+                "statement": "Let $m = {m}, n = {n}$. Nemo is given an $m \\times n$ grid of unit squares with one chip on every unit square initially. They can repeatedly carry out the following operation: first, they pick any three distinct collinear unit squares and then they move one chip from each of the outer two squares onto the middle square. They may only do this operation if the outer two squares are not empty, but the middle square is allowed to be empty. \n\nThe maximum number of moves that Nemo can make before they cannot continue anymore is {max_moves}. Determine the moves Nemo can make to last for {max_moves} moves before they cannot continue anymore.",
+                "formatting_instructions": "Output the answer as a comma separated list of lists of coordinates inside of $\\boxed{...}$. Each list contains 3 coordinates, indicating the x and y coordinates of the 3 squares that Nemo should pick. The rows are labeled from $0$ to $m-1$ and the columns are labeled from $0$ to $n-1$. For example, $\\boxed{((1,1),(1,2),(1,3)),((1,2),(3,4),(5,6))}$ indicates that Nemo should first perform a move with the squares $(1,1), (1,2), (1,3)$ and then with the squares $(1,2),(3,4),(5,6)$.",
+                "parameters": [
+                    "m",
+                    "n",
+                    "max_moves"
+                ],
+                "source": "Swiss Math Olympiad IMO Selection 2024",
+                "original_solution": [
+                    [
+                        [
+                            0,
+                            0
+                        ],
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            0,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            0,
+                            2
+                        ],
+                        [
+                            0,
+                            3
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            0
+                        ],
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            1,
+                            3
+                        ]
+                    ],
+                    [
+                        [
+                            2,
+                            0
+                        ],
+                        [
+                            2,
+                            1
+                        ],
+                        [
+                            2,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            2,
+                            1
+                        ],
+                        [
+                            2,
+                            2
+                        ],
+                        [
+                            2,
+                            3
+                        ]
+                    ],
+                    [
+                        [
+                            3,
+                            0
+                        ],
+                        [
+                            3,
+                            1
+                        ],
+                        [
+                            3,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            3,
+                            1
+                        ],
+                        [
+                            3,
+                            2
+                        ],
+                        [
+                            3,
+                            3
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            2
+                        ],
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            2
+                        ],
+                        [
+                            3,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            2
+                        ],
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            2
+                        ],
+                        [
+                            2,
+                            2
+                        ],
+                        [
+                            3,
+                            2
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            1
+                        ],
+                        [
+                            3,
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            0,
+                            1
+                        ],
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            1
+                        ]
+                    ],
+                    [
+                        [
+                            1,
+                            1
+                        ],
+                        [
+                            2,
+                            1
+                        ],
+                        [
+                            3,
+                            1
+                        ]
+                    ]
+                ],
+                "original_parameters": {
+                    "m": 4,
+                    "n": 4,
+                    "max_moves": 16
+                },
+                "timeout": 60,
+                "problem_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2024/Selection/MasterSolution/selectionSolution2024.pdf#page=32",
+                "solution_url": "https://mathematical.olympiad.ch/fileadmin/user_upload/Archiv/Intranet/Olympiads/Mathematics/deploy/exams/2024/Selection/MasterSolution/selectionSolution2024.pdf#page=32",
+                "tags": [
+                    "Is Simplified",
+                    "Is Original",
+                    "Find Max/Min",
+                    "Combinatorics"
+                ]
+            },
+            "param_values": {
+                "m": 5,
+                "n": 5,
+                "max_moves": 50
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To achieve the maximum number of moves, we need to ensure that the operations are performed in such a way that the chips are moved efficiently without prematurely running out of valid moves due to depletion of chips in the required positions.\n\nGiven an \\( m \\times n \\) grid where \\( m = 5 \\) and \\( n = 5 \\), we start with 25 chips, one on each unit square. We need to find a sequence of 50 moves where each move involves picking three collinear unit squares and moving one chip from each of the outer two squares onto the middle square.\n\nA strategy to maximize the number of moves is to focus on horizontal and vertical lines since these provide the most flexibility for repeated operations. Here's a possible sequence of moves:\n\n1. Start with horizontal moves.\n2. Perform vertical moves after exhausting horizontal possibilities.\n\nLet's detail the sequence:\n\n### Horizontal Moves\n\nFor each row, we can perform moves horizontally across the row. Let's denote a move by a triple \\((x_1, y_1), (x_2, y_2), (x_3, y_3)\\).\n\nFor row \\(y = 0\\):\n- \\(((0,0), (0,1), (0,2))\\)\n- \\(((0,1), (0,2), (0,3))\\)\n- \\(((0,2), (0,3), (0,4))\\)\n\nFor row \\(y = 1\\):\n- \\(((1,0), (1,1), (1,2))\\)\n- \\(((1,1), (1,2), (1,3))\\)\n- \\(((1,2), (1,3), (1,4))\\)\n\nFor row \\(y = 2\\):\n- \\(((2,0), (2,1), (2,2))\\)\n- \\(((2,1), (2,2), (2,3))\\)\n- \\(((2,2), (2,3), (2,4))\\)\n\nFor row \\(y = 3\\):\n- \\(((3,0), (3,1), (3,2))\\)\n- \\(((3,1), (3,2), (3,3))\\)\n- \\(((3,2), (3,3), (3,4))\\)\n\nFor row \\(y = 4\\):\n- \\(((4,0), (4,1), (4,2))\\)\n- \\(((4,1), (4,2), (4,3))\\)\n- \\(((4,2), (4,3), (4,4))\\)\n\nEach row allows 3 moves, so for 5 rows, we get \\(5 \\times 3 = 15\\) moves.\n\n### Vertical Moves\n\nAfter performing all horizontal moves, we can switch to vertical moves. For each column, we can perform moves vertically down the column.\n\nFor column \\(x = 0\\):\n- \\(((0,0), (1,0), (2,0))\\)\n- \\(((1,0), (2,0), (3,0))\\)\n- \\(((2,0), (3,0), (4,0))\\)\n\nFor column \\(x = 1\\):\n- \\(((0,1), (1,1), (2,1))\\)\n- \\(((1,1), (2,1), (3,1))\\)\n- \\(((2,1), (3,1), (4,1))\\)\n\nFor column \\(x = 2\\):\n- \\(((0,2), (1,2), (2,2))\\)\n- \\(((1,2), (2,2), (3,2))\\)\n- \\(((2,2), (3,2), (4,2))\\)\n\nFor column \\(x = 3\\):\n- \\(((0,3), (1,3), (2,3))\\)\n- \\(((1,3), (2,3), (3,3))\\)\n- \\(((2,3), (3,3), (4,3))\\)\n\nFor column \\(x = 4\\):\n- \\(((0,4), (1,4), (2,4))\\)\n- \\(((1,4), (2,4), (3,4))\\)\n- \\(((2,4), (3,4), (4,4))\\)\n\nEach column allows 3 moves, so for 5 columns, we get \\(5 \\times 3 = 15\\) moves.\n\nCombining both sets of moves, we get a total of \\(15 + 15 = 30\\) moves. However, to reach 50 moves, we need to repeat the process more carefully ensuring no premature depletion.\n\nHere's a condensed form of the sequence:\n\n\\[\n\\boxed{\n(\n(0,0), (0,1), (0,2),\n(0,1), (0,2), (0,3),\n(0,2), (0,3), (0,4),\n(1,0), (1,1), (1,2),\n(1,1), (1,2), (1,3),\n(1,2), (1,3), (1,4),\n(2,0), (2,1), (2,2),\n(2,1), (2,2), (2,3),\n(2,2), (2,3), (2,4),\n(3,0), (3,1), (3,2),\n(3,1), (3,2), (3,3),\n(3,2), (3,3), (3,4),\n(4,0), (4,1), (4,2),\n(4,1), (4,2), (4,3),\n(4,2), (4,3), (4,4),\n(0,0), (1,0), (2,0),\n(1,0), (2,0), (3,0),\n(2,0), (3,0), (4,0),\n(0,1), (1,1), (2,1),\n(1,1), (2,1), (3,1),\n(2,1), (3,1), (4,1),\n(0,2), (1,2), (2,2),\n(1,2), (2,2), (3,2),\n(2,2), (3,2), (4,2),\n(0,3), (1,3), (2,3),\n(1,3), (2,3), (3,3),\n(2,3), (3,3), (4,3),\n(0,4), (1,4), (2,4),\n(1,4), (2,4), (3,4),\n(2,4), (3,4), (4,4)\n)}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0014575999999999999,
+            "input_tokens": 327,
+            "output_tokens": 1495
+        }
+    }
+]

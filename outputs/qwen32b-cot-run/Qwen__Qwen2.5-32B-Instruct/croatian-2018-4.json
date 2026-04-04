@@ -1,0 +1,98 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "croatian-2018-4",
+                "statement": "Given $n = {n}$, find positive integers $a_1, a_2, \\ldots, a_n$ such that $\\frac{{a_j+a_i}}{{a_j-a_i}}$ is a positive integer for all $1 \\le i < j \\le n$.",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "HMO 2018 4",
+                "original_solution": [
+                    343319185440,
+                    343319187120,
+                    343319187132,
+                    343319187134,
+                    343319187135,
+                    343319187136
+                ],
+                "original_parameters": {
+                    "n": 6
+                },
+                "timeout": 60,
+                "problem_url": "https://natjecanja.math.hr/wp-content/uploads/2019/03/HMO2018-rje.pdf#page=16",
+                "solution_url": "https://natjecanja.math.hr/wp-content/uploads/2019/03/HMO2018-rje.pdf#page=16",
+                "tags": [
+                    "Number Theory",
+                    "Find Any",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 6
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to find positive integers \\(a_1, a_2, \\ldots, a_6\\) such that for all \\(1 \\le i < j \\le 6\\), the expression \\(\\frac{a_j + a_i}{a_j - a_i}\\) is a positive integer. This condition implies that \\(a_j - a_i\\) must divide \\(a_j + a_i\\).\n\nLet's denote \\(d_{ij} = a_j - a_i\\). Then, we have:\n\\[\n\\frac{a_j + a_i}{a_j - a_i} = k_{ij}\n\\]\nfor some positive integer \\(k_{ij}\\). Rearranging gives:\n\\[\na_j + a_i = k_{ij} (a_j - a_i)\n\\]\nwhich simplifies to:\n\\[\na_j + a_i = k_{ij} a_j - k_{ij} a_i\n\\]\nor equivalently,\n\\[\na_j (k_{ij} - 1) = a_i (k_{ij} + 1)\n\\]\nThis equation tells us that \\(a_j\\) and \\(a_i\\) must be in a specific ratio depending on \\(k_{ij}\\).\n\nA simple and effective strategy is to consider the sequence where each term is a power of 2. Let's try \\(a_i = 2^{i-1}\\) for \\(i = 1, 2, \\ldots, 6\\). That is, \\(a_1 = 1\\), \\(a_2 = 2\\), \\(a_3 = 4\\), \\(a_4 = 8\\), \\(a_5 = 16\\), and \\(a_6 = 32\\).\n\nWe need to check if \\(\\frac{a_j + a_i}{a_j - a_i}\\) is an integer for all \\(1 \\le i < j \\le 6\\). Consider the general form:\n\\[\n\\frac{2^{j-1} + 2^{i-1}}{2^{j-1} - 2^{i-1}} = \\frac{2^{i-1}(2^{j-i} + 1)}{2^{i-1}(2^{j-i} - 1)} = \\frac{2^{j-i} + 1}{2^{j-i} - 1}\n\\]\nSince \\(2^{j-i} - 1\\) divides \\(2^{j-i} + 1 - 2 = 2^{j-i} - 1 + 2 = 2^{j-i} + 1\\), the fraction \\(\\frac{2^{j-i} + 1}{2^{j-i} - 1}\\) is indeed an integer.\n\nThus, the sequence \\(a_1 = 1\\), \\(a_2 = 2\\), \\(a_3 = 4\\), \\(a_4 = 8\\), \\(a_5 = 16\\), and \\(a_6 = 32\\) satisfies the given condition. Therefore, the answer is:\n\\[\n\\boxed{1, 2, 4, 8, 16, 32}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0006488,
+            "input_tokens": 124,
+            "output_tokens": 687
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "croatian-2018-4",
+                "statement": "Given $n = {n}$, find positive integers $a_1, a_2, \\ldots, a_n$ such that $\\frac{{a_j+a_i}}{{a_j-a_i}}$ is a positive integer for all $1 \\le i < j \\le n$.",
+                "formatting_instructions": "Output the answer as a comma separated list inside of $\\boxed{...}$. For example $\\boxed{1, 2, 3}$.",
+                "parameters": [
+                    "n"
+                ],
+                "source": "HMO 2018 4",
+                "original_solution": [
+                    343319185440,
+                    343319187120,
+                    343319187132,
+                    343319187134,
+                    343319187135,
+                    343319187136
+                ],
+                "original_parameters": {
+                    "n": 6
+                },
+                "timeout": 60,
+                "problem_url": "https://natjecanja.math.hr/wp-content/uploads/2019/03/HMO2018-rje.pdf#page=16",
+                "solution_url": "https://natjecanja.math.hr/wp-content/uploads/2019/03/HMO2018-rje.pdf#page=16",
+                "tags": [
+                    "Number Theory",
+                    "Find Any",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 7
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to find positive integers \\(a_1, a_2, \\ldots, a_7\\) such that for all \\(1 \\le i < j \\le 7\\), the expression \\(\\frac{a_j + a_i}{a_j - a_i}\\) is a positive integer. \n\nLet's denote \\(k_{ij} = \\frac{a_j + a_i}{a_j - a_i}\\). Then, we have \\(k_{ij} (a_j - a_i) = a_j + a_i\\), which can be rearranged to:\n\\[ k_{ij} a_j - k_{ij} a_i = a_j + a_i \\]\n\\[ (k_{ij} - 1)a_j = (k_{ij} + 1)a_i \\]\n\\[ \\frac{a_j}{a_i} = \\frac{k_{ij} + 1}{k_{ij} - 1} \\]\n\nSince \\(a_i\\) and \\(a_j\\) are positive integers, \\(\\frac{k_{ij} + 1}{k_{ij} - 1}\\) must also be a positive rational number. A simple choice that works is when \\(k_{ij} = 3\\), because then \\(\\frac{k_{ij} + 1}{k_{ij} - 1} = \\frac{4}{2} = 2\\). This means that if we set \\(a_i\\) to be in a geometric progression with a common ratio of 2, then the condition will be satisfied.\n\nSo let's choose \\(a_1 = 1, a_2 = 2, a_3 = 4, a_4 = 8, a_5 = 16, a_6 = 32, a_7 = 64\\). We can verify that for any \\(i < j\\),\n\\[ \\frac{a_j + a_i}{a_j - a_i} = \\frac{2^j + 2^i}{2^j - 2^i} = \\frac{2^i (2^{j-i} + 1)}{2^i (2^{j-i} - 1)} = \\frac{2^{j-i} + 1}{2^{j-i} - 1} \\]\nwhich is an integer since \\(2^{j-i} + 1\\) and \\(2^{j-i} - 1\\) are consecutive odd numbers and their ratio is always an integer.\n\nTherefore, the solution is:\n\\[ \\boxed{1, 2, 4, 8, 16, 32, 64} \\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0005504,
+            "input_tokens": 124,
+            "output_tokens": 564
+        }
+    }
+]

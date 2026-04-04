@@ -1,0 +1,102 @@
+[
+    {
+        "problem": {
+            "config": {
+                "name": "croatian-2017-2",
+                "statement": "An unusual bishop is a chess piece that can be turned towards any of the four diagonally adjacent squares and can attack any square that is either in front of it or left or right of it (similar as the usual bishop with the exception that it cannot see behind itself).\nTwo fields of the chessboard are diagonally adjacent if they share exactly one common vertex. Your task is to place at least ${n}$ unusual bishops on the $8 \\times 8$ chessboard so that no bishop can attack another.",
+                "formatting_instructions": "The chessboard is represented as a matrix in LaTeX. \nPresent your solution by replacing some empty squares of the chessboard (denoted with \"o\") with the letters corresponding to the directions of the bishops (A - bishop turned top left, B - bishop turned top right, C - bishop turned bottom right, D - bishop turned bottom left):\n\n$$\\begin{array}{cccccccc}\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\n\\end{array}$$\n\nPlace the whole resulting array inside of $\\boxed{...}$.\n",
+                "parameters": [
+                    "n"
+                ],
+                "source": "HMO 2017 2",
+                "original_solution": [
+                    "AooooooB",
+                    "AooABooB",
+                    "AooDCooB",
+                    "AooooooB",
+                    "oooooooo",
+                    "oooooooo",
+                    "oooooooo",
+                    "DDDDCCCC"
+                ],
+                "original_parameters": {
+                    "n": 20
+                },
+                "timeout": 60,
+                "problem_url": "https://natjecanja.math.hr/wp-content/uploads/2015/02/HMO2017-rje.pdf#page=19",
+                "solution_url": "https://natjecanja.math.hr/wp-content/uploads/2015/02/HMO2017-rje.pdf#page=19",
+                "tags": [
+                    "Combinatorics",
+                    "Find Max/Min",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 20
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to ensure that no two bishops placed on the chessboard can attack each other according to their specific movement rules. Each bishop can only attack squares in front of it or to its sides but not behind it. To achieve this, we need to carefully place bishops such that they do not interfere with each other.\n\nWe will start by placing bishops in a pattern that ensures no two bishops can attack each other. One effective way to achieve this is by alternating rows and columns while ensuring that bishops are not aligned in such a way that they can attack each other.\n\nHere's one possible configuration:\n\n$$\\begin{array}{cccccccc}\nA & o & B & o & A & o & B & o \\\\\no & C & o & D & o & C & o & D \\\\\nB & o & A & o & B & o & A & o \\\\\no & D & o & C & o & D & o & C \\\\\nA & o & B & o & A & o & B & o \\\\\no & C & o & D & o & C & o & D \\\\\nB & o & A & o & B & o & A & o \\\\\no & D & o & C & o & D & o & C \\\\\n\\end{array}$$\n\nIn this arrangement:\n- Bishops labeled 'A' are placed facing top-left.\n- Bishops labeled 'B' are placed facing top-right.\n- Bishops labeled 'C' are placed facing bottom-right.\n- Bishops labeled 'D' are placed facing bottom-left.\n\nThis ensures that no bishop can attack another since bishops are placed in a checkerboard-like pattern, and each bishop faces in a direction that does not allow it to attack another bishop placed similarly.\n\nTherefore, the final configuration is:\n\n$$\\boxed{\\begin{array}{cccccccc}\nA & o & B & o & A & o & B & o \\\\\no & C & o & D & o & C & o & D \\\\\nB & o & A & o & B & o & A & o \\\\\no & D & o & C & o & D & o & C \\\\\nA & o & B & o & A & o & B & o \\\\\no & C & o & D & o & C & o & D \\\\\nB & o & A & o & B & o & A & o \\\\\no & D & o & C & o & D & o & C \\\\\n\\end{array}}$$"
+            }
+        ],
+        "cost": {
+            "cost": 0.000704,
+            "input_tokens": 366,
+            "output_tokens": 514
+        }
+    },
+    {
+        "problem": {
+            "config": {
+                "name": "croatian-2017-2",
+                "statement": "An unusual bishop is a chess piece that can be turned towards any of the four diagonally adjacent squares and can attack any square that is either in front of it or left or right of it (similar as the usual bishop with the exception that it cannot see behind itself).\nTwo fields of the chessboard are diagonally adjacent if they share exactly one common vertex. Your task is to place at least ${n}$ unusual bishops on the $8 \\times 8$ chessboard so that no bishop can attack another.",
+                "formatting_instructions": "The chessboard is represented as a matrix in LaTeX. \nPresent your solution by replacing some empty squares of the chessboard (denoted with \"o\") with the letters corresponding to the directions of the bishops (A - bishop turned top left, B - bishop turned top right, C - bishop turned bottom right, D - bishop turned bottom left):\n\n$$\\begin{array}{cccccccc}\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\no & o & o & o & o & o & o & o \\\\\n\\end{array}$$\n\nPlace the whole resulting array inside of $\\boxed{...}$.\n",
+                "parameters": [
+                    "n"
+                ],
+                "source": "HMO 2017 2",
+                "original_solution": [
+                    "AooooooB",
+                    "AooABooB",
+                    "AooDCooB",
+                    "AooooooB",
+                    "oooooooo",
+                    "oooooooo",
+                    "oooooooo",
+                    "DDDDCCCC"
+                ],
+                "original_parameters": {
+                    "n": 20
+                },
+                "timeout": 60,
+                "problem_url": "https://natjecanja.math.hr/wp-content/uploads/2015/02/HMO2017-rje.pdf#page=19",
+                "solution_url": "https://natjecanja.math.hr/wp-content/uploads/2015/02/HMO2017-rje.pdf#page=19",
+                "tags": [
+                    "Combinatorics",
+                    "Find Max/Min",
+                    "Is Simplified"
+                ]
+            },
+            "param_values": {
+                "n": 19
+            },
+            "revised_statement": null,
+            "revised_formatting": null
+        },
+        "response": [
+            {
+                "role": "assistant",
+                "content": "To solve this problem, we need to place bishops such that no two bishops can attack each other based on their direction and the unusual movement rules provided. The chessboard will have bishops placed in such a way that they do not overlap their attack ranges. Here\u2019s one possible configuration:\n\nWe start by placing bishops in a staggered pattern across the board, ensuring that bishops facing opposite directions do not attack each other. We can alternate the directions of the bishops in rows and columns.\n\nHere is one valid arrangement where at least 19 bishops are placed without attacking each other:\n\n$$\\begin{array}{cccccccc}\nA & o & B & o & A & o & B & o \\\\\no & C & o & D & o & C & o & D \\\\\nB & o & A & o & B & o & A & o \\\\\no & D & o & C & o & D & o & C \\\\\nA & o & B & o & A & o & B & o \\\\\no & C & o & D & o & C & o & D \\\\\nB & o & A & o & B & o & A & o \\\\\no & D & o & C & o & D & o & C \\\\\n\\end{array}$$\n\nThis configuration ensures that no bishop can attack another, as bishops facing opposite directions are separated by at least one square, and bishops facing the same direction are placed far enough apart to avoid conflict.\n\nThus, the final answer is:\n\n\\[\n\\boxed{\n\\begin{array}{cccccccc}\nA & o & B & o & A & o & B & o \\\\\no & C & o & D & o & C & o & D \\\\\nB & o & A & o & B & o & A & o \\\\\no & D & o & C & o & D & o & C \\\\\nA & o & B & o & A & o & B & o \\\\\no & C & o & D & o & C & o & D \\\\\nB & o & A & o & B & o & A & o \\\\\no & D & o & C & o & D & o & C \\\\\n\\end{array}\n}\n\\]"
+            }
+        ],
+        "cost": {
+            "cost": 0.0006552000000000001,
+            "input_tokens": 366,
+            "output_tokens": 453
+        }
+    }
+]
