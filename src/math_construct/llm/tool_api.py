@@ -157,12 +157,19 @@ class ToolAPIQuery(APIQuery):
     # ------------------------------------------------------------------
 
     def _prepare_query_messages(self, query: list[dict]) -> list[dict]:
-        """Convert our internal message format to the OpenAI messages list."""
+        """Convert our internal message format to the OpenAI chat messages list."""
+        prepared = self.prepare_query(query)
+        if not isinstance(prepared, list):
+            raise ValueError(
+                "ToolAPIQuery requires chat messages. "
+                "Set is_chat=True when using native tool calling."
+            )
+
         messages = []
-        for msg in query:
+        for msg in prepared:
             role = msg.get("role", "user")
             content = msg.get("content", "")
-            if role in ("system", "user", "assistant"):
+            if role in ("system", "developer", "user", "assistant"):
                 messages.append({"role": role, "content": content})
             # skip api_error and other internal roles
         return messages

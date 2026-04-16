@@ -36,16 +36,18 @@ check("error captured (not crash)", "RuntimeError" in out or "ValueError" in out
 out = tool.run(code="import time; time.sleep(999)")
 check("timeout works", "TimeoutError" in out or "Timeout" in out, f"got: {repr(out)}")
 
-# ── 2. __init__ returns only PythonTool ───────────────────────────────────────
-print("\n=== 2. Tool registry (Python-only) ===")
+# ── 2. Tool registry returns category-aware tools with Python fallback ─────────
+print("\n=== 2. Tool registry (category-aware) ===")
 from math_construct.llm.tools import get_tools_for_problem
 from math_construct.problems import get_all_problem_classes
 
 problems = get_all_problem_classes()
 prob_inst = problems[0].generate_multiple(1)[0]
 tools = get_tools_for_problem(prob_inst)
-check("only one tool returned", len(tools) == 1, f"got {len(tools)} tools: {[t.name for t in tools]}")
-check("tool is run_python", tools[0].name == "run_python", f"got: {tools[0].name}")
+tool_names = [t.name for t in tools]
+check("at least one tool returned", len(tools) >= 1, f"got {len(tools)} tools: {tool_names}")
+check("python fallback available", "run_python" in tool_names, f"got: {tool_names}")
+check("no duplicate tools", len(tool_names) == len(set(tool_names)), f"got: {tool_names}")
 
 # ── 3. _parse_action regex ────────────────────────────────────────────────────
 print("\n=== 3. Action parser ===")

@@ -13,6 +13,14 @@ This project uses `uv` for package management. To install `uv`, run:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
+If you prefer a plain Python virtual environment (`.venv`) + `pip`, you can do:
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
 ## Running Language Models
 
 You can run LLMs on benchmark problems using:
@@ -37,6 +45,101 @@ In the config file, a model name is always specified as `api:model_name` (e.g., 
 - Google (`google`): `GOOGLE_API_KEY`
 - Deepseek (`deepseek`): `DEEPSEEK_API_KEY`
 - Openrouter (`openrouter`): `OPENROUTER_API_KEY`
+
+### Tool mode parallelization and large-model behavior
+To keep MathConstruct changes minimal while improving throughput, we only parallelize one specific step in tool mode:
+
+- **Parallelized:** `ToolSolver.solve_initial_round` runs different **problems** concurrently (thread pool size = `inference.concurrent_requests`).
+- **Not parallelized:** the internal tool loop for a **single problem** is still sequential (LLM call → tool call → LLM call ...).
+- **No change to CoT/code solvers:** this affects only `solver.type_solver: tool` with native tool calling.
+
+This means you can speed up large benchmark sweeps without changing the per-problem reasoning flow used in the original framework.
+
+For OpenAI responses-oriented model families (e.g. `gpt-5`, `o1`, `o3`), the runner automatically uses ReAct tool mode in tool runs, because those models are not reliable with the native chat function-calling path used by `ToolAPIQuery`.
+
+## Full benchmark against a locally hosted vLLM server
+
+This is the recommended flow if you want to benchmark open-weight models (Qwen/Llama) on your own GPUs while using MathConstruct's existing configs.
+
+### 1) Start vLLM (OpenAI-compatible endpoint)
+
+Choose one model and launch a server on port 8000:
+
+```bash
+# Llama 3.1 8B
+vllm serve meta-llama/Llama-3.1-8B-Instruct --port 8000 --tensor-parallel-size 1
+
+# Qwen2.5 32B
+vllm serve Qwen/Qwen2.5-32B-Instruct --port 8000 --tensor-parallel-size 2
+
+# Llama 3.3 70B
+vllm serve meta-llama/Llama-3.3-70B-Instruct --port 8000 --tensor-parallel-size 4
+```
+
+If you want **native function-calling** (`use_react: False`), start vLLM with tool-call flags:
+
+```bash
+python -m vllm.entrypoints.openai.api_server \
+  --model meta-llama/Llama-3.3-70B-Instruct \
+  --tensor-parallel-size 4 \
+  --dtype bfloat16 \
+  --port 8000 \
+  --host 0.0.0.0 \
+  --max-model-len 8192 \
+  --enable-auto-tool-choice \
+  --tool-call-parser llama3_json
+```
+
+For **ReAct tool mode** (`use_react: True`), those extra tool-call flags are not required.
+
+### 2) Point MathConstruct to local vLLM
+
+In config, set:
+- `models: ["openai:<model-name>"]`
+- `solver.local_api_base_url: "http://localhost:8000/v1"`
+
+Also export a dummy key (required by OpenAI client init):
+
+```bash
+export OPENAI_API_KEY="dummy-local"
+```
+
+### 3) Run the full benchmark configs (all problems)
+
+The PACE configs already target the **full benchmark** (`problems: [".*"]`) with 2 variations.
+
+```bash
+# Qwen2.5 32B
+uv run python src/scripts/run.py configs/pace_qwen32b_cot.yaml
+uv run python src/scripts/run.py configs/pace_qwen32b_tool.yaml
+
+# Llama 3.1 8B
+uv run python src/scripts/run.py configs/pace_llama8b_cot.yaml
+uv run python src/scripts/run.py configs/pace_llama8b_tool.yaml
+
+# Llama 3.3 70B
+uv run python src/scripts/run.py configs/pace_llama_cot.yaml
+uv run python src/scripts/run.py configs/pace_llama_tools.yaml
+```
+
+Each run writes to `outputs/<output_dir>/` (for example `outputs/qwen32b-tool-run`).
+
+### 4) Analyze benchmark outputs
+
+```bash
+uv run python src/scripts/analyze.py --run outputs/qwen32b-cot-run
+uv run python src/scripts/analyze.py --run outputs/qwen32b-tool-run
+uv run python src/scripts/analyze.py --run outputs/llama8b-cot-run
+uv run python src/scripts/analyze.py --run outputs/llama8b-tool-run
+uv run python src/scripts/analyze.py --run outputs/llama-cot-run
+uv run python src/scripts/analyze.py --run outputs/llama-tools-run
+```
+
+### Notes
+- For local multi-GPU setups, tune `--tensor-parallel-size` and `inference.concurrent_requests` conservatively first.
+- If you see OOMs, reduce `--max-model-len` and/or batch size in solver config.
+- For full HPC orchestration (separate server + benchmark jobs), see `pace/README_PACE.md`.
+
 
 ## Processing the results of a run 
 
