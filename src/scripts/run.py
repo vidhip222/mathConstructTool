@@ -222,6 +222,12 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
 
             if use_react:
                 # ── ReAct mode: text-based tool calling, works with ANY model ──
+                if cfg.inference.concurrent_requests <= 1:
+                    logger.warning(
+                        "ReAct mode currently executes one problem/turn at a time. "
+                        "You set inference.concurrent_requests={} so runs will appear fully serial.",
+                        cfg.inference.concurrent_requests,
+                    )
                 solver = ReActToolSolver(
                     querier=querier,
                     tool_timeout=cfg.solver.tool_timeout,
