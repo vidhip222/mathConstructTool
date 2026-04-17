@@ -15,6 +15,7 @@ The solver selects tools based on the problem's Tag(s) via the registry in
 from __future__ import annotations
 
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Callable
 
 import numpy as np
@@ -171,31 +172,39 @@ class ToolSolver(CoTSolver):
     # Override solve_initial_round to use per-problem queriers
     # ------------------------------------------------------------------
 
+    def _solve_single_problem(self, idx: int, problem: Problem, query: list[dict]) -> tuple[int, str, dict]:
+        """Run one problem with a per-problem ToolAPIQuery instance."""
+        querier = self._make_querier_for_problem(problem)
+        try:
+            response_list, detailed_cost_list, _ = querier.run_queries([query])
+            response = response_list[0]
+            detail = detailed_cost_list[0]
+        except Exception as e:
+            logger.error(f"ToolAPIQuery failed for problem {idx}: {e}")
+            response = ""
+            detail = {"cost": 0, "input_tokens": 0, "output_tokens": 0}
+        return idx, response, detail
+
     def solve_initial_round(self, problems: list[Problem]) -> list[list[dict]]:
         logger.info("ToolSolver: performing initial round with tool calling.")
         queries = self.build_queries(problems)
 
-        results: list[dict] = [None] * len(problems)
-        costs:   list[dict] = [None] * len(problems)
+        max_workers = max(1, int(self._base_querier_kwargs.get("concurrent_requests", 1)))
+        logger.info(f"ToolSolver: running tool calls with {max_workers} worker(s).")
 
-        # We run problems one-by-one (or could be parallelised) because each
-        # needs its own ToolAPIQuery instance with the right tools.
-        for i, (problem, query) in enumerate(zip(problems, queries)):
-            querier = self._make_querier_for_problem(problem)
-            try:
-                response_list, detailed_cost_list, total_cost = querier.run_queries([query])
-                response    = response_list[0]
-                detail      = detailed_cost_list[0]
-            except Exception as e:
-                logger.error(f"ToolAPIQuery failed for problem {i}: {e}")
-                response = ""
-                detail   = {"cost": 0, "input_tokens": 0, "output_tokens": 0}
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            future_to_index = {
+                executor.submit(self._solve_single_problem, i, problem, query): i
+                for i, (problem, query) in enumerate(zip(problems, queries))
+            }
 
-            queries[i] = self.add_response(query, response)
-            self.cost += detail["cost"]
-            self.detailed_cost[i]["cost"]         += detail["cost"]
-            self.detailed_cost[i]["input_tokens"]  += detail["input_tokens"]
-            self.detailed_cost[i]["output_tokens"] += detail["output_tokens"]
+            for future in as_completed(future_to_index):
+                i, response, detail = future.result()
+                queries[i] = self.add_response(queries[i], response)
+                self.cost += detail["cost"]
+                self.detailed_cost[i]["cost"] += detail["cost"]
+                self.detailed_cost[i]["input_tokens"] += detail["input_tokens"]
+                self.detailed_cost[i]["output_tokens"] += detail["output_tokens"]
 
         logger.info("ToolSolver: initial round done.")
         return queries

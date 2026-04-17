@@ -1,0 +1,3 @@
+# Minimal pip entrypoint for this project.
+# Installs MathConstruct and all dependencies declared in pyproject.toml.
+-e .

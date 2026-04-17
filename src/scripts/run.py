@@ -20,6 +20,13 @@ def get_output_length_assistant(query):
             length += len(message["content"])
     return length
 
+def _model_requires_react_for_tool_calls(api: str, model_name: str) -> bool:
+    """Native ToolAPIQuery uses chat.completions, so use ReAct for responses-only models."""
+    if api != "openai":
+        return False
+    lowered = model_name.lower()
+    return ("gpt-5" in lowered) or ("o1" in lowered) or ("o3" in lowered)
+
 def result_to_string(result):
     end_string = ""
     for message in result:
@@ -205,9 +212,22 @@ def run(cfg, apis_restricted=None, models_restricted=None) -> None:
             querier.base_url = cfg.solver.local_api_base_url
 
         if cfg.solver.type_solver == "tool":
+            use_react = cfg.solver.use_react or _model_requires_react_for_tool_calls(api, model_name)
+            if use_react and not cfg.solver.use_react:
+                logger.warning(
+                    "Model {} with api={} is responses-oriented; forcing use_react=True for tool mode.",
+                    model_name,
+                    api,
+                )
 
-            if cfg.solver.use_react:
+            if use_react:
                 # ── ReAct mode: text-based tool calling, works with ANY model ──
+                if cfg.inference.concurrent_requests <= 1:
+                    logger.warning(
+                        "ReAct mode currently executes one problem/turn at a time. "
+                        "You set inference.concurrent_requests={} so runs will appear fully serial.",
+                        cfg.inference.concurrent_requests,
+                    )
                 solver = ReActToolSolver(
                     querier=querier,
                     tool_timeout=cfg.solver.tool_timeout,

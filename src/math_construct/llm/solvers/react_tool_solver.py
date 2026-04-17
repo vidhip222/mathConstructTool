@@ -28,7 +28,9 @@ or when max_react_iterations is reached (we then force a final-answer request).
 """
 from __future__ import annotations
 
+import copy
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 
 import numpy as np
@@ -155,8 +157,11 @@ class ReActToolSolver(CoTSolver):
     # ------------------------------------------------------------------
 
     def _run_react_loop(
-        self, problem: Problem, messages: list[dict], problem_idx: int
-    ) -> list[dict]:
+        self,
+        problem: Problem,
+        messages: list[dict],
+        querier,
+    ) -> tuple[list[dict], dict]:
         """
         Run the Thought→Action→Observation loop for one problem.
         Returns the final message list (suitable for parse_and_check).
@@ -165,8 +170,9 @@ class ReActToolSolver(CoTSolver):
         tool_map: dict[str, BaseTool] = {t.name: t for t in tools}
 
         # Add stop sequence so the model cannot write "Observation:" itself.
-        old_stop = self.querier.kwargs.get("stop")
-        self.querier.kwargs["stop"] = ["Observation:"]
+        old_stop = querier.kwargs.get("stop")
+        querier.kwargs["stop"] = ["Observation:"]
+        detail = {"cost": 0, "input_tokens": 0, "output_tokens": 0}
 
         try:
             for iteration in range(self.max_react_iterations + 1):
@@ -175,14 +181,13 @@ class ReActToolSolver(CoTSolver):
                     messages.append({"role": "user", "content": _FORCE_FINAL_PROMPT})
 
                 # Call the LLM
-                responses, detailed_costs, cost = self.querier.run_queries([messages])
+                responses, detailed_costs, cost = querier.run_queries([messages])
                 response_text: str = responses[0] or ""
 
-                # Track cost globally and per-problem
-                self.cost += cost["cost"]
-                self.detailed_cost[problem_idx]["cost"]         += detailed_costs[0]["cost"]
-                self.detailed_cost[problem_idx]["input_tokens"] += detailed_costs[0]["input_tokens"]
-                self.detailed_cost[problem_idx]["output_tokens"]+= detailed_costs[0]["output_tokens"]
+                # Track local cost (aggregated by caller for thread safety)
+                detail["cost"] += cost["cost"]
+                detail["input_tokens"] += detailed_costs[0]["input_tokens"]
+                detail["output_tokens"] += detailed_costs[0]["output_tokens"]
 
                 messages.append({"role": "assistant", "content": response_text})
 
@@ -217,7 +222,8 @@ class ReActToolSolver(CoTSolver):
                 else:
                     logger.debug(f"Executing tool '{tool_name}'")
                     observation = self._execute_tool(tool, tool_name, tool_input)
-                    logger.debug(f"Observation ({tool_name}): {observation[:300]}")
+                    pretty_observation = observation if observation else "<empty stdout>"
+                    logger.debug(f"Observation ({tool_name}): {pretty_observation[:300]}")
 
                 # Inject the observation as a user message
                 messages.append({
@@ -227,11 +233,11 @@ class ReActToolSolver(CoTSolver):
         finally:
             # Restore original stop setting
             if old_stop is None:
-                self.querier.kwargs.pop("stop", None)
+                querier.kwargs.pop("stop", None)
             else:
-                self.querier.kwargs["stop"] = old_stop
+                querier.kwargs["stop"] = old_stop
 
-        return messages
+        return messages, detail
 
     # ------------------------------------------------------------------
     # Override solve_initial_round
@@ -240,9 +246,30 @@ class ReActToolSolver(CoTSolver):
     def solve_initial_round(self, problems: list[Problem]) -> list[list[dict]]:
         logger.info(f"ReActToolSolver: solving {len(problems)} problems.")
         queries = self.build_queries(problems)
+        max_workers = max(1, int(getattr(self.querier, "concurrent_requests", 1)))
+        logger.info(f"ReActToolSolver: running with {max_workers} parallel problem worker(s).")
 
-        for i, (problem, messages) in enumerate(zip(problems, queries)):
-            queries[i] = self._run_react_loop(problem, messages, problem_idx=i)
+        def _solve_one(i: int, problem: Problem, messages: list[dict]):
+            local_querier = copy.deepcopy(self.querier)
+            solved_messages, detail = self._run_react_loop(
+                problem=problem,
+                messages=messages,
+                querier=local_querier,
+            )
+            return i, solved_messages, detail
+
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = [
+                executor.submit(_solve_one, i, problem, messages)
+                for i, (problem, messages) in enumerate(zip(problems, queries))
+            ]
+            for future in as_completed(futures):
+                i, solved_messages, detail = future.result()
+                queries[i] = solved_messages
+                self.cost += detail["cost"]
+                self.detailed_cost[i]["cost"] += detail["cost"]
+                self.detailed_cost[i]["input_tokens"] += detail["input_tokens"]
+                self.detailed_cost[i]["output_tokens"] += detail["output_tokens"]
 
         logger.info("ReActToolSolver: initial round done.")
         return queries
